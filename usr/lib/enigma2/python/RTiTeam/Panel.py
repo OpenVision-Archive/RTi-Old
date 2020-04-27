@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+from __future__ import print_function
 from enigma import *
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
@@ -79,7 +82,7 @@ class Panel(Screen):
                 import Plugins.PLi.SoftcamSetup.Sc
             except Exception:
                 e = None
-                print e
+                print(e)
                 return None
 
             self.session.open(ScSelection)
@@ -94,7 +97,7 @@ class Panel(Screen):
                 import Plugins.Extensions.MediaPlayer.plugin
             except Exception:
                 e = None
-                print e
+                print(e)
                 return None
 
             self.session.open(MediaPlayer)
@@ -105,7 +108,7 @@ class Panel(Screen):
                 import Plugins.SystemPlugins.NetworkBrowser.plugin
             except Exception:
                 e = None
-                print e
+                print(e)
                 return None
 
             NetworkBrowserMain(self.session)
@@ -116,7 +119,7 @@ class Panel(Screen):
                 import Plugins.SystemPlugins.NetworkBrowser.plugin
             except Exception:
                 e = None
-                print e
+                print(e)
                 return None
 
             MountManagerMain(self.session)

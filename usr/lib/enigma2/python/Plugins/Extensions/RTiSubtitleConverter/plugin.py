@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+from __future__ import print_function
 from enigma import ePicLoad, eTimer, getDesktop
 from Screens.Screen import Screen
 from Tools.Directories import resolveFilename, pathExists, fileExists, SCOPE_MEDIA
@@ -83,17 +86,17 @@ class subconv(Screen):
 
     
     def KeyGreen(self):
-        print 'ok'
+        print('ok')
 
     
     def KeyYellow(self):
         if not self.filelist.canDescent():
-            print 'ok'
+            print('ok')
         
 
     
     def KeyBlue(self):
-        print 'ok'
+        print('ok')
 
     
     def KeyOk(self):
@@ -117,7 +120,7 @@ class subconv(Screen):
 
     
     def KeyExit(self):
-        print 'exit'
+        print('exit')
         if self.filelist.getCurrentDirectory() is None:
             config.pic.lastDir.value = '/'
         else:
@@ -263,7 +266,7 @@ class SubPreview(Screen):
         try:
             data = f.decode(enc)
         except Exception:
-            print 'nok'
+            print('nok')
 
         fpath = os.path.abspath(filename)
         newfilename = fpath + '.bak'
@@ -272,7 +275,7 @@ class SubPreview(Screen):
             shutil.copy(filename, newfilename)
         except Exception:
             e = None
-            print e
+            print(e)
 
         filenameC = '/tmp/Converted.srt'
         f = open(filenameC, 'w')
@@ -281,7 +284,7 @@ class SubPreview(Screen):
             f.write(data.encode('utf-8'))
         except Exception:
             e = None
-            print e
+            print(e)
         finally:
             f.close()
 
@@ -291,7 +294,7 @@ class SubPreview(Screen):
             f1.write(data.encode('utf-8'))
         except Exception:
             e = None
-            print e
+            print(e)
         finally:
             f1.close()
 
@@ -354,7 +357,7 @@ class SubPreview(Screen):
 
     
     def keyNumberGlobal(self, number):
-        print 'pressed', number
+        print('pressed', number)
         self['text'].number(number)
 
     

@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+from __future__ import print_function
 from enigma import *
 from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
@@ -272,7 +275,7 @@ class ImageBackUpScreen(Screen):
 
     
     def BackUpKernel(self):
-        print 'OK'
+        print('OK')
 
     
     def BackUpKernelDone(self, result, retval, extra_args):
@@ -447,12 +450,12 @@ class ImageBackUpScreen2(Screen):
                     len(self.deviceliste) < 1
                     cap = '0 MB '
 
-                f = os.popen('sfdisk -l|grep /dev/' + partition + "| awk '{print substr($7" + '" "' + " $8,1)}'")
+                f = os.popen('sfdisk -l|grep /dev/' + partition + "| awk '{print(substr($7" + '" "' + " $8,1)}'"))
                 ptype = re.sub(p, ' ', f.readline())
                 f.close()
                 ptype = ptype + '           '
                 ptype = ptype[:11]
-                f = os.popen('mount | grep ' + partition + "| awk '{print substr($3,1)}'")
+                f = os.popen('mount | grep ' + partition + "| awk '{print(substr($3,1)}'"))
                 pmount = f.readline()
                 f.close()
                 if len(pmount) > 0:
@@ -465,7 +468,7 @@ class ImageBackUpScreen2(Screen):
             self['list2'].setList(self.partitions)
         except:
             len(self.deviceliste) < 1
-            print 'Err.'
+            print('Err.')
 
 
     

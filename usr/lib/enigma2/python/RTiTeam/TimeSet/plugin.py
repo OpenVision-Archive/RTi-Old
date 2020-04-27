@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+from __future__ import print_function
 from enigma import eConsoleAppContainer, iServiceInformation, eActionMap
 from enigma import getDesktop
 from Screens.Screen import Screen
@@ -142,7 +145,7 @@ class TimeSetConfig(ConfigListScreen, Screen):
     
     def ZemiVreme(self):
         plugin_path = '/usr/lib/enigma2/python/RTiTeam/TimeSet'
-        print plugin_path
+        print(plugin_path)
         before = 'Before: Local=' + strftime('%H:%M', localtime()) + ', UTC=' + strftime('%H:%M', gmtime())
         cmd = str(plugin_path + '/ntpdate -t 20 0.debian.pool.ntp.org')
         res = popen(cmd).read()
@@ -169,7 +172,7 @@ class TimeSetConfig(ConfigListScreen, Screen):
     
     def Page(self):
         plugin_path = '/usr/lib/enigma2/python/RTiTeam/TimeSet'
-        print plugin_path
+        print(plugin_path)
         before = 'Before: Local=' + strftime('%H:%M', localtime()) + ', UTC=' + strftime('%H:%M', gmtime())
         cmd = str(plugin_path + '/ntpdate -t 20 0.debian.pool.ntp.org')
         res = popen(cmd).read()
@@ -223,11 +226,11 @@ class TimeSetConfig(ConfigListScreen, Screen):
 
     
     def keyOK(self):
-        print 'ok'
+        print('ok')
 
     
     def save(self):
-        print 'save'
+        print('save')
 
     
     def cancel(self):

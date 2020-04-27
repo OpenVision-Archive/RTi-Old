@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 from enigma import *
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap

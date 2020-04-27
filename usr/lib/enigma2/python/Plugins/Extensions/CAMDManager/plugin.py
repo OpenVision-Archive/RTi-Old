@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+from __future__ import print_function
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap, NumberActionMap
@@ -87,7 +90,7 @@ class CAMDManager(Screen):
                     sleep(0.25)
                     self.session.openWithCallback(self.callback, MessageBox, _('Stop Camd: ' + str(self.namelist[var]) + '\nStart Camd: ' + str(self.namelist[var])), type=1, timeout=8)
                 except OSError:
-                    print 'ReStart script failed.'
+                    print('ReStart script failed.')
 
             else:
                 self.cmd0 = '/usr/script/' + self.sclist[last] + ' stop &'
@@ -99,7 +102,7 @@ class CAMDManager(Screen):
                     sleep(0.25)
                     self.session.openWithCallback(self.callback, MessageBox, _('Stop Camd: ' + str(self.namelist[last]) + '\nStart Camd: ' + str(self.namelist[var])), type=1, timeout=8)
                 except OSError:
-                    print 'Stop/Start scripts failed.'
+                    print('Stop/Start scripts failed.')
 
         else:
             try:
@@ -223,7 +226,7 @@ class CAMDManager(Screen):
             myfile = file('/tmp/ecm.info')
             ecmf = ''
             for line in myfile.readlines():
-                print line
+                print(line)
                 ecmf = ecmf + line
 
             self['info'].setText(ecmf)
@@ -235,7 +238,7 @@ class CAMDManager(Screen):
         current = None
         try:
             clist = open('/etc/.ActiveCamd', 'r')
-            print 'found list'
+            print('found list')
         except:
             return
 
@@ -244,7 +247,7 @@ class CAMDManager(Screen):
                 current = line
 
             clist.close()
-        print 'current =', current
+        print('current =', current)
         if os.path.isfile('/etc/autocam.txt') is False:
             alist = open('/etc/autocam.txt', 'w')
             alist.close()
@@ -264,7 +267,7 @@ class CAMDManager(Screen):
         myfile2 = open('/etc/autocam2.txt', 'w')
         icount = 0
         for line in myfile.readlines():
-            print 'We are in CAMDManager line, self.oldService.toString() =', line, self.oldService.toString()
+            print('We are in CAMDManager line, self.oldService.toString() =', line, self.oldService.toString())
             if line[:-1] == self.oldService.toString():
                 delcam = 'yes'
                 icount = icount + 1
@@ -292,7 +295,7 @@ def mainmenu(session, **kwargs):
 
 def autostart(reason, session = None, **kwargs):
     """called with reason=1 to during shutdown, with reason=0 at startup?"""
-    print '[CAMDManager] Started'
+    print('[CAMDManager] Started')
     if reason == 0:
         try:
             os.system('mv /usr/bin/dccamd /usr/bin/dccamdB &')

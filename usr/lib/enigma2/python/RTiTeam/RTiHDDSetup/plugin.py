@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+from __future__ import print_function
 from enigma import *
 from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
@@ -203,12 +206,12 @@ class HDDSetupScreen(Screen):
                     len(self.deviceliste) < 1
                     cap = '0 MB '
 
-                f = os.popen('sfdisk -l|grep /dev/' + partition + "| awk '{print substr($7" + '" "' + " $8,1)}'")
+                f = os.popen('sfdisk -l|grep /dev/' + partition + "| awk '{print(substr($7" + '" "' + " $8,1)}'"))
                 ptype = re.sub(p, ' ', f.readline())
                 f.close()
                 ptype = ptype + '           '
                 ptype = ptype[:11]
-                f = os.popen('mount | grep ' + partition + "| awk '{print substr($3,1)}'")
+                f = os.popen('mount | grep ' + partition + "| awk '{print(substr($3,1)}'"))
                 pmount = f.readline()
                 f.close()
                 if len(pmount) > 0:
@@ -221,7 +224,7 @@ class HDDSetupScreen(Screen):
             self['list2'].setList(self.partitions)
         except:
             len(self.deviceliste) < 1
-            print 'Err.'
+            print('Err.')
 
 
     
@@ -315,7 +318,7 @@ class HDDSetupScreen(Screen):
                 mountpoint = line[ipos + 14:]
                 odgovor = self.umount(devname)
                 if odgovor == True:
-                    print 'Umount Succesfull!'
+                    print('Umount Succesfull!')
                 else:
                     self.session.openWithCallback(self.callback, MessageBox, _('Cannot umount current drive.\nA record in progress, timeshit or some external tools (like samba and nfsd) may cause this problem.\nPlease stop this actions/applications and try again'), MessageBox.TYPE_ERROR)
                     self.rereshenable = 0
@@ -383,7 +386,7 @@ class HDDSetupScreen(Screen):
         
         odgovor = self.sfdisk(cmd)
         if odgovor == True:
-            print 'sfdisk Succesfull!'
+            print('sfdisk Succesfull!')
         else:
             self.session.openWithCallback(self.callback, MessageBox, _('Cannot make partition!'), MessageBox.TYPE_ERROR)
             self.rereshenable = 0
@@ -399,7 +402,7 @@ class HDDSetupScreen(Screen):
             try:
                 o = self.umount(devname2)
             except:
-                print "can't umount " + devname2
+                print("can't umount " + devname2)
 
             if self.parttype == '1':
                 odgovor = self.formatext3(devname2, cmds)
@@ -420,7 +423,7 @@ class HDDSetupScreen(Screen):
             try:
                 o = self.umount(devname2)
             except:
-                print "can't umount " + devname2
+                print("can't umount " + devname2)
 
             if self.parttype == '1':
                 odgovor = self.formatext3(devname2, cmds)
@@ -441,7 +444,7 @@ class HDDSetupScreen(Screen):
             try:
                 o = self.umount(devname2)
             except:
-                print "can't umount " + devname2
+                print("can't umount " + devname2)
 
             if self.parttype == '1':
                 odgovor1 = self.formatext3(devname2, cmds)
@@ -462,7 +465,7 @@ class HDDSetupScreen(Screen):
             try:
                 o = self.umount(devname2)
             except:
-                print "can't umount " + devname2
+                print("can't umount " + devname2)
 
             if self.parttype == '1':
                 odgovor = self.formatext3(devname2, cmds)
@@ -483,7 +486,7 @@ class HDDSetupScreen(Screen):
             try:
                 o = self.umount(devname2)
             except:
-                print "can't umount " + devname2
+                print("can't umount " + devname2)
 
             if self.parttype == '1':
                 odgovor1 = self.formatext3(devname2, cmds)
@@ -504,7 +507,7 @@ class HDDSetupScreen(Screen):
             try:
                 o = self.umount(devname2)
             except:
-                print "can't umount " + devname2
+                print("can't umount " + devname2)
 
             if self.parttype == '1':
                 odgovor2 = self.formatext3(devname2, cmds)
@@ -520,7 +523,7 @@ class HDDSetupScreen(Screen):
             
         
         if odgovor == True and odgovor1 == True and odgovor2 == True:
-            print 'format Succesfull!'
+            print('format Succesfull!')
         else:
             self.session.openWithCallback(self.callback, MessageBox, _('Cannot format partition!'), MessageBox.TYPE_ERROR)
             self.rereshenable = 0
@@ -557,7 +560,7 @@ class HDDSetupScreen(Screen):
             errmsg = errmsg + "\nCan't remove tmp dir."
         
         if odgovor1 == True and odgovor2 == True and odgovor3 == True and odgovor4 == True and odgovor5 == True and odgovor6 == True:
-            print 'All Done!'
+            print('All Done!')
         else:
             self.session.openWithCallback(self.callback, MessageBox, _(str(errmsg)), MessageBox.TYPE_ERROR)
             self.rereshenable = 0
@@ -642,13 +645,13 @@ class HDDSetupScreen(Screen):
 
     
     def formatfat32(self, path):
-        print path
+        print(path)
         return os.system('/usr/lib/enigma2/python/RTiTeam/busybox mkdosfs -F 32 ' + path) == 0
 
     
     def formatfat16(self, path):
-        print 'Formatiram u FAT16'
-        print path
+        print('Formatiram u FAT16')
+        print(path)
         return os.system('/usr/lib/enigma2/python/RTiTeam/busybox mkfs.vfat ' + path) == 0
 
     

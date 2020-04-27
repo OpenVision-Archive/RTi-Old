@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+from __future__ import print_function
 from Plugins.Plugin import PluginDescriptor
 from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, getConfigListEntry
 from Components.FileList import FileList
@@ -190,7 +193,7 @@ class RTiSySInfoScreen(Screen):
         except:
             self['info'].setText('Loading pixmap error !')
 
-        print 'ok'
+        print('ok')
         self['infoM1'].setText('RAM:')
         self['infoM16'].setText('Cache:')
         self['infoM2'].setText('Swap:')
@@ -339,7 +342,7 @@ class RTiSySInfoScreen(Screen):
             self['infoM7'].setText(str(cputmp[:ipos + 4]))
             self['infoM8'].setText('CPU: ' + str(cputmp[ipos + 5:ipos1 + 5]))
         except Exception:
-            print 'Error'
+            print('Error')
 
         if boxname == 'me' or boxname == 'minime':
             cmd = "df -h | grep 'mtd'"
@@ -354,7 +357,7 @@ class RTiSySInfoScreen(Screen):
         try:
             ipos = nandtmp.find('/')
         except Exception:
-            print 'Error'
+            print('Error')
 
         nand = nandtmp[5:ipos].split()
         self['list6'].setList(nand)
@@ -394,7 +397,7 @@ class RTiSySInfoScreen(Screen):
                     self['infoM12'].setText('NC')
                     self['infoM13'].setText('')
                 
-                print 'err'
+                print('err')
 
             
             try:
@@ -523,7 +526,7 @@ class SySInfoPlay(Screen):
                 ps.append(str(line))
             self['list1'].setList(ps)
         except Exception:
-            print 'error'
+            print('error')
 
 
     

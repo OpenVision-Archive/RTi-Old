@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+from __future__ import print_function
 from Plugins.Plugin import PluginDescriptor
 from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, getConfigListEntry
 from Components.FileList import FileList
@@ -511,10 +514,10 @@ class RTiFileManagerScreen(Screen):
         
         try:
             x = openFile(self.session, guess_type(self.SOURCELIST.getFilename())[0], self.SOURCELIST.getCurrentDirectory() + self.SOURCELIST.getFilename())
-            print 'RESULT OPEN FILE', x
+            print('RESULT OPEN FILE', x)
         except TypeError:
             e = None
-            print 'ok'
+            print('ok')
 
 
 
@@ -572,7 +575,7 @@ class SubAtributes(Screen):
 
     
     def ok(self):
-        print 'ok'
+        print('ok')
 
     
     def exit(self):

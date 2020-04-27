@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+from __future__ import print_function
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap, NumberActionMap
@@ -75,9 +78,9 @@ class Getfolderlist(Screen):
         self['info'].setText('Downloading list...')
         self.intgreska = 0
         xurl = 'http://www.azbox-enigma.eu/RTi_Update/folders'
-        print 'xurl =', xurl
+        print('xurl =', xurl)
         xdest = '/tmp/folders'
-        print 'xdest =', xdest
+        print('xdest =', xdest)
         
         try:
             xlist = urllib.urlretrieve(xurl, xdest)
@@ -248,11 +251,11 @@ class Getipklist(Screen):
         self.slikabezizmene = 1
         ImeSlike = self.names[sel] + '_s.png'
         xurl1 = 'http://www.azbox-enigma.eu/RTi_Update/' + str(self.FolderName) + '/pixmap/'
-        print 'xurl =', xurl1
+        print('xurl =', xurl1)
         xurl2 = xurl1 + ImeSlike
-        print 'xurl2 =', xurl2
+        print('xurl2 =', xurl2)
         xdest2 = '/tmp/' + ImeSlike
-        print 'xdest2 =', xdest2
+        print('xdest2 =', xdest2)
         
         try:
             xlist = urllib.urlretrieve(xurl2, xdest2)
@@ -291,11 +294,11 @@ class Getipklist(Screen):
         self['opis'].setText(self.namesexp[sel])
         ImeSlike = self.names[sel] + '.png'
         xurl1 = 'http://www.azbox-enigma.eu/RTi_Update/' + str(self.FolderName) + '/pixmap/'
-        print 'xurl =', xurl1
+        print('xurl =', xurl1)
         xurl2 = xurl1 + ImeSlike
-        print 'xurl2 =', xurl2
+        print('xurl2 =', xurl2)
         xdest2 = '/tmp/' + ImeSlike
-        print 'xdest2 =', xdest2
+        print('xdest2 =', xdest2)
         
         try:
             xlist = urllib.urlretrieve(xurl2, xdest2)
@@ -328,7 +331,7 @@ class Getipklist(Screen):
 
     
     def nop(self):
-        print ''
+        print('')
 
     
     def openTest(self):
@@ -371,9 +374,9 @@ class Getipklist(Screen):
         self['info'].setText('Downloading list...')
         self.intgreska = 0
         xurl = 'http://www.azbox-enigma.eu/RTi_Update/' + str(self.FolderName) + '/UpdList'
-        print 'xurl =', xurl
+        print('xurl =', xurl)
         xdest = '/tmp/UpdLst'
-        print 'xdest =', xdest
+        print('xdest =', xdest)
         
         try:
             xlist = urllib.urlretrieve(xurl, xdest)
@@ -444,7 +447,7 @@ class Getipklist(Screen):
 
     
     def keyNumberGlobal(self, number):
-        print 'pressed', number
+        print('pressed', number)
         self['text'].number(number)
 
     
@@ -459,7 +462,7 @@ class Getipklist(Screen):
 
     
     def prikaziPic(self):
-        print '*'
+        print('*')
 
 
 
@@ -484,11 +487,11 @@ class Getipk(Screen):
     def openTest(self):
         self['info'].setText('Downloading and installing...')
         xurl1 = 'http://www.azbox-enigma.eu/RTi_Update/' + str(self.FolderName) + '/'
-        print 'xurl =', xurl1
+        print('xurl =', xurl1)
         xurl2 = xurl1 + self.ipk
-        print 'xurl2 =', xurl2
+        print('xurl2 =', xurl2)
         xdest2 = '/tmp/' + self.ipk
-        print 'xdest2 =', xdest2
+        print('xdest2 =', xdest2)
         
         try:
             xlist = urllib.urlretrieve(xurl2, xdest2)
@@ -514,12 +517,12 @@ class Getipk(Screen):
 
     
     def keyNumberGlobal(self, number):
-        print 'pressed', number
+        print('pressed', number)
         self['text'].number(number)
 
     
     def viewLog(self):
-        print 'In viewLog'
+        print('In viewLog')
         self['info'].setText('You must Reboot AZBox after Update,\nPress OK to continue...')
         if os.path.isfile('/tmp/ipk_upd.log') is not True:
             cmd = 'touch /tmp/ipk_upd.log'
@@ -530,10 +533,10 @@ class Getipk(Screen):
             data = []
             for line in myfile.readlines():
                 data.append(icount)
-                print line
+                print(line)
                 num = len(line)
                 data[icount] = line[:-1]
-                print data[icount]
+                print(data[icount])
                 icount = icount + 1
             self['list'].setList(data)
             self.endinstall()
@@ -544,7 +547,7 @@ class Getipk(Screen):
         tmplist = []
         ipkname = 0
         tmplist = os.listdir(path)
-        print 'files in /tmp', tmplist
+        print('files in /tmp', tmplist)
         icount = 0
         for name in tmplist:
             nipk = tmplist[icount]
@@ -553,10 +556,10 @@ class Getipk(Screen):
             
             icount = icount + 1
         if ipkname != 0:
-            print 'ipk name =', ipkname
+            print('ipk name =', ipkname)
             ipos = ipkname.find('_')
             remname = ipkname[:ipos]
-            print 'remname =', remname
+            print('remname =', remname)
             f = open('/etc/ipklist_installed', 'a')
             f1 = remname + '\n'
             f.write(f1)
@@ -625,13 +628,13 @@ class Ipkremove(Screen):
     def test2(self, returnValue):
         if returnValue is None:
             return None
-        print 'returnValue', returnValue
+        print('returnValue', returnValue)
         nos = len
         emuname = ''
         ipkname = returnValue[0]
-        print 'ipkname =', ipkname
+        print('ipkname =', ipkname)
         cmd = 'opkg remove ' + ipkname[:-1] + ' >/tmp/ipk_upd.log'
-        print cmd
+        print(cmd)
         os.system(cmd)
         cmd = 'touch /etc/tmpfile'
         os.system(cmd)
@@ -640,18 +643,18 @@ class Ipkremove(Screen):
         icount = 0
         for line in myfile:
             if line != ipkname:
-                print 'myfile line=', line
+                print('myfile line=', line)
                 f.write(line)
                 continue
             returnValue is None
         f.close()
         f = open('/etc/tmpfile', 'r+')
         f2 = f.readlines()
-        print '/etc/tmpfile', f2
+        print('/etc/tmpfile', f2)
         f.close()
         f = open('/etc/ipklist_installed', 'r+')
         f2 = f.readlines()
-        print '/etc/ipklist_installed', f2
+        print('/etc/ipklist_installed', f2)
         f.close()
         cmd = 'rm /etc/ipklist_installed'
         os.system(cmd)
@@ -659,13 +662,13 @@ class Ipkremove(Screen):
         os.system(cmd)
         f = open('/etc/ipklist_installed', 'r+')
         f2 = f.readlines()
-        print '/etc/ipklist_installed 2', f2
+        print('/etc/ipklist_installed 2', f2)
         f.close()
         return None
 
     
     def callback(self, answer):
-        print 'answer:', answer
+        print('answer:', answer)
 
     
     def keyLeft(self):
@@ -685,7 +688,7 @@ class Ipkremove(Screen):
 
     
     def keyNumberGlobal(self, number):
-        print 'pressed', number
+        print('pressed', number)
         self['text'].number(number)
 
 
@@ -695,7 +698,7 @@ def mainmenu(session, **kwargs):
 
 
 def autostart(reason, session = None, **kwargs):
-    print '[Updater] Started'
+    print('[Updater] Started')
 
 
 def Plugins(**kwargs):

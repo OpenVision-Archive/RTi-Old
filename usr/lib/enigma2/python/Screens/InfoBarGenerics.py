@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+from __future__ import print_function
 from ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
@@ -111,7 +114,7 @@ def saveResumePoints():
         cPickle.dump(resumePointCache, f, cPickle.HIGHEST_PROTOCOL)
     except Exception:
         ex = None
-        print '[InfoBar] Failed to write resumepoints:', ex
+        print('[InfoBar] Failed to write resumepoints:', ex)
 
     resumePointCacheLast = int(time())
 
@@ -123,7 +126,7 @@ def loadResumePoints():
         return cPickle.load(open('/home/root/resumepoints.pkl', 'rb'))
     except Exception:
         ex = None
-        print '[InfoBar] Failed to load resumepoints:', ex
+        print('[InfoBar] Failed to load resumepoints:', ex)
         return { }
 
 
@@ -574,7 +577,7 @@ class InfoBarMenu:
 
     
     def mainMenu(self):
-        print 'loading mainmenu XML...'
+        print('loading mainmenu XML...')
         menu = mdom.getroot()
         self.session.infobar = self
         self.session.openWithCallback(self.mainMenuClosed, MainMenu, menu)
@@ -929,7 +932,7 @@ class InfoBarEPG:
             self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, self.epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
             self.dlg_stack.append(self.eventView)
         else:
-            print 'no epg for the service avail.. so we show multiepg instead of eventinfo'
+            print('no epg for the service avail.. so we show multiepg instead of eventinfo')
             self.openMultiServiceEPG(False)
 
     
@@ -1021,7 +1024,7 @@ class InfoBarSeek:
 
             
             def action(self, contexts, action):
-                print 'action:', action
+                print('action:', action)
                 if action[:5] == 'seek:':
                     time = int(action[5:])
                     self.screen.doSeekRelative(time * 90000)
@@ -1147,22 +1150,22 @@ class InfoBarSeek:
         
         pauseable = service.pause()
         if pauseable is None:
-            print 'not pauseable.'
+            print('not pauseable.')
             state = self.SEEK_STATE_PLAY
         
         self.seekstate = state
         if pauseable is not None:
             if self.seekstate[0]:
-                print 'resolved to PAUSE'
+                print('resolved to PAUSE')
                 pauseable.pause()
             elif self.seekstate[1]:
-                print 'resolved to FAST FORWARD'
+                print('resolved to FAST FORWARD')
                 pauseable.setFastForward(self.seekstate[1])
             elif self.seekstate[2]:
-                print 'resolved to SLOW MOTION'
+                print('resolved to SLOW MOTION')
                 pauseable.setSlowMotion(self.seekstate[2])
             else:
-                print 'resolved to PLAY'
+                print('resolved to PLAY')
                 pauseable.unpause()
         
         for c in self.onPlayStateChanged:
@@ -1195,7 +1198,7 @@ class InfoBarSeek:
 
     
     def unPauseService(self):
-        print 'unpause'
+        print('unpause')
         if self.seekstate == self.SEEK_STATE_PLAY:
             return 0
         self.setSeekState(self.SEEK_STATE_PLAY)
@@ -1320,7 +1323,7 @@ class InfoBarSeek:
 
     
     def fwdSeekTo(self, minutes):
-        print 'Seek', minutes, 'minutes forward'
+        print('Seek', minutes, 'minutes forward')
         self.doSeekRelative(minutes * 60 * 90000)
 
     
@@ -1329,7 +1332,7 @@ class InfoBarSeek:
 
     
     def rwdSeekTo(self, minutes):
-        print 'rwdSeekTo'
+        print('rwdSeekTo')
         self.doSeekRelative(-minutes * 60 * 90000)
 
     
@@ -1490,26 +1493,26 @@ class InfoBarTimeshift:
 
     
     def startTimeshift(self):
-        print 'enable timeshift'
+        print('enable timeshift')
         ts = self.getTimeshift()
         if ts is None:
             self.session.open(MessageBox, _('Timeshift not possible!'), MessageBox.TYPE_ERROR)
-            print 'no ts interface'
+            print('no ts interface')
             return 0
         if self.timeshift_enabled:
-            print 'hu, timeshift already enabled?'
+            print('hu, timeshift already enabled?')
         elif not ts.startTimeshift():
             self.timeshift_enabled = 1
             self.activateTimeshiftEnd(False)
             self._InfoBarTimeshift__seekableStatusChanged()
         else:
-            print 'timeshift failed'
+            print('timeshift failed')
 
     
     def stopTimeshift(self):
         if not self.timeshift_enabled:
             return 0
-        print 'disable timeshift'
+        print('disable timeshift')
         ts = self.getTimeshift()
         if ts is None:
             return 0
@@ -1529,14 +1532,14 @@ class InfoBarTimeshift:
     
     def activateTimeshiftEnd(self, back = True):
         ts = self.getTimeshift()
-        print 'activateTimeshiftEnd'
+        print('activateTimeshiftEnd')
         if ts is None:
             return None
         if ts.isTimeshiftActive():
-            print "!! activate timeshift called - but shouldn't this be a normal pause?"
+            print("!! activate timeshift called - but shouldn't this be a normal pause?")
             self.pauseService()
         else:
-            print 'play, ...'
+            print('play, ...')
             ts.activateTimeshift()
             self.setSeekState(self.SEEK_STATE_PAUSE)
         if back:
@@ -1549,7 +1552,7 @@ class InfoBarTimeshift:
 
     
     def activateTimeshiftEndAndPause(self):
-        print 'activateTimeshiftEndAndPause'
+        print('activateTimeshiftEndAndPause')
         self.activateTimeshiftEnd(False)
 
     
@@ -1902,7 +1905,7 @@ class InfoBarInstantRecord:
         elif len(simulTimerList) > 1:
             name = simulTimerList[1].name
             name_date = ' '.join((name, strftime('%c', localtime(simulTimerList[1].begin))))
-            print '[TIMER] conflicts with', name_date
+            print('[TIMER] conflicts with', name_date)
             recording.autoincrease = True
             if recording.setAutoincreaseEnd():
                 self.session.nav.RecordTimer.record(recording)
@@ -1916,7 +1919,7 @@ class InfoBarInstantRecord:
 
     
     def isInstantRecordRunning(self):
-        print 'self.recording:', self.recording
+        print('self.recording:', self.recording)
         if self.recording:
             for x in self.recording:
                 if x.isRunning():
@@ -1927,7 +1930,7 @@ class InfoBarInstantRecord:
 
     
     def recordQuestionCallback(self, answer):
-        print 'pre:\n', self.recording
+        print('pre:\n', self.recording)
         if answer is None or answer[1] == 'no':
             return None
         list = []
@@ -1962,7 +1965,7 @@ class InfoBarInstantRecord:
                 self.setEndtime(len(self.recording) - 1)
             
         
-        print 'after:\n', self.recording
+        print('after:\n', self.recording)
 
     
     def setEndtime(self, entry):
@@ -1978,7 +1981,7 @@ class InfoBarInstantRecord:
         if len(ret) > 1:
             if ret[0]:
                 localendtime = localtime(ret[1])
-                print 'stopping recording at', strftime('%c', localendtime)
+                print('stopping recording at', strftime('%c', localendtime))
                 if self.recording[self.selectedEntry].end != ret[1]:
                     self.recording[self.selectedEntry].autoincrease = False
                 
@@ -1997,7 +2000,7 @@ class InfoBarInstantRecord:
     
     def inputCallback(self, value):
         if value is not None:
-            print 'stopping recording after', int(value), 'minutes.'
+            print('stopping recording after', int(value), 'minutes.')
             entry = self.recording[self.selectedEntry]
             if int(value) != 0:
                 entry.autoincrease = False
@@ -2041,7 +2044,7 @@ class InfoBarAudioSelection:
 
     
     def audioSelected(self, ret = None):
-        print '[infobar::audioSelected]', ret
+        print('[infobar::audioSelected]', ret)
 
 
 
@@ -2330,7 +2333,7 @@ class InfoBarServiceNotifications:
 
     
     def serviceHasEnded(self):
-        print 'service end!'
+        print('service end!')
         
         try:
             self.setSeekState(self.SEEK_STATE_PLAY)
@@ -2361,7 +2364,7 @@ class InfoBarCueSheetSupport:
     def _InfoBarCueSheetSupport__serviceStarted(self):
         if self.is_closing:
             return None
-        print 'new service started! trying to download cuts!'
+        print('new service started! trying to download cuts!')
         self.downloadCuesheet()
         if self.ENABLE_RESUME_SUPPORT:
             for None in self.cut_list:
@@ -2380,7 +2383,7 @@ class InfoBarCueSheetSupport:
             if not seekable.getLength():
                 pass
             length = (None, 0)
-            print 'seekable.getLength() returns:', length
+            print('seekable.getLength() returns:', length)
             if last > 900000:
                 if not length[1] or last < length[1] - 900000:
                     self.resume_point = last
@@ -2510,7 +2513,7 @@ class InfoBarCueSheetSupport:
     def toggleMark(self, onlyremove = False, onlyadd = False, tolerance = 450000, onlyreturn = False):
         current_pos = self.cueGetCurrentPosition()
         if current_pos is None:
-            print 'not seekable'
+            print('not seekable')
             return None
         nearest_cutpoint = self.getNearestCutPoint(current_pos)
         if nearest_cutpoint is not None and abs(nearest_cutpoint[0] - current_pos) < tolerance:
@@ -2554,7 +2557,7 @@ class InfoBarCueSheetSupport:
     def uploadCuesheet(self):
         cue = self._InfoBarCueSheetSupport__getCuesheet()
         if cue is None:
-            print 'upload failed, no cuesheet interface'
+            print('upload failed, no cuesheet interface')
             return None
         cue.setCutList(self.cut_list)
 
@@ -2562,7 +2565,7 @@ class InfoBarCueSheetSupport:
     def downloadCuesheet(self):
         cue = self._InfoBarCueSheetSupport__getCuesheet()
         if cue is None:
-            print 'download failed, no cuesheet interface'
+            print('download failed, no cuesheet interface')
             self.cut_list = []
         else:
             self.cut_list = cue.getCutList()
@@ -2609,7 +2612,7 @@ class InfoBarTeletextPlugin:
             self['TeletextActions'] = HelpableActionMap(self, 'InfobarTeletextActions', {
                 'startTeletext': (self.startTeletext, _('View teletext...')) })
         else:
-            print 'no teletext plugin found!'
+            print('no teletext plugin found!')
 
     
     def startTeletext(self):
