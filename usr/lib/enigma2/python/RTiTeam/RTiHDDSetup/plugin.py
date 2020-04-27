@@ -206,12 +206,12 @@ class HDDSetupScreen(Screen):
                     len(self.deviceliste) < 1
                     cap = '0 MB '
 
-                f = os.popen('sfdisk -l|grep /dev/' + partition + "| awk '{print(substr($7" + '" "' + " $8,1)}'"))
+                f = os.popen('sfdisk -l|grep /dev/' + partition + "| awk '{print substr($7" + '" "' + " $8,1)}'")
                 ptype = re.sub(p, ' ', f.readline())
                 f.close()
                 ptype = ptype + '           '
                 ptype = ptype[:11]
-                f = os.popen('mount | grep ' + partition + "| awk '{print(substr($3,1)}'"))
+                f = os.popen('mount | grep ' + partition + "| awk '{print substr($3,1)}'")
                 pmount = f.readline()
                 f.close()
                 if len(pmount) > 0:
