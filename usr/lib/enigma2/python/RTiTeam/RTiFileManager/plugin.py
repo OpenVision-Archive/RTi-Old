@@ -282,7 +282,6 @@ class RTiFileManagerScreen(Screen):
                             shutil.copytree(srcname, dstname, symlinks)
                         else:
                             shutil.copy2(srcname, dstname)
-                    continue
                     except (IOError, os.error):
                         why = None
                         errors.append((srcname, dstname, str(why)))
