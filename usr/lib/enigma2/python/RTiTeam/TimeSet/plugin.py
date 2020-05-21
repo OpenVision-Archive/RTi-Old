@@ -147,13 +147,13 @@ class TimeSetConfig(ConfigListScreen, Screen):
         plugin_path = '/usr/lib/enigma2/python/RTiTeam/TimeSet'
         print(plugin_path)
         before = 'Before: Local=' + strftime('%H:%M', localtime()) + ', UTC=' + strftime('%H:%M', gmtime())
-        cmd = str(plugin_path + '/ntpdate -t 20 0.debian.pool.ntp.org')
+        cmd = str('ntpdate -t 20 0.debian.pool.ntp.org')
         res = popen(cmd).read()
         if res == '':
             cmd = 'ls -l %s%s' % (plugin_path, '/ntpdate')
             res = popen(cmd).read()
             if res[3] != 'x':
-                cmd = 'chmod 755 %s%s' % (plugin_path, '/ntpdate')
+                cmd = 'chmod 755 %s%s' % ('ntpdate')
                 res = popen(cmd).read()
                 self.session.open(MessageBox, _('ntpdate problem: attributes for ntpdate have not been correct! Fixed now! Try again!\n%s' % res), MessageBox.TYPE_INFO)
             else:
@@ -174,13 +174,13 @@ class TimeSetConfig(ConfigListScreen, Screen):
         plugin_path = '/usr/lib/enigma2/python/RTiTeam/TimeSet'
         print(plugin_path)
         before = 'Before: Local=' + strftime('%H:%M', localtime()) + ', UTC=' + strftime('%H:%M', gmtime())
-        cmd = str(plugin_path + '/ntpdate -t 20 0.debian.pool.ntp.org')
+        cmd = str('ntpdate -t 20 0.debian.pool.ntp.org')
         res = popen(cmd).read()
         if res == '':
-            cmd = 'ls -l %s%s' % (plugin_path, '/ntpdate')
+            cmd = 'ls -l %s%s' % ('ntpdate')
             res = popen(cmd).read()
             if res[3] != 'x':
-                cmd = 'chmod 755 %s%s' % (plugin_path, '/ntpdate')
+                cmd = 'chmod 755 %s%s' % ('ntpdate')
                 res = popen(cmd).read()
                 self.session.open(MessageBox, _('ntpdate problem: attributes for ntpdate have not been correct! Fixed now! Try again!\n%s' % res), MessageBox.TYPE_INFO)
             else:

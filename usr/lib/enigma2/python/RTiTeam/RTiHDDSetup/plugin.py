@@ -646,13 +646,13 @@ class HDDSetupScreen(Screen):
     
     def formatfat32(self, path):
         print(path)
-        return os.system('/usr/lib/enigma2/python/RTiTeam/busybox mkdosfs -F 32 ' + path) == 0
+        return os.system('busybox mkdosfs -F 32 ' + path) == 0
 
     
     def formatfat16(self, path):
         print('Formatiram u FAT16')
         print(path)
-        return os.system('/usr/lib/enigma2/python/RTiTeam/busybox mkfs.vfat ' + path) == 0
+        return os.system('busybox mkfs.vfat ' + path) == 0
 
     
     def mkdir1(self):
