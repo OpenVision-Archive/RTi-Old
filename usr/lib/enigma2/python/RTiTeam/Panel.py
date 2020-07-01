@@ -82,7 +82,7 @@ class Panel(Screen):
                 import Plugins.PLi.SoftcamSetup.Sc
             except Exception:
                 e = None
-                print(e)
+                print(str(e))
                 return None
 
             self.session.open(ScSelection)
@@ -97,7 +97,7 @@ class Panel(Screen):
                 import Plugins.Extensions.MediaPlayer.plugin
             except Exception:
                 e = None
-                print(e)
+                print(str(e))
                 return None
 
             self.session.open(MediaPlayer)
@@ -108,7 +108,7 @@ class Panel(Screen):
                 import Plugins.SystemPlugins.NetworkBrowser.plugin
             except Exception:
                 e = None
-                print(e)
+                print(str(e))
                 return None
 
             NetworkBrowserMain(self.session)
@@ -119,7 +119,7 @@ class Panel(Screen):
                 import Plugins.SystemPlugins.NetworkBrowser.plugin
             except Exception:
                 e = None
-                print(e)
+                print(str(e))
                 return None
 
             MountManagerMain(self.session)

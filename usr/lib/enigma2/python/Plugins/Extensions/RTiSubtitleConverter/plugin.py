@@ -275,7 +275,7 @@ class SubPreview(Screen):
             shutil.copy(filename, newfilename)
         except Exception:
             e = None
-            print(e)
+            print(str(e))
 
         filenameC = '/tmp/Converted.srt'
         f = open(filenameC, 'w')
@@ -284,7 +284,7 @@ class SubPreview(Screen):
             f.write(data.encode('utf-8'))
         except Exception:
             e = None
-            print(e)
+            print(str(e))
         finally:
             f.close()
 
@@ -294,7 +294,7 @@ class SubPreview(Screen):
             f1.write(data.encode('utf-8'))
         except Exception:
             e = None
-            print(e)
+            print(str(e))
         finally:
             f1.close()
 
