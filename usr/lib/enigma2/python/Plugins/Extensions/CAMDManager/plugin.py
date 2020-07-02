@@ -223,7 +223,7 @@ class CAMDManager(Screen):
     def ecm(self):
         ecmf = ''
         if os.path.isfile('/tmp/ecm.info') is True:
-            myfile = file('/tmp/ecm.info')
+            myfile = open('/tmp/ecm.info')
             ecmf = ''
             for line in myfile.readlines():
                 print(line)

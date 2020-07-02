@@ -84,7 +84,7 @@ class Getfolderlist(Screen):
         
         try:
             xlist = urllib.urlretrieve(xurl, xdest)
-            myfile = file('/tmp/folders')
+            myfile = open('/tmp/folders')
             self.listfolder = []
             icount = 0
             list = []
@@ -380,7 +380,7 @@ class Getipklist(Screen):
         
         try:
             xlist = urllib.urlretrieve(xurl, xdest)
-            myfile = file('/tmp/UpdLst')
+            myfile = open('/tmp/UpdLst')
             self.data = []
             self.names = []
             self.namesexp = []
@@ -528,7 +528,7 @@ class Getipk(Screen):
             cmd = 'touch /tmp/ipk_upd.log'
             os.system(cmd)
         else:
-            myfile = file('/tmp/ipk_upd.log')
+            myfile = open('/tmp/ipk_upd.log')
             icount = 0
             data = []
             for line in myfile.readlines():
