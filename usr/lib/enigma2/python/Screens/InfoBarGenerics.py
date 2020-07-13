@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import division, print_function
+from __future__ import print_function
 from ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
@@ -1372,7 +1372,7 @@ class InfoBarSeek:
             if not len[0] and not pos[0]:
                 if len[1] <= pos[1]:
                     return 0
-                time = (len[1] - pos[1]) * speedden // 90 * speednom
+                time = (len[1] - pos[1]) * speedden / 90 * speednom
                 return time
         
         return False
@@ -1706,7 +1706,7 @@ class InfoBarJobman:
 
     
     def getJobName(self, job):
-        return '%s: %s (%d%%)' % (job.getStatustext(), job.name, int(100 * job.progress // float(job.end)))
+        return '%s: %s (%d%%)' % (job.getStatustext(), job.name, int(100 * job.progress / float(job.end)))
 
     
     def showJobView(self, job):
@@ -2387,9 +2387,9 @@ class InfoBarCueSheetSupport:
             if last > 900000:
                 if not length[1] or last < length[1] - 900000:
                     self.resume_point = last
-                    l = last // 90000
+                    l = last / 90000
                     if config.usage.on_movie_start.value == 'ask' or not length[1]:
-                        Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _('Do you want to resume this playback?') + '\n' + _('Resume position at %s') % '%d:%02d:%02d' % (l // 3600, (l % 3600) // 60, l % 60), timeout = 10)
+                        Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _('Do you want to resume this playback?') + '\n' + _('Resume position at %s') % '%d:%02d:%02d' % (l / 3600, (l % 3600) / 60, l % 60), timeout = 10)
                     elif config.usage.on_movie_start.value == 'resume':
                         Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _('Resuming playback'), timeout = 2, type = MessageBox.TYPE_INFO, simple = True)
                     

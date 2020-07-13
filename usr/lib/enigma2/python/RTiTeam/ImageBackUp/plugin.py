@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import division, print_function
+from __future__ import print_function
 from enigma import *
 from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
@@ -358,9 +358,9 @@ class ImageBackUpScreen2(Screen):
                 except IOError:
                     size = 0
 
-                siz1 = size // 1000000
-                if int(siz1 // 1000) >= 10:
-                    sizMG = '%d.%01d' % (siz1 // 1000, siz1 % 1000)
+                siz1 = size / 1000000
+                if int(siz1 / 1000) >= 10:
+                    sizMG = '%d.%01d' % (siz1 / 1000, siz1 % 1000)
                     sizMG = sizMG + ' GB'
                 else:
                     sizMG = str(siz1) + ' MB'
@@ -440,9 +440,9 @@ class ImageBackUpScreen2(Screen):
                 f.close()
                 
                 try:
-                    cap = int(cap) * 512 // 1000000
-                    if int(cap // 1000) >= 10:
-                        cap = '%d.%01d' % (cap // 1000, cap % 1000)
+                    cap = int(cap) * 512 / 1000000
+                    if int(cap / 1000) >= 10:
+                        cap = '%d.%01d' % (cap / 1000, cap % 1000)
                         cap = str(cap) + ' GB '
                     else:
                         cap = str(cap) + ' MB '

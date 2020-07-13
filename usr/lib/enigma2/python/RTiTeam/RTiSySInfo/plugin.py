@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import division, print_function
+from __future__ import print_function
 from Plugins.Plugin import PluginDescriptor
 from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, getConfigListEntry
 from Components.FileList import FileList
@@ -265,11 +265,11 @@ class RTiSySInfoScreen(Screen):
         ramtmp = f.readline().split()
         if ramtmp:
             r4 = '0%'
-            r1 = str(int(ramtmp[1]) // 1024) + 'MB'
-            r2 = str(int(ramtmp[2]) // 1024) + 'MB'
-            r3 = str(int(ramtmp[3]) // 1024) + 'MB'
+            r1 = str(int(ramtmp[1]) / 1024) + 'MB'
+            r2 = str(int(ramtmp[2]) / 1024) + 'MB'
+            r3 = str(int(ramtmp[3]) / 1024) + 'MB'
             if int(ramtmp[1]) > 0:
-                r4 = str(int(ramtmp[2]) * 100 // int(ramtmp[1])) + '%'
+                r4 = str(int(ramtmp[2]) * 100 / int(ramtmp[1])) + '%'
             
             ram.append(r1)
             ram.append(r2)
@@ -284,8 +284,8 @@ class RTiSySInfoScreen(Screen):
         f = os.popen('cat /proc/meminfo |grep Cached')
         cachetmp = f.readline().split()
         if ramtmp:
-            c2 = '-' + str(int(cachetmp[1]) // 1024) + 'MB'
-            c3 = str(int(cachetmp[1]) // 1024) + 'MB'
+            c2 = '-' + str(int(cachetmp[1]) / 1024) + 'MB'
+            c3 = str(int(cachetmp[1]) / 1024) + 'MB'
             cache.append('    /')
             cache.append(c2)
             cache.append(c3)
@@ -300,11 +300,11 @@ class RTiSySInfoScreen(Screen):
         swaptmp = f.readline().split()
         if swaptmp:
             s4 = '0%'
-            s1 = str(int(swaptmp[1]) // 1024) + 'MB'
-            s2 = str(int(swaptmp[2]) // 1024) + 'MB'
-            s3 = str(int(swaptmp[3]) // 1024) + 'MB'
+            s1 = str(int(swaptmp[1]) / 1024) + 'MB'
+            s2 = str(int(swaptmp[2]) / 1024) + 'MB'
+            s3 = str(int(swaptmp[3]) / 1024) + 'MB'
             if int(swaptmp[1]) > 0:
-                s4 = str(int(swaptmp[2]) * 100 // int(swaptmp[1])) + '%'
+                s4 = str(int(swaptmp[2]) * 100 / int(swaptmp[1])) + '%'
             
             swap.append(s1)
             swap.append(s2)
@@ -317,13 +317,13 @@ class RTiSySInfoScreen(Screen):
         
         total = []
         t4 = '0%'
-        t1 = (int(ramtmp[1]) + int(swaptmp[1])) // 1024
+        t1 = (int(ramtmp[1]) + int(swaptmp[1])) / 1024
         t1a = str(t1) + 'MB'
-        t2 = ((int(ramtmp[2]) - int(cachetmp[1])) + int(swaptmp[2])) // 1024
+        t2 = ((int(ramtmp[2]) - int(cachetmp[1])) + int(swaptmp[2])) / 1024
         t2a = str(t2) + 'MB'
-        t3 = str((int(ramtmp[3]) + int(cachetmp[1]) + int(swaptmp[3])) // 1024) + 'MB'
+        t3 = str((int(ramtmp[3]) + int(cachetmp[1]) + int(swaptmp[3])) / 1024) + 'MB'
         if t1 > 0:
-            t4 = str(t2 * 100 // t1) + '%'
+            t4 = str(t2 * 100 / t1) + '%'
         
         total.append(t1a)
         total.append(t2a)
