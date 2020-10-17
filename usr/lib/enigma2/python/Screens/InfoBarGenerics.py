@@ -107,11 +107,14 @@ def getResumePoint(session):
 
 def saveResumePoints():
     global resumePointCacheLast
-    import cPickle as cPickle
+    try:
+        import cPickle as pickle
+    except:
+        import pickle
     
     try:
         f = open('/home/root/resumepoints.pkl', 'wb')
-        cPickle.dump(resumePointCache, f, cPickle.HIGHEST_PROTOCOL)
+        pickle.dump(resumePointCache, f, pickle.HIGHEST_PROTOCOL)
     except Exception:
         ex = None
         print('[InfoBar] Failed to write resumepoints:', ex)
@@ -120,10 +123,13 @@ def saveResumePoints():
 
 
 def loadResumePoints():
-    import cPickle
+    try:
+        import cPickle as pickle
+    except:
+        import pickle
     
     try:
-        return cPickle.load(open('/home/root/resumepoints.pkl', 'rb'))
+        return pickle.load(open('/home/root/resumepoints.pkl', 'rb'))
     except Exception:
         ex = None
         print('[InfoBar] Failed to load resumepoints:', ex)
