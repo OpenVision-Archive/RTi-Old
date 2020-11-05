@@ -315,8 +315,7 @@ class RTiFileManagerScreen(Screen):
         if result:
             if os.path.isdir(self.SOURCELIST.getFilename()) == True:
                 pattern = self.SOURCELIST.getFilename()
-                for None in os.walk(pattern, topdown = False):
-                    (root, dirs, files) = None
+                for root, dirs, files in os.walk(pattern, topdown = False):
                     for name in files:
                         os.remove(os.path.join(root, name))
                     for name in dirs:

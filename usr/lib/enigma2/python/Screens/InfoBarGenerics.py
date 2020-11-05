@@ -64,11 +64,9 @@ def setResumePoint(session):
                     l]
                 if len(resumePointCache) > 50:
                     candidate = key
-                    for None in resumePointCache.items():
-                        (k, v) = None
+                    for k, v in resumePointCache.items():
                         if v[0] < lru:
                             candidate = k
-                            continue
                     del resumePointCache[candidate]
 
                 if lru - resumePointCacheLast > 3600:
@@ -2373,12 +2371,10 @@ class InfoBarCueSheetSupport:
         print('new service started! trying to download cuts!')
         self.downloadCuesheet()
         if self.ENABLE_RESUME_SUPPORT:
-            for None in self.cut_list:
-                (pts, what) = None
+            for (pts, what) in self.cut_list:
                 if what == self.CUT_TYPE_LAST:
                     last = pts
                     break
-                    continue
             else:
                 last = getResumePoint(self.session)
             if last is None:

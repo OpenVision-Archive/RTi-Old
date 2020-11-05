@@ -428,7 +428,6 @@ class RTiSySInfoScreen(Screen):
                 if i == 1:
                     self['list8'].setList(nand)
                     self['infoM6'].setText(str(imedev))
-            continue
             except Exception:
                 if i == 0:
                     self['list7'].setList([
