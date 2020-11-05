@@ -41,7 +41,7 @@ pdesc = _('File Manager')
 
 class RTiSySInfoScreen(Screen):
     skin = '\n\t\t<screen name="SySInfoScreen1" position="center,center" size="720,495" title="" >\n\t\t\t<widget name="red" position="20,456" size="140,40" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\t\t\t<widget name="green" position="200,456" size="140,40" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\t\t\t<widget name="yellow" position="380,456" size="140,40" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\t\t\t<widget name="blue" position="560,456" size="140,40" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\n\t\t\t<ePixmap name="pred" position="20,455" size="140,40" zPosition="0" pixmap="buttons/red.png" transparent="1" alphatest="on"/>\n\t\t\t<ePixmap name="pgreen" position="200,455" size="140,40" zPosition="0" pixmap="buttons/green.png" transparent="1" alphatest="on"/>\n\t\t\t<ePixmap name="pyellow" position="380,455" size="140,40" zPosition="0" pixmap="buttons/yellow.png" transparent="1" alphatest="on"/>\n\t\t\t<ePixmap name="pblue" position="560,455" size="140,40" zPosition="0" pixmap="buttons/blue.png" transparent="1" alphatest="on"/>\n\t\t\t<widget name="list1" position="30,110" size="90,100" scrollbarMode="showOnDemand" foregroundColor="#bbbbbb" />\n\t\t\t<widget name="list2" position="120,110" size="90,100" scrollbarMode="showOnDemand" foregroundColor="#bbbbbb" />\n\t\t\t<widget name="list3" position="300,110" size="90,100" scrollbarMode="showOnDemand" foregroundColor="#bbbbbb" />\n\t\t\t<widget name="list4" position="390,110" size="90,100" scrollbarMode="showOnDemand" foregroundColor="#bbbbbb" />\n\t\t\t<widget name="list5" position="30,320" size="90,100" scrollbarMode="showOnDemand" foregroundColor="#bbbbbb" />\n\t\t\t<widget name="list6" position="120,320" size="120,100" scrollbarMode="showOnDemand" foregroundColor="#bbbbbb" />\n\t\t\t<widget name="list7" position="240,320" size="120,100" scrollbarMode="showOnDemand" foregroundColor="#bbbbbb" />\n\t\t\t<widget name="list8" position="360,320" size="120,100" scrollbarMode="showOnDemand" foregroundColor="#bbbbbb" />\n\t\t\t<widget name="list9" position="0,0" size="1,1" scrollbarMode="showOnDemand" foregroundColor="#aaaaaa" />\n\t\t\t<widget name="list10" position="210,110" size="90,100" scrollbarMode="showOnDemand" foregroundColor="#bbbbbb" />\n\t\t\t<widget name="infoM1" position="100,90" zPosition="2" size="100,20" font="Regular;18" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM16" position="195,90" zPosition="2" size="100,20" font="Regular;18" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM2" position="280,90" zPosition="2" size="100,20" font="Regular;18" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM3" position="370,90" zPosition="2" size="100,20" font="Regular;18" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM4" position="105,300" zPosition="2" size="100,20" font="Regular;18" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM5" position="235,300" zPosition="2" size="100,20" font="Regular;18" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM6" position="355,300" zPosition="2" size="100,20" font="Regular;18" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM7" position="480,90" zPosition="2" size="240,15" font="Regular;14" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM8" position="480,105" zPosition="2" size="240,15" font="Regular;14" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM15" position="480,120" zPosition="2" size="240,20" font="Regular;18" foregroundColor="#ffff3f" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM9" position="480,140" zPosition="2" size="240,20" font="Regular;16" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM10" position="480,250" zPosition="2" size="240,15" font="Regular;14" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM11" position="480,265" zPosition="2" size="240,30" font="Regular;14" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM12" position="480,380" zPosition="2" size="240,15" font="Regular;14" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM13" position="480,395" zPosition="2" size="240,30" font="Regular;14" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM14" position="480,157" zPosition="2" size="240,20" font="Regular;16" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="thn1" position="125,20" size="60,60" alphatest="on" />\n\t\t\t<widget name="thn12" position="215,20" size="60,60" alphatest="on" />\n\t\t\t<widget name="thn2" position="305,20" size="60,60" alphatest="on" />\n\t\t\t<widget name="thn3" position="395,20" size="60,60" alphatest="on" />\n\t\t\t<widget name="thn4" position="130,240" size="60,60" alphatest="on" />\n\t\t\t<widget name="thn5" position="255,240" size="60,60" alphatest="on" />\n\t\t\t<widget name="thn6" position="375,240" size="60,60" alphatest="on" />\n\t\t\t<widget name="thn7" position="570,20" size="60,60" alphatest="on" />\n\t\t\t<widget name="thn8" position="570,189" size="60,60" alphatest="on" />\n\t\t\t<widget name="thn9" position="575,320" size="60,60" alphatest="on" />\n\t\t\t<widget name="thn10" position="45,20" size="60,60" alphatest="on" />\n\t\t\t<widget name="thn11" position="45,240" size="60,60" alphatest="on" />\n\t\t</screen>'
-    
+
     def __init__(self, session, path_left = None):
         self.session = session
         Screen.__init__(self, session)
@@ -140,33 +140,33 @@ class RTiSySInfoScreen(Screen):
         self.CpuTimer.callback.append(self.RefreshInfo)
         self.CpuTimer.start(50, True)
 
-    
+
     def exit(self):
         self.close()
 
-    
+
     def ok(self):
         self.session.open(SySInfoPlay, 'top')
 
-    
+
     def goRed(self):
         self.session.open(SySInfoPlay, 'ps')
 
-    
+
     def goGreen(self):
         self.session.open(SySInfoPlay, 'dmsg')
 
-    
+
     def goYellow(self):
         self.session.open(SySInfoPlay, 'ifconfig')
 
-    
+
     def goBlue(self):
         self.session.open(SySInfoPlay, 'top')
 
-    
+
     def StartScroll(self):
-        
+
         try:
             self.slikahdd = LoadPixmap('/usr/lib/enigma2/python/RTiTeam/RTiSySInfo/img/hdd.png')
             self.slikahdd_temp = LoadPixmap('/usr/lib/enigma2/python/RTiTeam/RTiSySInfo/img/hdd_temp.png')
@@ -204,22 +204,22 @@ class RTiSySInfoScreen(Screen):
         boxname = HardwareInfo().get_device_name()
         if boxname == 'me':
             boxname1 = 'Me'
-        
+
         if boxname == 'minime':
             boxname1 = 'miniMe'
-        
+
         if boxname == 'elite':
             boxname1 = 'Elite'
-        
+
         if boxname == 'premium':
             boxname1 = 'Premium'
-        
+
         if boxname == 'premium+':
             boxname1 = 'Premium+'
-        
+
         if boxname == 'ultra':
             boxname1 = 'Ultra'
-        
+
         self['infoM15'].setText('Model: ' + boxname1)
         self['infoM9'].setText('LAN IP: 0.0.0.0')
         self['infoM14'].setText('WLAN IP: 0.0.0.0')
@@ -231,33 +231,33 @@ class RTiSySInfoScreen(Screen):
             ipos = x.find('eth0')
             if ipos >= 0:
                 eth = 1
-            
+
             ipos = x.find('wlan0')
             if ipos >= 0:
                 eth = 2
-            
+
             ipos = x.find('lo')
             if ipos >= 0:
                 eth = 3
-            
+
             ipos = x.find('inet addr:')
             if ipos >= 0:
                 ipos1 = x.find('Bcast')
                 IP = x[ipos + 10:ipos1]
                 if eth == 1:
                     self['infoM9'].setText('LAN IP:' + str(IP))
-                
+
                 if eth == 2:
                     self['infoM14'].setText('WLAN IP:' + str(IP))
-                
+
             eth == 2
 
-    
+
     def RefreshInfo(self):
         self.ShowInfo()
         self.CpuTimer.start(5000, True)
 
-    
+
     def ShowInfo(self):
         boxname = HardwareInfo().get_device_name()
         ram = []
@@ -270,16 +270,16 @@ class RTiSySInfoScreen(Screen):
             r3 = str(int(ramtmp[3]) / 1024) + 'MB'
             if int(ramtmp[1]) > 0:
                 r4 = str(int(ramtmp[2]) * 100 / int(ramtmp[1])) + '%'
-            
+
             ram.append(r1)
             ram.append(r2)
             ram.append(r3)
             ram.append(r4)
-        
+
         f.close()
         if len(ram) > 0:
             self['list2'].setList(ram)
-        
+
         cache = []
         f = os.popen('cat /proc/meminfo |grep Cached')
         cachetmp = f.readline().split()
@@ -290,11 +290,11 @@ class RTiSySInfoScreen(Screen):
             cache.append(c2)
             cache.append(c3)
             cache.append('    /')
-        
+
         f.close()
         if len(cache) > 0:
             self['list10'].setList(cache)
-        
+
         swap = []
         f = os.popen("free | grep 'Swap:'")
         swaptmp = f.readline().split()
@@ -305,16 +305,16 @@ class RTiSySInfoScreen(Screen):
             s3 = str(int(swaptmp[3]) / 1024) + 'MB'
             if int(swaptmp[1]) > 0:
                 s4 = str(int(swaptmp[2]) * 100 / int(swaptmp[1])) + '%'
-            
+
             swap.append(s1)
             swap.append(s2)
             swap.append(s3)
             swap.append(s4)
-        
+
         f.close()
         if len(swap) > 0:
             self['list3'].setList(swap)
-        
+
         total = []
         t4 = '0%'
         t1 = (int(ramtmp[1]) + int(swaptmp[1])) / 1024
@@ -324,18 +324,18 @@ class RTiSySInfoScreen(Screen):
         t3 = str((int(ramtmp[3]) + int(cachetmp[1]) + int(swaptmp[3])) / 1024) + 'MB'
         if t1 > 0:
             t4 = str(t2 * 100 / t1) + '%'
-        
+
         total.append(t1a)
         total.append(t2a)
         total.append(t3)
         total.append(t4)
         if len(total) > 0:
             self['list4'].setList(total)
-        
+
         f = os.popen('top -n1 | grep CPU:')
         cputmp = f.readline()
         f.close()
-        
+
         try:
             ipos = cputmp.find(' sys')
             ipos1 = cputmp.find(' idle')
@@ -353,7 +353,7 @@ class RTiSySInfoScreen(Screen):
         nandtmp = f.readline()
         f.close()
         ipos = 0
-        
+
         try:
             ipos = nandtmp.find('/')
         except Exception:
@@ -369,7 +369,7 @@ class RTiSySInfoScreen(Screen):
                 continue
         uredi.sort()
         for i in range(0, 2):
-            
+
             try:
                 hddstate = 'drive state is:  unknown'
                 cmd = 'hdparm -C ' + uredi[i]
@@ -384,7 +384,7 @@ class RTiSySInfoScreen(Screen):
                 if i == 0:
                     self['infoM10'].setText(str(uredi[i]))
                     self['infoM11'].setText(str(hddstate))
-                
+
                 if i == 1:
                     self['infoM12'].setText(str(uredi[i]))
                     self['infoM13'].setText(str(hddstate))
@@ -392,14 +392,14 @@ class RTiSySInfoScreen(Screen):
                 if i == 0:
                     self['infoM10'].setText('NC')
                     self['infoM11'].setText('')
-                
+
                 if i == 1:
                     self['infoM12'].setText('NC')
                     self['infoM13'].setText('')
-                
+
                 print('err')
 
-            
+
             try:
                 cmd = 'df -h | grep ' + uredi[i]
                 nand = []
@@ -409,7 +409,7 @@ class RTiSySInfoScreen(Screen):
                 nandtmp = nandtmp[9:]
                 f.close()
                 ipos = 0
-                
+
                 try:
                     ipos = nandtmp.find('/')
                 except Exception:
@@ -424,7 +424,7 @@ class RTiSySInfoScreen(Screen):
                 if i == 0:
                     self['list7'].setList(nand)
                     self['infoM5'].setText(str(imedev))
-                
+
                 if i == 1:
                     self['list8'].setList(nand)
                     self['infoM6'].setText(str(imedev))
@@ -433,20 +433,20 @@ class RTiSySInfoScreen(Screen):
                 if i == 0:
                     self['list7'].setList([
                         'NC'])
-                
+
                 if i == 1:
                     self['list8'].setList([
                         'NC'])
-                
+
                 i == 1
-            
+
 
 
 
 
 class SySInfoPlay(Screen):
     skin = '\n\t\t<screen position="center,center" size="720,495" title="">\n\t\t\t<widget name="red" position="20,456" size="140,40" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\t\t\t<widget name="green" position="200,456" size="140,40" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\t\t\t<widget name="yellow" position="380,456" size="140,40" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\t\t\t<widget name="blue" position="560,456" size="140,40" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\n\t\t\t<ePixmap name="pred" position="20,455" size="140,40" zPosition="0" pixmap="buttons/red.png" transparent="1" alphatest="on"/>\n\t\t\t<ePixmap name="pgreen" position="200,455" size="140,40" zPosition="0" pixmap="buttons/green.png" transparent="1" alphatest="on"/>\n\t\t\t<ePixmap name="pyellow" position="380,455" size="140,40" zPosition="0" pixmap="buttons/yellow.png" transparent="1" alphatest="on"/>\n\t\t\t<ePixmap name="pblue" position="560,455" size="140,40" zPosition="0" pixmap="buttons/blue.png" transparent="1" alphatest="on"/>\n\t\t\t<widget name="infoM1" position="10,5" zPosition="2" size="700,18" font="Regular;18" foregroundColor="#ffffff" transparent="1" halign="center" valign="center" />\n\t\t\t<widget name="list1" position="10,30" size="710,405" scrollbarMode="showOnDemand" foregroundColor="#aaaaaa" />\n\t\t</screen>'
-    
+
     def __init__(self, session, pateka):
         self.session = session
         Screen.__init__(self, session)
@@ -474,51 +474,51 @@ class SySInfoPlay(Screen):
         self['list1'] = MenuList(self.encname)
         self.onLayoutFinish.append(self.openTest)
 
-    
+
     def openTest(self):
         self['infoM1'].setText('Filename : ' + str(self.pateka))
         if self.pateka == 'ps':
             self.doRed()
-        
+
         if self.pateka == 'dmsg':
             self.doGreen()
-        
+
         if self.pateka == 'ifconfig':
             self.doYellow()
-        
+
         if self.pateka == 'top':
             self.doBlue()
-        
 
-    
+
+
     def doRed(self):
         self['infoM1'].setText('ps - process status')
         self.Console = Console()
         self.Console.ePopen('ps >/tmp/tt', self.AddToList)
 
-    
+
     def doGreen(self):
         self['infoM1'].setText('dmesg - driver/kernel message')
         self.Console = Console()
         self.Console.ePopen('dmesg >/tmp/tt', self.AddToList)
 
-    
+
     def doYellow(self):
         self['infoM1'].setText('IfConfig - Network Parameters')
         self.Console = Console()
         self.Console.ePopen('ifconfig >/tmp/tt', self.AddToList)
 
-    
+
     def doBlue(self):
         self['infoM1'].setText('TOP - displays all the running process ')
         self.Console = Console()
         self.Console.ePopen('top -n1 >/tmp/tt', self.AddToList)
 
-    
+
     def AddToList(self, result, retval, extra_args):
         dat = '/tmp/tt'
         ps = []
-        
+
         try:
             f = open(dat, 'r')
             lines = f.readlines()
@@ -529,7 +529,7 @@ class SySInfoPlay(Screen):
             print('error')
 
 
-    
+
     def exit(self):
         self.close()
 

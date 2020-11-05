@@ -59,7 +59,7 @@ config.pic.textcolor = ConfigSelection(default = '#0038FF48', choices = [
 
 class subconv(Screen):
     skin = '\n\t\t<screen name="RTiSubtitleConverter007" position="center,center" size="560,290" title="RTi SubtitleConverter   v.1.0" >\n\t\t\t<ePixmap name="red"    position="0,250"   zPosition="2" size="140,40" pixmap="buttons/red.png" transparent="1" alphatest="on" />\n\t\t\t<ePixmap name="blue"   position="420,250" zPosition="2" size="140,40" pixmap="buttons/blue.png" transparent="1" alphatest="on" /> \n\t\t\t<widget name="key_red" position="0,250" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="#25062748" shadowOffset="-2,-2" /> \n\t\t\t<widget name="key_blue" position="420,250" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />\n\t\t\t<widget name="thn" position="420,250" size="180,160" alphatest="on" />\n\t\t\t<widget name="filelist" position="5,55" zPosition="2" size="550,187" scrollbarMode="showOnDemand" />\n\t\t\t<widget name="info0" position="5,20" zPosition="2" size="550,20" font="Regular;18" foregroundColor="#aaaaaa" transparent="1" halign="center" valign="center" />\n\t\t\t<widget name="infoL" position="140,265" zPosition="2" size="280,20" font="Regular;22" foregroundColor="#ffffff" transparent="1" halign="center" valign="center" />\n\t\t</screen>'
-    
+
     def __init__(self, session):
         Screen.__init__(self, session)
         self['actions'] = ActionMap([
@@ -78,27 +78,27 @@ class subconv(Screen):
         currDir = config.pic.lastDir.value
         if not pathExists(currDir):
             currDir = '/'
-        
+
         self.filelist = FileList(currDir, matchingPattern = '(?i)^.*\\.(srt|sub|txt)')
         self['filelist'] = self.filelist
         self['info0'].setText('Select Subtitle for conversion :')
         self['infoL'].setText('www.azbox-enigma.eu')
 
-    
+
     def KeyGreen(self):
         print('ok')
 
-    
+
     def KeyYellow(self):
         if not self.filelist.canDescent():
             print('ok')
-        
 
-    
+
+
     def KeyBlue(self):
         print('ok')
 
-    
+
     def KeyOk(self):
         if self.filelist.canDescent():
             self.filelist.descent()
@@ -109,16 +109,16 @@ class subconv(Screen):
                 ime = self.filelist.getFileList()
                 ind = self.filelist.getSelectionIndex()
                 pateka = self.filelist.getCurrentDirectory() + ime[ind][0][0]
-            
+
             self.session.open(SubPreview, str(pateka))
 
-    
+
     def callbackView(self, val = 0):
         if val > 0:
             self.filelist.moveToIndex(val)
-        
 
-    
+
+
     def KeyExit(self):
         print('exit')
         if self.filelist.getCurrentDirectory() is None:
@@ -132,7 +132,7 @@ class subconv(Screen):
 
 class SubPreview(Screen):
     skin = '\n\t\t<screen name="Menusimple2" position="center,center" size="720,530" title="RTi SubtitleConverter   v.1.0" >\n\t\t\t<ePixmap name="red"    position="40,490"   zPosition="2" size="180,40" pixmap="buttons/red.png" transparent="1" alphatest="on" />\n\t\t\t<ePixmap name="blue"   position="540,490" zPosition="2" size="180,40" pixmap="buttons/blue.png" transparent="1" alphatest="on" /> \n\t\t\t<widget name="key_red" position="20,490" size="180,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="#25062748" shadowOffset="-2,-2" /> \n\t\t\t<widget name="key_blue" position="520,490" size="180,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />\n\t\t\t<!--widget name="text" position="0,0" size="550,25" font="Regular;20" /-->\n\t\t\t<!--widget name="pixmap" position="200,0" size="190,250" /-->\n\t\t\t<eLabel position="70,100" zPosition="-1" size="100,69" backgroundColor="#222222" />\n\t\t\t<widget name="list" position="30,70" size="200,405" scrollbarMode="showOnDemand" foregroundColor="#aaaaaa" />\n\t\t\t<widget name="info0" position="260,75" zPosition="2" size="530,18" font="Regular;16" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />\n\t\t\t<widget name="info1" position="260,95" zPosition="2" size="530,18" font="Regular;16" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />\n\t\t\t<widget name="info2" position="260,115" zPosition="2" size="530,18" font="Regular;16" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />\n\t\t\t<widget name="info3" position="260,135" zPosition="2" size="530,18" font="Regular;16" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />\n\t\t\t<widget name="info4" position="260,155" zPosition="2" size="530,18" font="Regular;16" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />\n\t\t\t<widget name="info5" position="260,175" zPosition="2" size="530,18" font="Regular;16" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />\n\t\t\t<widget name="info6" position="260,195" zPosition="2" size="530,18" font="Regular;16" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />\n\t\t\t<widget name="info7" position="260,215" zPosition="2" size="530,18" font="Regular;16" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />\n\t\t\t<widget name="info8" position="260,235" zPosition="2" size="530,18" font="Regular;16" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />\n\t\t\t<widget name="info9" position="260,255" zPosition="2" size="530,18" font="Regular;16" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />\n\t\t\t<widget name="info10" position="260,275" zPosition="2" size="530,18" font="Regular;16" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />\n\t\t\t<widget name="info11" position="260,295" zPosition="2" size="530,18" font="Regular;16" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />\n\t\t\t<widget name="info12" position="260,315" zPosition="2" size="530,18" font="Regular;16" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />\n\t\t\t<widget name="info13" position="260,335" zPosition="2" size="530,18" font="Regular;16" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />\n\t\t\t<widget name="info14" position="260,355" zPosition="2" size="530,18" font="Regular;16" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />\n\t\t\t<widget name="info15" position="260,375" zPosition="2" size="530,18" font="Regular;16" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />\n\t\t\t<widget name="info16" position="260,395" zPosition="2" size="530,18" font="Regular;16" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />\n\t\t\t<widget name="info17" position="260,415" zPosition="2" size="530,18" font="Regular;16" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />\n\t\t\t<widget name="info18" position="260,435" zPosition="2" size="530,18" font="Regular;16" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />\n\t\t\t<widget name="info19" position="260,455" zPosition="2" size="530,18" font="Regular;16" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />\n\t\t\t<widget name="info20" position="30,15" zPosition="2" size="660,18" font="Regular;20" foregroundColor="#aaaaaa" transparent="1" halign="center" valign="center" />\n\t\t\t<widget name="infoA" position="30,50" zPosition="2" size="200,18" font="Regular;20" foregroundColor="#aaaaaa" transparent="1" halign="center" valign="center" />\n\t\t\t<widget name="infoB" position="260,50" zPosition="2" size="430,18" font="Regular;20" foregroundColor="#aaaaaa" transparent="1" halign="center" valign="center" />\n\t\t\t<widget name="infoL" position="180,505" zPosition="2" size="360,20" font="Regular;22" foregroundColor="#ffffff" transparent="1" halign="center" valign="center" />\n\t\t</screen>'
-    
+
     def __init__(self, session, pateka):
         self.skinName = 'OnlineManager2'
         Screen.__init__(self, session)
@@ -181,14 +181,14 @@ class SubPreview(Screen):
         self['infoL'] = Label()
         self.onLayoutFinish.append(self.openTest)
 
-    
+
     def openTest(self):
         self['infoA'].setText('Encoder :  ')
         self['infoB'].setText('Preview :  ')
         self['info20'].setText('Select right encoding and press OK')
         self['infoL'].setText('www.azbox-enigma.eu')
         dat = '/usr/lib/enigma2/python/Plugins/Extensions/RTiSubtitleConverter/encode.lst'
-        
+
         try:
             sfile = open(dat, 'r')
             for line in sfile:
@@ -198,7 +198,7 @@ class SubPreview(Screen):
                 if ipos < 0:
                     remname = line
                     enc = line
-                
+
                 self.encname.append(remname)
                 self.encodings.append(enc)
             self['list'].setList(self.encname)
@@ -215,54 +215,54 @@ class SubPreview(Screen):
         sfile.close()
         self.vfdprint()
 
-    
+
     def keyUp(self):
         self['list'].up()
         self.vfdprint()
 
-    
+
     def keyDown(self):
         self['list'].down()
         self.vfdprint()
 
-    
+
     def keyLeft(self):
         self['list'].pageUp()
         self.vfdprint()
 
-    
+
     def keyRight(self):
         self['list'].pageDown()
         self.vfdprint()
 
-    
+
     def Izlaz(self):
         self.close()
 
-    
+
     def KeyGreen(self):
         self['text'].right()
 
-    
+
     def KeyRed(self):
         self['text'].right()
 
-    
+
     def KeyYellow(self):
         self['text'].right()
 
-    
+
     def okClicked(self):
         sel = self['list'].getSelectionIndex()
         enc = self.encodings[sel]
         filename = self.pateka
-        
+
         try:
             f = open(filename, 'r').read()
         except Exception:
             return None
 
-        
+
         try:
             data = f.decode(enc)
         except Exception:
@@ -270,7 +270,7 @@ class SubPreview(Screen):
 
         fpath = os.path.abspath(filename)
         newfilename = fpath + '.bak'
-        
+
         try:
             shutil.copy(filename, newfilename)
         except Exception:
@@ -279,7 +279,7 @@ class SubPreview(Screen):
 
         filenameC = '/tmp/Converted.srt'
         f = open(filenameC, 'w')
-        
+
         try:
             f.write(data.encode('utf-8'))
         except Exception:
@@ -289,7 +289,7 @@ class SubPreview(Screen):
             f.close()
 
         f1 = open(filename, 'w')
-        
+
         try:
             f1.write(data.encode('utf-8'))
         except Exception:
@@ -301,7 +301,7 @@ class SubPreview(Screen):
         self.session.openWithCallback(self.callback, MessageBox, _('Subtitle : ' + str(filename) + '\nEncoded using: ' + str(enc) + ' successfully !'), type = 1, timeout = 20)
         self.close()
 
-    
+
     def vfdprint(self):
         sel = self['list'].getSelectionIndex()
         enc = self.encodings[sel]
@@ -326,7 +326,7 @@ class SubPreview(Screen):
         self['info17'].setText(' ')
         self['info18'].setText(' ')
         self['info19'].setText(' ')
-        
+
         try:
             f = open(filename, 'r')
             lines = f.readlines()
@@ -355,18 +355,18 @@ class SubPreview(Screen):
             return None
 
 
-    
+
     def keyNumberGlobal(self, number):
         print('pressed', number)
         self['text'].number(number)
 
-    
+
     def confirmR(self, confirmed):
         if confirmed:
             cmd = 'reboot -f'
             os.system(cmd)
             self.close()
-        
+
 
 
 

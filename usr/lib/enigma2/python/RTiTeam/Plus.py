@@ -16,16 +16,16 @@ def SimpleEntry(name, picture):
     if name == '---':
         if fileExists(picture):
             res.append(MultiContentEntryPixmapAlphaTest(pos = (0, 22), size = (470, 4), png = loadPNG(picture)))
-        
+
     elif fileExists(picture):
         res.append(MultiContentEntryPixmapAlphaTest(pos = (10, 0), size = (48, 48), png = loadPNG(picture)))
-    
+
     res.append(MultiContentEntryText(pos = (78, 10), size = (420, 38), font = 0, text = name))
     return res
 
 
 class ExtrasList(MenuList, HTMLComponent, GUIComponent):
-    
+
     def __init__(self, list, enableWrapAround = False):
         GUIComponent.__init__(self)
         self.l = eListboxPythonMultiContent()
@@ -38,18 +38,18 @@ class ExtrasList(MenuList, HTMLComponent, GUIComponent):
         self.last = 0
 
     GUI_WIDGET = eListbox
-    
+
     def postWidgetCreate(self, instance):
         instance.setContent(self.l)
         instance.selectionChanged.get().append(self.selectionChanged)
         if self.enableWrapAround:
             self.instance.setWrapAround(True)
-        
 
-    
+
+
     def selectionChanged(self):
         isDiv = False
-        
+
         try:
             for element in self.list[self.getSelectionIndex()]:
                 if element[0] == '---':
@@ -66,7 +66,7 @@ class ExtrasList(MenuList, HTMLComponent, GUIComponent):
         if not isDiv:
             for f in self.onSelectionChanged:
                 f()
-            
-        
+
+
 
 
