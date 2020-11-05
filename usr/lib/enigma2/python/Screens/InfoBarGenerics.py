@@ -411,7 +411,6 @@ class InfoBarNumberZap:
                 playable = serviceIterator.flags & eServiceReference.isNumberedMarker
                 if playable:
                     num -= 1
-                    continue
             if not num:
                 return (serviceIterator, 0)
 
@@ -434,7 +433,6 @@ class InfoBarNumberZap:
 
                     if bouquet.flags & eServiceReference.isDirectory:
                         (service, number) = self.searchNumberHelper(serviceHandler, number, bouquet)
-                        continue
 
         if service is not None:
             if self.servicelist.getRoot() != bouquet:
@@ -529,7 +527,6 @@ class InfoBarChannelSelection:
                     if cur:
                         if cur.toString() == prev or self.isPlayable(cur):
                             break
-                            continue
 
         else:
             self.servicelist.moveUp()
@@ -550,8 +547,6 @@ class InfoBarChannelSelection:
                     if cur:
                         if cur.toString() == prev or self.isPlayable(cur):
                             break
-                            continue
-
         else:
             self.servicelist.moveDown()
         self.servicelist.zap(enable_pipzap = True)
@@ -657,7 +652,6 @@ class SimpleServicelist:
             self.current += 1
             if self.current >= self.length:
                 return False
-            continue
             self.current >= self.length
         return True
 
@@ -736,7 +730,6 @@ class InfoBarEPG:
                     break
 
                 if service.flags & (eServiceReference.isDirectory | eServiceReference.isMarker):
-                    continue
 
                 services.append(ServiceReference(service))
 
@@ -859,7 +852,6 @@ class InfoBarEPG:
 
 
     def showEventInfoPlugins(self):
-        continue
         list = [ (p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO) ]
         if list:
             list.append((_('show single service EPG...'), self.openSingleServiceEPG))
@@ -1601,7 +1593,6 @@ class InfoBarExtensions:
                 if not self.extensionKeys.has_key(x):
                     key = x
                     break
-                    continue
 
 
         if key is not None:
@@ -1630,7 +1621,6 @@ class InfoBarExtensions:
         for x in self.list:
             if x[0] == self.EXTENSION_SINGLE:
                 self.updateExtension(x[1], x[2])
-                continue
             for y in x[1]():
                 self.updateExtension(y[0], y[1])
 
@@ -1652,7 +1642,6 @@ class InfoBarExtensions:
                 else:
                     extensionsList.remove(extension)
             extension[2]()
-        continue
         _[1]([ (x[0](), x) for x in extensionsList ])
         keys += [
             ''] * len(extensionsList)
@@ -1684,7 +1673,6 @@ class InfoBarPlugins:
             args = inspect.getargspec(p.__call__)[0]
             if (len(args) == 1 or len(args) == 2) and isinstance(self, InfoBarChannelSelection):
                 l.append(((boundFunction(self.getPluginName, p.name), boundFunction(self.runPlugin, p), lambda : True), None, p.name))
-                continue
         l.sort(key = lambda e: e[2])
         return l
 
@@ -1705,7 +1693,6 @@ class InfoBarJobman:
 
 
     def getJobList(self):
-        continue
         return [ ((boundFunction(self.getJobName, job), boundFunction(self.showJobView, job), lambda : True), None) for job in job_manager.getPendingJobs() ]
 
 
@@ -1942,11 +1929,9 @@ class InfoBarInstantRecord:
         for x in recording:
             if x not in self.session.nav.RecordTimer.timer_list:
                 self.recording.remove(x)
-                continue
             answer[1] == 'no'
             if x.dontSave and x.isRunning():
                 list.append((x, False))
-                continue
         if answer[1] == 'changeduration':
             if len(self.recording) == 1:
                 self.changeDuration(0)
@@ -2441,7 +2426,6 @@ class InfoBarCueSheetSupport:
 
             if cp[1] == self.CUT_TYPE_IN:
                 isin = True
-                continue
         return ret
 
 
@@ -2496,10 +2480,8 @@ class InfoBarCueSheetSupport:
 
             if cp[1] == self.CUT_TYPE_IN:
                 instate = True
-                continue
             if cp[1] == self.CUT_TYPE_OUT:
                 instate = False
-                continue
             if cp[1] in (self.CUT_TYPE_MARK, self.CUT_TYPE_LAST):
                 diff = cmp(cp[0] - pts)
                 if instate and diff >= 0:
@@ -2508,7 +2490,6 @@ class InfoBarCueSheetSupport:
                         bestdiff = diff
 
                 bestdiff > diff
-                continue
         return nearest
 
 
