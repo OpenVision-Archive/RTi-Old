@@ -731,7 +731,7 @@ class InfoBarEPG:
 
                 if service.flags & (eServiceReference.isDirectory | eServiceReference.isMarker):
 
-                services.append(ServiceReference(service))
+			services.append(ServiceReference(service))
 
         return services
 
