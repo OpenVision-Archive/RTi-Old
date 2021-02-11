@@ -387,7 +387,7 @@ class InfoBarNumberZap:
                 self.pipDoHandle0Action()
             else:
                 self.servicelist.recallPrevService()
-        elif self.has_key('TimeshiftActions') and not (self.timeshift_enabled):
+        elif 'TimeshiftActions' in self and not (self.timeshift_enabled):
             self.session.openWithCallback(self.numberEntered, NumberZap, number)
 
 
@@ -1584,13 +1584,13 @@ class InfoBarExtensions:
     def updateExtension(self, extension, key = None):
         self.extensionsList.append(extension)
         if key is not None:
-            if self.extensionKeys.has_key(key):
+            if key in self.extensionKeys:
                 key = None
 
 
         if key is None:
             for x in self.availableKeys:
-                if not self.extensionKeys.has_key(x):
+                if x not in self.extensionKeys:
                     key = x
                     break
 
@@ -1631,7 +1631,7 @@ class InfoBarExtensions:
         keys = []
         list = []
         for x in self.availableKeys:
-            if self.extensionKeys.has_key(x):
+            if x in self.extensionKeys:
                 entry = self.extensionKeys[x]
                 extension = self.extensionsList[entry]
                 if extension[2]():
@@ -2295,7 +2295,7 @@ class InfoBarNotifications:
             n = notifications[0]
             del notifications[0]
             cb = n[0]
-            if n[3].has_key('onSessionOpenCallback'):
+            if 'onSessionOpenCallback' in n[3]:
                 n[3]['onSessionOpenCallback']()
                 del n[3]['onSessionOpenCallback']
 
