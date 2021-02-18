@@ -278,7 +278,7 @@ class HDDSetupScreen(Screen):
         if self.rereshenable == 1:
             return None
         if self.SelEn != 1:
-            self.session.openWithCallback(self.callback, MessageBox, _('\nFirst you must select partition which you want to (u)Mount!'), type = 1, timeout = 20)
+            self.session.openWithCallback(self.callback, MessageBox, _('\nFirst you must select partition which you want to (u)Mount!'), type=1, timeout=20)
             return None
         sel = self['list2'].getSelectionIndex()
         ipos = self.partitions[sel].find(' - mounted on ')
@@ -287,7 +287,7 @@ class HDDSetupScreen(Screen):
             mountpoint = self.partitions[sel][ipos + 14:]
             odgovor = self.umount(devname)
             if odgovor == True:
-                self.session.openWithCallback(self.callback, MessageBox, _('\nUmount Succesfull!'), type = 1, timeout = 20)
+                self.session.openWithCallback(self.callback, MessageBox, _('\nUmount Succesfull!'), type=1, timeout=20)
             else:
                 self.session.openWithCallback(self.callback, MessageBox, _('Cannot umount current drive.\nA record in progress, timeshit or some external tools (like samba and nfsd) may cause this problem.\nPlease stop this actions/applications and try again'), MessageBox.TYPE_ERROR)
             self.drawInfo()
@@ -567,7 +567,7 @@ class HDDSetupScreen(Screen):
             self.drawInfo()
             return None
         self.rereshenable = odgovor6 == True
-        self.session.openWithCallback(self.callback, MessageBox, _('\nInit - Succesfull !'), type = 1, timeout = 20)
+        self.session.openWithCallback(self.callback, MessageBox, _('\nInit - Succesfull !'), type=1, timeout=20)
         self.drawInfo()
 
 
@@ -580,7 +580,7 @@ class HDDSetupScreen(Screen):
         devname = '/dev/' + self.partitions[sel][:4]
         odgovor = self.mount(devname, mountpoint)
         if odgovor == True:
-            self.session.openWithCallback(self.callback, MessageBox, _('\nMount ' + devname + ' on : ' + mountpoint + ' Succesfull!'), type = 1, timeout = 20)
+            self.session.openWithCallback(self.callback, MessageBox, _('\nMount ' + devname + ' on : ' + mountpoint + ' Succesfull!'), type=1, timeout=20)
         else:
             self.session.openWithCallback(self.callback, MessageBox, _('\nMount ' + devname + ' on : ' + mountpoint + ' UnSuccesfull!'), MessageBox.TYPE_ERROR)
         self.drawInfo()
@@ -847,8 +847,8 @@ def Plugins(**kwargs):
     boxime = HardwareInfo().get_device_name()
     if boxime == 'elite' and boxime == 'premium' and boxime == 'premium+' and boxime == 'ultra' and boxime == 'me' and boxime == 'minime' or boxime == 'multimedia':
         return [
-            PluginDescriptor(name = _('HDDSetup'), description = _('HDDSetup'), icon = 'HDDSetup.png', where = [
+            PluginDescriptor(name=_('HDDSetup'), description=_('HDDSetup'), icon='HDDSetup.png', where=[
                 PluginDescriptor.WHERE_EXTENSIONSMENU,
-                PluginDescriptor.WHERE_PLUGINMENU], fnc = main)]
+                PluginDescriptor.WHERE_PLUGINMENU], fnc=main)]
     return []
 

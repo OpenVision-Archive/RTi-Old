@@ -15,18 +15,18 @@ def SimpleEntry(name, picture):
     picture = '/usr/lib/enigma2/python/RTiTeam/Ico/' + picture
     if name == '---':
         if fileExists(picture):
-            res.append(MultiContentEntryPixmapAlphaTest(pos = (0, 22), size = (470, 4), png = loadPNG(picture)))
+            res.append(MultiContentEntryPixmapAlphaTest(pos=(0, 22), size=(470, 4), png=loadPNG(picture)))
 
     elif fileExists(picture):
-        res.append(MultiContentEntryPixmapAlphaTest(pos = (10, 0), size = (48, 48), png = loadPNG(picture)))
+        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 0), size=(48, 48), png=loadPNG(picture)))
 
-    res.append(MultiContentEntryText(pos = (78, 10), size = (420, 38), font = 0, text = name))
+    res.append(MultiContentEntryText(pos=(78, 10), size=(420, 38), font=0, text=name))
     return res
 
 
 class ExtrasList(MenuList, HTMLComponent, GUIComponent):
 
-    def __init__(self, list, enableWrapAround = False):
+    def __init__(self, list, enableWrapAround=False):
         GUIComponent.__init__(self)
         self.l = eListboxPythonMultiContent()
         self.list = list

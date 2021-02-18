@@ -24,16 +24,16 @@ from datetime import timedelta
 import os
 from os import popen
 config.plugins.TimeSet = ConfigSubsection()
-config.plugins.TimeSet.OSDsize = ConfigSlider(default = 425, increment = 5, limits = (320, 500))
-config.plugins.TimeSet.Helligkeit = ConfigSlider(default = 5, limits = (0, 7))
+config.plugins.TimeSet.OSDsize = ConfigSlider(default=425, increment=5, limits=(320, 500))
+config.plugins.TimeSet.Helligkeit = ConfigSlider(default=5, limits=(0, 7))
 config.plugins.timezone = ConfigSubsection()
 config.timezone = ConfigSubsection()
-config.timezone.val = ConfigSelection(default = timezones.getDefaultTimezone(), choices = timezones.getTimezoneList())
+config.timezone.val = ConfigSelection(default=timezones.getDefaultTimezone(), choices=timezones.getTimezoneList())
 
 class TimeSetConfig(ConfigListScreen, Screen):
     skin = '\n\t\t\t<screen position="center,center" size="560,190" title="TimeSet Settings v.1.2" >\n\t\t\t<widget name="config" position="10,10" size="540,50" scrollbarMode="showOnDemand" />\n\n\t\t\t<widget source="poraka" render="Label" position="5,265" size="555,30" zPosition="10" font="Regular;14" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />\n\t\t\t<widget source="vreme" render="Label" position="5,65" size="555,30" zPosition="10" font="Regular;22" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />\n\t\t\t<widget source="introduction" render="Label" position="5,95" size="555,30" zPosition="10" font="Regular;16" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />\n\t\t\t<widget source="timez" render="Label" position="5,115" size="555,30" zPosition="10" font="Regular;16" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />\n\t\t\t\n\t\t\t<widget name="key_red" position="0,150" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/> \n\t\t\t<widget name="key_green" position="140,150" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/> \n\t\t\t<widget name="key_yellow" position="280,150" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/> \n\t\t\t<widget name="key_blue" position="420,150" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;18" transparent="1"/> \n\t\t\t\n\t\t\t<ePixmap name="red"    position="0,150"   zPosition="2" size="140,40" pixmap="buttons/red.png" transparent="1" alphatest="on" />\n\t\t\t<ePixmap name="green"  position="140,150" zPosition="2" size="140,40" pixmap="buttons/green.png" transparent="1" alphatest="on" />\n\t\t\t<ePixmap name="yellow" position="280,150" zPosition="2" size="140,40" pixmap="buttons/yellow.png" transparent="1" alphatest="on" />\n\t\t\t<ePixmap name="blue"   position="420,150" zPosition="2" size="140,40" pixmap="buttons/blue.png" transparent="1" alphatest="on" />\n\t\t</screen>'
 
-    def __init__(self, session, args = 0):
+    def __init__(self, session, args=0):
         self.session = session
         Screen.__init__(self, session)
         z1 = mktime(datetime.utcnow().timetuple())
@@ -45,15 +45,15 @@ class TimeSetConfig(ConfigListScreen, Screen):
         if z0 < 0:
             zz = str(z0)[:2]
 
-        config.plugins.TimeSet.NDate = ConfigDateTime(default = z1, formatstring = _('%d.%B %Y'), increment = 86400)
-        config.plugins.TimeSet.UTCTim = ConfigClock(default = z1)
+        config.plugins.TimeSet.NDate = ConfigDateTime(default=z1, formatstring=_('%d.%B %Y'), increment=86400)
+        config.plugins.TimeSet.UTCTim = ConfigClock(default=z1)
         self.list = []
         self.list1 = []
         self.list1.append(getConfigListEntry(_('UTC Time'), config.plugins.TimeSet.UTCTim))
         self.list1.append(getConfigListEntry(_('Date'), config.plugins.TimeSet.NDate))
         self.list2 = []
         self.list3 = []
-        ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.selectionChanged)
+        ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.selectionChanged)
         self['introduction'] = StaticText()
         self['vreme'] = StaticText()
         self['poraka'] = StaticText()
@@ -140,7 +140,7 @@ class TimeSetConfig(ConfigListScreen, Screen):
         os.system(cmd)
         cmd = 'date -u -s "' + str(RTCString) + '"'
         os.system(cmd)
-        self.session.openWithCallback(self.callback, MessageBox, _('RTC Update done! \n\nGUI Clock Update done!'), type = 1, timeout = 5)
+        self.session.openWithCallback(self.callback, MessageBox, _('RTC Update done! \n\nGUI Clock Update done!'), type=1, timeout=5)
 
 
     def ZemiVreme(self):
@@ -159,10 +159,10 @@ class TimeSetConfig(ConfigListScreen, Screen):
             else:
                 self.session.open(MessageBox, _('ntpdate problem: Internet connection ok? Time server ok?'), MessageBox.TYPE_INFO)
         else:
-            self.session.open(MessageBox, _(before + '\n\nntpdate done! ' + res + '\nAfter: Local=' + strftime('%H:%M', localtime()) + ', UTC=' + strftime('%H:%M', gmtime())), type = 1, timeout = 5)
+            self.session.open(MessageBox, _(before + '\n\nntpdate done! ' + res + '\nAfter: Local=' + strftime('%H:%M', localtime()) + ', UTC=' + strftime('%H:%M', gmtime())), type=1, timeout=5)
             z1 = mktime(datetime.utcnow().timetuple())
-            config.plugins.TimeSet.NDate = ConfigDateTime(default = z1, formatstring = _('%d.%B %Y'), increment = 86400)
-            config.plugins.TimeSet.UTCTim = ConfigClock(default = z1)
+            config.plugins.TimeSet.NDate = ConfigDateTime(default=z1, formatstring=_('%d.%B %Y'), increment=86400)
+            config.plugins.TimeSet.UTCTim = ConfigClock(default=z1)
             self.list1 = []
             self.list1.append(getConfigListEntry(_('UTC Time'), config.plugins.TimeSet.UTCTim))
             self.list1.append(getConfigListEntry(_('Date'), config.plugins.TimeSet.NDate))
@@ -187,8 +187,8 @@ class TimeSetConfig(ConfigListScreen, Screen):
                 self.session.open(MessageBox, _('ntpdate problem: Internet connection ok? Time server ok?'), MessageBox.TYPE_INFO)
         else:
             z1 = mktime(datetime.utcnow().timetuple())
-            config.plugins.TimeSet.NDate = ConfigDateTime(default = z1, formatstring = _('%d.%B %Y'), increment = 86400)
-            config.plugins.TimeSet.UTCTim = ConfigClock(default = z1)
+            config.plugins.TimeSet.NDate = ConfigDateTime(default=z1, formatstring=_('%d.%B %Y'), increment=86400)
+            config.plugins.TimeSet.UTCTim = ConfigClock(default=z1)
             self.list1 = []
             self.list1.append(getConfigListEntry(_('UTC Time'), config.plugins.TimeSet.UTCTim))
             self.list1.append(getConfigListEntry(_('Date'), config.plugins.TimeSet.NDate))
@@ -222,7 +222,7 @@ class TimeSetConfig(ConfigListScreen, Screen):
             os.system(cmd)
             cmd = 'date -u -s "' + str(RTCString) + '"'
             os.system(cmd)
-            self.session.openWithCallback(self.callback, MessageBox, _('RTC Update done! \n\nGUI Clock Update done!\n\n' + before + '\n\nntpdate done! ' + res + '\nAfter: Local=' + strftime('%H:%M', localtime()) + ', UTC=' + strftime('%H:%M', gmtime())), type = 1, timeout = 15)
+            self.session.openWithCallback(self.callback, MessageBox, _('RTC Update done! \n\nGUI Clock Update done!\n\n' + before + '\n\nntpdate done! ' + res + '\nAfter: Local=' + strftime('%H:%M', localtime()) + ', UTC=' + strftime('%H:%M', gmtime())), type=1, timeout=15)
 
 
     def keyOK(self):
@@ -253,5 +253,5 @@ def Plugins(path, **kwargs):
     global plugin_path
     plugin_path = path
     return [
-        PluginDescriptor(name = 'TimeSet', description = 'Set DateTime to RTC', where = PluginDescriptor.WHERE_MENU, fnc = startSetup)]
+        PluginDescriptor(name='TimeSet', description='Set DateTime to RTC', where=PluginDescriptor.WHERE_MENU, fnc=startSetup)]
 

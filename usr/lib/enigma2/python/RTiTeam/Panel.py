@@ -24,7 +24,7 @@ from Plus import ExtrasList, SimpleEntry
 class Panel(Screen):
     skin = '\n\t\t<screen position="center,center" size="725,405" title="RTi Panel v.1.0" >\n\t\t<widget name="menu" position="10,10" size="455,385" scrollbarMode="showOnDemand" />\n\t\t<widget name="thn" position="467,40" size="256,256" alphatest="on" />\n\t\t<widget name="infoM0" position="467,336" zPosition="2" size="256,40" font="Regular;26" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t<widget name="l001" position="80,50" size="350,1" alphatest="on" />\n\t\t<widget name="l002" position="80,98" size="350,1" alphatest="on" />\n\t\t<widget name="l003" position="80,146" size="350,1" alphatest="on" />\n\t\t<widget name="l004" position="80,194" size="350,1" alphatest="on" />\n\t\t<widget name="l005" position="80,242" size="350,1" alphatest="on" />\n\t\t<widget name="l006" position="80,290" size="350,1" alphatest="on" />\n\t\t<widget name="l007" position="80,338" size="350,1" alphatest="on" />\n\t\t<widget name="l008" position="80,386" size="350,1" alphatest="on" />\n\t\t</screen>'
 
-    def __init__(self, session, args = 0):
+    def __init__(self, session, args=0):
         Screen.__init__(self, session)
         self.session = session
         self.list = []

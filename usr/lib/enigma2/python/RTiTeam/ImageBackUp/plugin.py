@@ -125,10 +125,10 @@ class ImageBackUpScreen(Screen):
     def goYellow(self):
         location = self['infoM2'].getText().splitlines()[0]
         if location == '---':
-            self.session.openWithCallback(self.callback, MessageBox, _('You Must Select Device First !!!\n(where to save BackUp files)'), type = 1, timeout = 8)
+            self.session.openWithCallback(self.callback, MessageBox, _('You Must Select Device First !!!\n(where to save BackUp files)'), type=1, timeout=8)
             return None
         if int(self.bootchoice) < 1 or int(self.bootchoice) > 3:
-            self.session.openWithCallback(self.callback, MessageBox, _('You Must Select BOOT Partition First !!!\n(Make BackUp from ?)'), type = 1, timeout = 8)
+            self.session.openWithCallback(self.callback, MessageBox, _('You Must Select BOOT Partition First !!!\n(Make BackUp from ?)'), type=1, timeout=8)
             return None
         self['scan_progress'].setValue(0)
         self['scan_progress'].show()
@@ -584,8 +584,8 @@ def Plugins(**kwargs):
     boxime = HardwareInfo().get_device_name()
     if boxime == 'elite' and boxime == 'premium' and boxime == 'premium+' and boxime == 'ultra' and boxime == 'me' and boxime == 'minime' or boxime == 'multimedia':
         return [
-            PluginDescriptor(name = _('ImageBackUp'), description = _('ImageBackUp'), icon = 'ImageBackUp.png', where = [
+            PluginDescriptor(name=_('ImageBackUp'), description=_('ImageBackUp'), icon='ImageBackUp.png', where=[
                 PluginDescriptor.WHERE_EXTENSIONSMENU,
-                PluginDescriptor.WHERE_PLUGINMENU], fnc = main)]
+                PluginDescriptor.WHERE_PLUGINMENU], fnc=main)]
     return []
 

@@ -425,7 +425,7 @@ class Getipklist(Screen):
         sel = self['list'].getSelectionIndex()
         ipk = self.names[sel]
         msg = 'Are you sure to want to install this update ?\n\n\n> ' + ipk + ' <\n\nDescription :\n\n' + self.namesexp[sel]
-        self.session.openWithCallback(self.confirm, MessageBox, _(msg), MessageBox.TYPE_YESNO, timeout = 15, default = False)
+        self.session.openWithCallback(self.confirm, MessageBox, _(msg), MessageBox.TYPE_YESNO, timeout=15, default=False)
 
 
     def confirm(self, confirmed):
@@ -580,10 +580,10 @@ class Getipk(Screen):
 class Ipkremove(Screen):
     skin = '\n\t\t<screen position="100,100" size="550,400" title="Ipkremove" >\n\t\t\t<!--widget name="text" position="0,0" size="550,25" font="Regular;20" /-->\n\t\t\t<widget name="list" position="10,0" size="190,250" scrollbarMode="showOnDemand" />\n\t\t\t<widget name="pixmap" position="200,0" size="190,250" />\n\t\t</screen>'
 
-    def __init__(self, session, args = None):
+    def __init__(self, session, args=None):
         self.skin = Ipkremove.skin
         Screen.__init__(self, session)
-        self['list'] = FileList('/', matchingPattern = '^.*\\.(png|avi|mp3|mpeg|ts)')
+        self['list'] = FileList('/', matchingPattern='^.*\\.(png|avi|mp3|mpeg|ts)')
         self['pixmap'] = Pixmap()
         self['actions'] = NumberActionMap([
             'WizardActions',
@@ -618,7 +618,7 @@ class Ipkremove(Screen):
                 ebuf.append(data[icount])
                 icount = icount + 1
             myfile.close()
-            ipkres = self.session.openWithCallback(self.test2, ChoiceBox, title = 'Please select ipkg to remove', list = ebuf)
+            ipkres = self.session.openWithCallback(self.test2, ChoiceBox, title='Please select ipkg to remove', list=ebuf)
             self.close()
         except:
             self.close()
@@ -697,7 +697,7 @@ def mainmenu(session, **kwargs):
     session.open(Getfolderlist)
 
 
-def autostart(reason, session = None, **kwargs):
+def autostart(reason, session=None, **kwargs):
     print('[Updater] Started')
 
 
@@ -705,8 +705,8 @@ def Plugins(**kwargs):
     boxime = HardwareInfo().get_device_name()
     if boxime == 'elite' and boxime == 'premium' and boxime == 'premium+' and boxime == 'ultra' and boxime == 'me' or boxime == 'minime':
         return [
-            PluginDescriptor(name = _('RTi Updates, Bootlogos and Skins'), description = 'Online Update/Install Bootlogos and Skins', where = [
+            PluginDescriptor(name=_('RTi Updates, Bootlogos and Skins'), description='Online Update/Install Bootlogos and Skins', where=[
                 PluginDescriptor.WHERE_EXTENSIONSMENU,
-                PluginDescriptor.WHERE_PLUGINMENU], fnc = mainmenu)]
+                PluginDescriptor.WHERE_PLUGINMENU], fnc=mainmenu)]
     return []
 

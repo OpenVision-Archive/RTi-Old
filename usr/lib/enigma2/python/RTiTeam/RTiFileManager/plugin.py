@@ -27,16 +27,16 @@ from Components.Sources.List import List
 pname = _('RTi FileManager')
 pdesc = _('File Manager')
 config.plugins.RTiFileManager = ConfigSubsection()
-config.plugins.RTiFileManager.savedirs = ConfigYesNo(default = True)
-config.plugins.RTiFileManager.add_mainmenu_entry = ConfigYesNo(default = True)
-config.plugins.RTiFileManager.add_extensionmenu_entry = ConfigYesNo(default = True)
-config.plugins.RTiFileManager.path_left = ConfigText(default = '/')
-config.plugins.RTiFileManager.path_right = ConfigText(default = '/')
+config.plugins.RTiFileManager.savedirs = ConfigYesNo(default=True)
+config.plugins.RTiFileManager.add_mainmenu_entry = ConfigYesNo(default=True)
+config.plugins.RTiFileManager.add_extensionmenu_entry = ConfigYesNo(default=True)
+config.plugins.RTiFileManager.path_left = ConfigText(default='/')
+config.plugins.RTiFileManager.path_right = ConfigText(default='/')
 
 class RTiFileManagerScreen(Screen):
     skin = '\n\t\t<screen position="center,center" size="720,495" title="">\n\t\t\t<widget name="list_left" position="0,45" size="356,370" scrollbarMode="showOnDemand" />\n\t\t\t<widget name="list_right" position="364,45" size="356,370" scrollbarMode="showOnDemand" />\n\n\t\t\t<widget name="red" position="20,456" size="140,30" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\t\t\t<widget name="green" position="200,456" size="140,30" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\t\t\t<widget name="yellow" position="380,456" size="140,30" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\t\t\t<widget name="blue" position="560,456" size="140,30" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\n\t\t\t<ePixmap name="pred" position="20,455" size="140,30" zPosition="0" pixmap="buttons/red.png" transparent="1" alphatest="on"/>\n\t\t\t<ePixmap name="pgreen" position="200,455" size="140,30" zPosition="0" pixmap="buttons/green.png" transparent="1" alphatest="on"/>\n\t\t\t<ePixmap name="pyellow" position="380,455" size="140,30" zPosition="0" pixmap="buttons/yellow.png" transparent="1" alphatest="on"/>\n\t\t\t<ePixmap name="pblue" position="560,455" size="140,30" zPosition="0" pixmap="buttons/blue.png" transparent="1" alphatest="on"/>\n\t\t\t<widget name="infoA" position="10,430" zPosition="2" size="700,18" font="Regular;20" foregroundColor="#aaaaaa" transparent="1" halign="center" valign="center" />\n\t\t\t<widget name="infoB" position="10,25" zPosition="2" size="350,18" font="Regular;15" foregroundColor="#aaaaaa" transparent="1" halign="center" valign="center" />\n\t\t\t<widget name="infoC" position="360,25" zPosition="2" size="350,18" font="Regular;15" foregroundColor="#aaaaaa" transparent="1" halign="center" valign="center" />\n\t\t\t<widget name="infoD" position="10,5" zPosition="2" size="700,15" font="Regular;15" foregroundColor="#aaaaaa" transparent="1" halign="center" valign="center" />\n\t\t\t<eLabel position="361,45" zPosition="-1" size="3,370" backgroundColor="#999999" />\n\t\t</screen>'
 
-    def __init__(self, session, path_left = None):
+    def __init__(self, session, path_left=None):
         if path_left is None:
             if os_path_isdir(config.plugins.RTiFileManager.path_left.value) and config.plugins.RTiFileManager.savedirs.value:
                 path_left = config.plugins.RTiFileManager.path_left.value
@@ -49,8 +49,8 @@ class RTiFileManagerScreen(Screen):
             path_right = '/'
         self.session = session
         Screen.__init__(self, session)
-        self['list_left'] = FileList(path_left, matchingPattern = '^.*')
-        self['list_right'] = FileList(path_right, matchingPattern = '^.*')
+        self['list_left'] = FileList(path_left, matchingPattern='^.*')
+        self['list_right'] = FileList(path_right, matchingPattern='^.*')
         self['red'] = Label(_('Delete'))
         self['green'] = Label(_('Attributes'))
         self['yellow'] = Label(_('Copy'))
@@ -226,11 +226,11 @@ class RTiFileManagerScreen(Screen):
 
         try:
             if os.path.isdir(filename) == True:
-                self.session.openWithCallback(self.doCopyDir, ChoiceBox, title = _('Do you really want to copy directory: ') + '%s ?\nfrom: %s\nto: %s' % (filename, sourceDir, targetDir), list = [
+                self.session.openWithCallback(self.doCopyDir, ChoiceBox, title=_('Do you really want to copy directory: ') + '%s ?\nfrom: %s\nto: %s' % (filename, sourceDir, targetDir), list=[
                     (_('yes'), True),
                     (_('no'), False)])
             else:
-                self.session.openWithCallback(self.doCopy, ChoiceBox, title = _('Do you really want to copy file: ') + '%s ?\nfrom: %s\nto: %s' % (filename, sourceDir, targetDir), list = [
+                self.session.openWithCallback(self.doCopy, ChoiceBox, title=_('Do you really want to copy file: ') + '%s ?\nfrom: %s\nto: %s' % (filename, sourceDir, targetDir), list=[
                     (_('yes'), True),
                     (_('no'), False)])
         except:
@@ -246,7 +246,7 @@ class RTiFileManagerScreen(Screen):
                 targetDir = self.TARGETLIST.getCurrentDirectory()
                 src = self.SOURCELIST.getCurrentDirectory() + self.SOURCELIST.getFilename()
                 dst = self.TARGETLIST.getCurrentDirectory()
-                self.session.openWithCallback(self.callback, MessageBox, _('Copying...'), type = 1, timeout = 1)
+                self.session.openWithCallback(self.callback, MessageBox, _('Copying...'), type=1, timeout=1)
                 shutil.copy2(src, dst)
                 self.doRefresh()
 
@@ -256,7 +256,7 @@ class RTiFileManagerScreen(Screen):
     def doCopyDir(self, result):
         if result is not None:
             if result[1]:
-                self.session.openWithCallback(self.callback, MessageBox, _('Copying ...'), type = 1, timeout = 1)
+                self.session.openWithCallback(self.callback, MessageBox, _('Copying ...'), type=1, timeout=1)
                 symlinks = False
                 aaa = self.SOURCELIST.getCurrentDirectory()
                 src = self.SOURCELIST.getFilename()
@@ -308,14 +308,14 @@ class RTiFileManagerScreen(Screen):
             pattern = self.SOURCELIST.getFilename()
         else:
             pattern = self.SOURCELIST.getCurrentDirectory() + self.SOURCELIST.getFilename()
-        self.session.openWithCallback(self.doDelete, MessageBox, _('Are you sure you want to delete : ' + str(pattern)), MessageBox.TYPE_YESNO, timeout = 20, default = False)
+        self.session.openWithCallback(self.doDelete, MessageBox, _('Are you sure you want to delete : ' + str(pattern)), MessageBox.TYPE_YESNO, timeout=20, default=False)
 
 
     def doDelete(self, result):
         if result:
             if os.path.isdir(self.SOURCELIST.getFilename()) == True:
                 pattern = self.SOURCELIST.getFilename()
-                for root, dirs, files in os.walk(pattern, topdown = False):
+                for root, dirs, files in os.walk(pattern, topdown=False):
                     for name in files:
                         os.remove(os.path.join(root, name))
                     for name in dirs:
@@ -333,7 +333,7 @@ class RTiFileManagerScreen(Screen):
             if result[1]:
                 filename = self.SOURCELIST.getFilename()
                 sourceDir = self.SOURCELIST.getCurrentDirectory()
-                self.session.openWithCallback(self.doDeleteCB, Console, title = _('executing file ...'), cmdlist = [
+                self.session.openWithCallback(self.doDeleteCB, Console, title=_('executing file ...'), cmdlist=[
                     '"' + sourceDir + filename + '"'])
 
 
@@ -390,7 +390,7 @@ class RTiFileManagerScreen(Screen):
                 filename = self.SOURCELIST.getFilename()
                 sourceDir = self.SOURCELIST.getCurrentDirectory()
                 targetDir = self.TARGETLIST.getCurrentDirectory()
-                self.session.openWithCallback(self.doMoveCB, Console, title = _('unzip file ...'), cmdlist = [
+                self.session.openWithCallback(self.doMoveCB, Console, title=_('unzip file ...'), cmdlist=[
                     'tar zxvf "' + sourceDir + filename + '" -C "' + targetDir + '"'])
 
 
@@ -404,10 +404,10 @@ class RTiFileManagerScreen(Screen):
         filename = self.SOURCELIST.getFilename()
         sourceDir = self.SOURCELIST.getCurrentDirectory()
         if os.path.isdir(self.SOURCELIST.getFilename()) == False:
-            self.session.openWithCallback(self.doRename, InputBox, text = filename, title = filename, windowTitle = _('Rename file'))
+            self.session.openWithCallback(self.doRename, InputBox, text=filename, title=filename, windowTitle=_('Rename file'))
         else:
             dirname = os.path.dirname(filename)[len(sourceDir):]
-            self.session.openWithCallback(self.doRenameDir, InputBox, text = dirname, title = dirname, windowTitle = _('Rename file'))
+            self.session.openWithCallback(self.doRenameDir, InputBox, text=dirname, title=dirname, windowTitle=_('Rename file'))
 
 
     def doRename(self, newname):
@@ -439,7 +439,7 @@ class RTiFileManagerScreen(Screen):
 
 
     def doMKDir(self):
-        self.session.openWithCallback(self.doMKDir1, InputBox, text = '', title = 'Enter Name of New Dir :', windowTitle = _('Make Directory'))
+        self.session.openWithCallback(self.doMKDir1, InputBox, text='', title='Enter Name of New Dir :', windowTitle=_('Make Directory'))
 
 
     def doMKDir1(self, newname):
@@ -456,7 +456,7 @@ class RTiFileManagerScreen(Screen):
 
 
     def doMKFile(self):
-        self.session.openWithCallback(self.doMKFile1, InputBox, text = '', title = 'Enter Name of New File :', windowTitle = _('Make File'))
+        self.session.openWithCallback(self.doMKFile1, InputBox, text='', title='Enter Name of New File :', windowTitle=_('Make File'))
 
 
     def doMKFile1(self, newname):
@@ -647,7 +647,7 @@ class SubView(Screen):
 
     def doEdit(self):
         sel = self['list'].getSelectionIndex()
-        self.session.openWithCallback(self.doEdit1, InputBox, text = str(self.encname[sel]), title = 'Use |<< , >>| to del , back', windowTitle = _('Edit Line'))
+        self.session.openWithCallback(self.doEdit1, InputBox, text=str(self.encname[sel]), title='Use |<< , >>| to del , back', windowTitle=_('Edit Line'))
 
 
     def doEdit1(self, res):
@@ -659,7 +659,7 @@ class SubView(Screen):
 
 
     def doSave(self):
-        self.session.openWithCallback(self.doSave1, MessageBox, _('Are you sure you want to save changes in file : ' + str(self.pateka)), MessageBox.TYPE_YESNO, timeout = 20, default = False)
+        self.session.openWithCallback(self.doSave1, MessageBox, _('Are you sure you want to save changes in file : ' + str(self.pateka)), MessageBox.TYPE_YESNO, timeout=20, default=False)
 
 
     def doSave1(self, result):
@@ -684,8 +684,8 @@ def Plugins(**kwargs):
     boxime = HardwareInfo().get_device_name()
     if boxime == 'elite' and boxime == 'premium' and boxime == 'premium+' and boxime == 'ultra' and boxime == 'me' and boxime == 'minime' or boxime == 'multimedia':
         return [
-            PluginDescriptor(name = _('RTi FileManager'), description = _('FileManager'), icon = 'FileManager.png', where = [
+            PluginDescriptor(name=_('RTi FileManager'), description=_('FileManager'), icon='FileManager.png', where=[
                 PluginDescriptor.WHERE_EXTENSIONSMENU,
-                PluginDescriptor.WHERE_PLUGINMENU], fnc = main)]
+                PluginDescriptor.WHERE_PLUGINMENU], fnc=main)]
     return []
 

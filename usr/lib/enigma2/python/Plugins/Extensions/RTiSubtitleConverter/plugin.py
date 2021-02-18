@@ -35,22 +35,22 @@ def getScale():
     return AVSwitch().getFramebufferScale()
 
 config.pic = ConfigSubsection()
-config.pic.framesize = ConfigInteger(default = 30, limits = (5, 99))
-config.pic.slidetime = ConfigInteger(default = 10, limits = (10, 60))
-config.pic.resize = ConfigSelection(default = '1', choices = [
+config.pic.framesize = ConfigInteger(default=30, limits=(5, 99))
+config.pic.slidetime = ConfigInteger(default=10, limits=(10, 60))
+config.pic.resize = ConfigSelection(default='1', choices=[
     ('0', _('simple')),
     ('1', _('better'))])
-config.pic.cache = ConfigEnableDisable(default = True)
-config.pic.lastDir = ConfigText(default = resolveFilename(SCOPE_MEDIA))
-config.pic.infoline = ConfigEnableDisable(default = True)
-config.pic.loop = ConfigEnableDisable(default = True)
-config.pic.bgcolor = ConfigSelection(default = '#00000000', choices = [
+config.pic.cache = ConfigEnableDisable(default=True)
+config.pic.lastDir = ConfigText(default=resolveFilename(SCOPE_MEDIA))
+config.pic.infoline = ConfigEnableDisable(default=True)
+config.pic.loop = ConfigEnableDisable(default=True)
+config.pic.bgcolor = ConfigSelection(default='#00000000', choices=[
     ('#00000000', _('black')),
     ('#009eb9ff', _('blue')),
     ('#00ff5a51', _('red')),
     ('#00ffe875', _('yellow')),
     ('#0038FF48', _('green'))])
-config.pic.textcolor = ConfigSelection(default = '#0038FF48', choices = [
+config.pic.textcolor = ConfigSelection(default='#0038FF48', choices=[
     ('#00000000', _('black')),
     ('#009eb9ff', _('blue')),
     ('#00ff5a51', _('red')),
@@ -79,7 +79,7 @@ class subconv(Screen):
         if not pathExists(currDir):
             currDir = '/'
 
-        self.filelist = FileList(currDir, matchingPattern = '(?i)^.*\\.(srt|sub|txt)')
+        self.filelist = FileList(currDir, matchingPattern='(?i)^.*\\.(srt|sub|txt)')
         self['filelist'] = self.filelist
         self['info0'].setText('Select Subtitle for conversion :')
         self['infoL'].setText('www.azbox-enigma.eu')
@@ -113,7 +113,7 @@ class subconv(Screen):
             self.session.open(SubPreview, str(pateka))
 
 
-    def callbackView(self, val = 0):
+    def callbackView(self, val=0):
         if val > 0:
             self.filelist.moveToIndex(val)
 
@@ -298,7 +298,7 @@ class SubPreview(Screen):
         finally:
             f1.close()
 
-        self.session.openWithCallback(self.callback, MessageBox, _('Subtitle : ' + str(filename) + '\nEncoded using: ' + str(enc) + ' successfully !'), type = 1, timeout = 20)
+        self.session.openWithCallback(self.callback, MessageBox, _('Subtitle : ' + str(filename) + '\nEncoded using: ' + str(enc) + ' successfully !'), type=1, timeout=20)
         self.close()
 
 
@@ -378,8 +378,8 @@ def Plugins(**kwargs):
     boxime = HardwareInfo().get_device_name()
     if boxime == 'elite' and boxime == 'premium' and boxime == 'premium+' and boxime == 'ultra' and boxime == 'me' and boxime == 'minime' or boxime == 'multimedia':
         return [
-            PluginDescriptor(name = _('RTi SubtitleConverter'), description = _('fileformats (srt, sub, txt)'), icon = 'RTiSubtitleConverter.png', where = [
+            PluginDescriptor(name=_('RTi SubtitleConverter'), description=_('fileformats (srt, sub, txt)'), icon='RTiSubtitleConverter.png', where=[
                 PluginDescriptor.WHERE_EXTENSIONSMENU,
-                PluginDescriptor.WHERE_PLUGINMENU], fnc = main)]
+                PluginDescriptor.WHERE_PLUGINMENU], fnc=main)]
     return []
 
