@@ -44,7 +44,7 @@ class Getfolderlist(Screen):
             'up': self.keyUp,
             'down': self.keyDown,
             'left': self.keyLeft,
-            'right': self.keyRight }, -1)
+            'right': self.keyRight}, -1)
         self['key_green'] = Button(_('Select'))
         self['key_blue'] = Button(_('Exit'))
         self['key_red'] = Button(_('List'))
@@ -200,7 +200,7 @@ class Getipklist(Screen):
             'up': self.keyUp,
             'down': self.keyDown,
             'left': self.keyLeft,
-            'right': self.keyRight }, -1)
+            'right': self.keyRight}, -1)
         self['key_green'] = Button(_('Preview'))
         self['key_blue'] = Button(_('Download'))
         self['key_red'] = Button(_('List'))
@@ -477,7 +477,7 @@ class Getipk(Screen):
         self['actions'] = ActionMap([
             'OkCancelActions'], {
             'ok': self.okClicked,
-            'cancel': self.close }, -1)
+            'cancel': self.close}, -1)
         self.icount = 0
         self.ipk = ipk
         self.FolderName = FolderName
@@ -601,7 +601,7 @@ class Ipkremove(Screen):
             '7': self.keyNumberGlobal,
             '8': self.keyNumberGlobal,
             '9': self.keyNumberGlobal,
-            '0': self.keyNumberGlobal }, -1)
+            '0': self.keyNumberGlobal}, -1)
         self.onShown.append(self.openTest)
 
 

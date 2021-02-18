@@ -77,7 +77,7 @@ class RTiFileManagerScreen(Screen):
             '0': self.doRefresh,
             '1': self.doView,
             '2': self.doMKFile,
-            '3': self.doMKDir }, -1)
+            '3': self.doMKDir}, -1)
         self.onLayoutFinish.append(self.listLeft)
         self['infoA'] = Label()
         self['infoB'] = Label()
@@ -542,7 +542,7 @@ class SubAtributes(Screen):
             'red': self.goRed,
             'green': self.goGreen,
             'yellow': self.goYellow,
-            'blue': self.goBlue }, -1)
+            'blue': self.goBlue}, -1)
         self['infoA'] = Label()
         self['infoB'] = Label()
         self['infoC'] = Label()
@@ -619,7 +619,7 @@ class SubView(Screen):
             'red': self.doEdit,
             'green': self.doSave,
             'yellow': self.exit,
-            'blue': self.exit }, -1)
+            'blue': self.exit}, -1)
         self['infoA'] = Label()
         self.setTitle('RTi FileManager   v.1.0')
         self.pateka = pateka

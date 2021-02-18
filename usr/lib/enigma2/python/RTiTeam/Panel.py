@@ -51,7 +51,7 @@ class Panel(Screen):
             'up': self.keyUp,
             'down': self.keyDown,
             'left': self.keyLeft,
-            'right': self.keyRight }, -2)
+            'right': self.keyRight}, -2)
         self['thn'] = Pixmap()
         self['infoM0'] = Label()
         self['l001'] = Pixmap()

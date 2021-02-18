@@ -47,7 +47,7 @@ class ImageBackUpScreen(Screen):
             'red': self.goRed,
             'green': self.goGreen,
             'yellow': self.goYellow,
-            'blue': self.goBlue }, -2)
+            'blue': self.goBlue}, -2)
         self['scan_progress'] = ProgressBar()
         self['poraka1'] = Label()
         self['poraka2'] = Label()
@@ -305,7 +305,7 @@ class ImageBackUpScreen2(Screen):
             'ok': self.ListChange,
             'cancel': self.Izlez,
             'up': self.keyUp,
-            'down': self.keyDown }, -2)
+            'down': self.keyDown}, -2)
         self.tmp = []
         self['list1'] = MenuList(self.tmp)
         self['list2'] = MenuList([])
@@ -544,7 +544,7 @@ class ChoiceBoot(Screen):
             'ColorActions',
             'DirectionActions'], {
             'ok': self.OkPress,
-            'cancel': self.Izlaz1 }, -1)
+            'cancel': self.Izlaz1}, -1)
         self['list'] = MenuList([])
         self['info20'] = Label()
         self['infoA'] = Label()

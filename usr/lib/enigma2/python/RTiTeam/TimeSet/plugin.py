@@ -71,7 +71,7 @@ class TimeSetConfig(ConfigListScreen, Screen):
             'blue': self.Page,
             'save': self.Update,
             'cancel': self.cancel,
-            'ok': self.keyOK }, -1)
+            'ok': self.keyOK}, -1)
         self['config'].setList(self.list1)
         self.selectionChanged()
 

@@ -69,7 +69,7 @@ class subconv(Screen):
             'cancel': self.KeyExit,
             'red': self.KeyOk,
             'blue': self.KeyExit,
-            'ok': self.KeyOk }, -1)
+            'ok': self.KeyOk}, -1)
         self['key_blue'] = Button(_('Exit'))
         self['key_red'] = Button(_('Select'))
         self['thn'] = Pixmap()
@@ -147,7 +147,7 @@ class SubPreview(Screen):
             'up': self.keyUp,
             'down': self.keyDown,
             'left': self.keyLeft,
-            'right': self.keyRight }, -1)
+            'right': self.keyRight}, -1)
         self['key_blue'] = Button(_('Exit'))
         self['key_red'] = Button(_('Convert'))
         self.icount = 0

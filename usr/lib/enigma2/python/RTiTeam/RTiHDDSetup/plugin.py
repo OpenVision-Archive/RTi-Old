@@ -50,7 +50,7 @@ class HDDSetupScreen(Screen):
             'down': self.keyDown,
             '0': self.drawInfo,
             '1': self.ListChange,
-            '2': self.Izlez }, -2)
+            '2': self.Izlez}, -2)
         self.tmp = []
         self['list1'] = MenuList(self.tmp)
         self['list2'] = MenuList([])
@@ -744,7 +744,7 @@ class ChoiceMountPoint(Screen):
             'ColorActions',
             'DirectionActions'], {
             'ok': self.OkPress,
-            'cancel': self.Izlaz1 }, -1)
+            'cancel': self.Izlaz1}, -1)
         self.pateka = pateka
         self['list'] = MenuList([])
         self['info20'] = Label()
@@ -799,7 +799,7 @@ class ChoicePartitionNoType(Screen):
             'ColorActions',
             'DirectionActions'], {
             'ok': self.OkPress,
-            'cancel': self.Izlaz1 }, -1)
+            'cancel': self.Izlaz1}, -1)
         self.podatok = podatok
         self['list'] = MenuList([])
         self['info20'] = Label()

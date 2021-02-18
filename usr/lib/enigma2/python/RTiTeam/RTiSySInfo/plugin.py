@@ -61,7 +61,7 @@ class RTiSySInfoScreen(Screen):
             'red': self.goRed,
             'green': self.goGreen,
             'yellow': self.goYellow,
-            'blue': self.goBlue }, -1)
+            'blue': self.goBlue}, -1)
         self.setTitle('RTi SySInfo   v.1.3')
         self.onLayoutFinish.append(self.StartScroll)
         self.msgno = 0
@@ -465,7 +465,7 @@ class SySInfoPlay(Screen):
             'red': self.doRed,
             'green': self.doGreen,
             'yellow': self.doYellow,
-            'blue': self.doBlue }, -1)
+            'blue': self.doBlue}, -1)
         self['infoM1'] = Label()
         self.setTitle('RTi SySInfo   v.1.3')
         self.pateka = pateka

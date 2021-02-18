@@ -22,7 +22,7 @@ class AboutTeam(Screen):
             'ColorActions'], {
             'blue': self.quit,
             'ok': self.quit,
-            'cancel': self.quit }, -2)
+            'cancel': self.quit}, -2)
 
 
     def quit(self):
