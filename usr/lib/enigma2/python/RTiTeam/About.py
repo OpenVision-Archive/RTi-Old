@@ -6,6 +6,7 @@ from Components.Button import Button
 from Components.Label import Label
 from Components.ActionMap import ActionMap
 
+
 class AboutTeam(Screen):
     skin = '\n\t\t<screen position="center,center" size="210,430" title="About" >\n\t\t<widget name="about" position="5,10" zPosition="4" size="200,400" font="Regular;18" foregroundColor="#ffffff" transparent="1" halign="center" valign="center" />\n\t\t</screen>'
 
@@ -23,7 +24,6 @@ class AboutTeam(Screen):
             'blue': self.quit,
             'ok': self.quit,
             'cancel': self.quit}, -2)
-
 
     def quit(self):
         self.close()

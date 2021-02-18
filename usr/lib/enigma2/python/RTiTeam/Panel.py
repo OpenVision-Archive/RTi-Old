@@ -21,6 +21,7 @@ from TimeSet.plugin import TimeSetConfig
 from ImageBackUp.plugin import ImageBackUpScreen
 from Plus import ExtrasList, SimpleEntry
 
+
 class Panel(Screen):
     skin = '\n\t\t<screen position="center,center" size="725,405" title="RTi Panel v.1.0" >\n\t\t<widget name="menu" position="10,10" size="455,385" scrollbarMode="showOnDemand" />\n\t\t<widget name="thn" position="467,40" size="256,256" alphatest="on" />\n\t\t<widget name="infoM0" position="467,336" zPosition="2" size="256,40" font="Regular;26" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t<widget name="l001" position="80,50" size="350,1" alphatest="on" />\n\t\t<widget name="l002" position="80,98" size="350,1" alphatest="on" />\n\t\t<widget name="l003" position="80,146" size="350,1" alphatest="on" />\n\t\t<widget name="l004" position="80,194" size="350,1" alphatest="on" />\n\t\t<widget name="l005" position="80,242" size="350,1" alphatest="on" />\n\t\t<widget name="l006" position="80,290" size="350,1" alphatest="on" />\n\t\t<widget name="l007" position="80,338" size="350,1" alphatest="on" />\n\t\t<widget name="l008" position="80,386" size="350,1" alphatest="on" />\n\t\t</screen>'
 
@@ -64,14 +65,11 @@ class Panel(Screen):
         self['l008'] = Pixmap()
         self.onLayoutFinish.append(self.startup)
 
-
     def emu(self, result):
         if result == 0:
             self.session.open(Emulator)
         elif result == 1:
             self.session.open(CardServer)
-
-
 
     def ok(self):
         index = self['menu'].getSelectedIndex()
@@ -140,35 +138,28 @@ class Panel(Screen):
             import Screens.Standby
             self.session.open(TryQuitMainloop, 3)
 
-
-
     def quit(self):
         self.close()
-
 
     def keyUp(self):
         self['menu'].up()
         sel = self['menu'].getSelectionIndex()
         self.ReWrite(sel)
 
-
     def keyDown(self):
         self['menu'].down()
         sel = self['menu'].getSelectionIndex()
         self.ReWrite(sel)
-
 
     def keyLeft(self):
         self['menu'].pageUp()
         sel = self['menu'].getSelectionIndex()
         self.ReWrite(sel)
 
-
     def keyRight(self):
         self['menu'].pageDown()
         sel = self['menu'].getSelectionIndex()
         self.ReWrite(sel)
-
 
     def ReWrite(self, sel):
         if sel == 0:
@@ -210,7 +201,6 @@ class Panel(Screen):
         self['thn'].instance.setPixmap(self.slikanoname)
         ime = self.list[sel][0][0]
         self['infoM0'].setText(str(ime))
-
 
     def startup(self):
         picture = LoadPixmap('/usr/lib/enigma2/python/RTiTeam/Ico/line1.png')

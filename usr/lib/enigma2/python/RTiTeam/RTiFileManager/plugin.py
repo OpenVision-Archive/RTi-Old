@@ -33,6 +33,7 @@ config.plugins.RTiFileManager.add_extensionmenu_entry = ConfigYesNo(default=True
 config.plugins.RTiFileManager.path_left = ConfigText(default='/')
 config.plugins.RTiFileManager.path_right = ConfigText(default='/')
 
+
 class RTiFileManagerScreen(Screen):
     skin = '\n\t\t<screen position="center,center" size="720,495" title="">\n\t\t\t<widget name="list_left" position="0,45" size="356,370" scrollbarMode="showOnDemand" />\n\t\t\t<widget name="list_right" position="364,45" size="356,370" scrollbarMode="showOnDemand" />\n\n\t\t\t<widget name="red" position="20,456" size="140,30" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\t\t\t<widget name="green" position="200,456" size="140,30" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\t\t\t<widget name="yellow" position="380,456" size="140,30" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\t\t\t<widget name="blue" position="560,456" size="140,30" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\n\t\t\t<ePixmap name="pred" position="20,455" size="140,30" zPosition="0" pixmap="buttons/red.png" transparent="1" alphatest="on"/>\n\t\t\t<ePixmap name="pgreen" position="200,455" size="140,30" zPosition="0" pixmap="buttons/green.png" transparent="1" alphatest="on"/>\n\t\t\t<ePixmap name="pyellow" position="380,455" size="140,30" zPosition="0" pixmap="buttons/yellow.png" transparent="1" alphatest="on"/>\n\t\t\t<ePixmap name="pblue" position="560,455" size="140,30" zPosition="0" pixmap="buttons/blue.png" transparent="1" alphatest="on"/>\n\t\t\t<widget name="infoA" position="10,430" zPosition="2" size="700,18" font="Regular;20" foregroundColor="#aaaaaa" transparent="1" halign="center" valign="center" />\n\t\t\t<widget name="infoB" position="10,25" zPosition="2" size="350,18" font="Regular;15" foregroundColor="#aaaaaa" transparent="1" halign="center" valign="center" />\n\t\t\t<widget name="infoC" position="360,25" zPosition="2" size="350,18" font="Regular;15" foregroundColor="#aaaaaa" transparent="1" halign="center" valign="center" />\n\t\t\t<widget name="infoD" position="10,5" zPosition="2" size="700,15" font="Regular;15" foregroundColor="#aaaaaa" transparent="1" halign="center" valign="center" />\n\t\t\t<eLabel position="361,45" zPosition="-1" size="3,370" backgroundColor="#999999" />\n\t\t</screen>'
 
@@ -90,7 +91,6 @@ class RTiFileManagerScreen(Screen):
         self.msgTimer.callback.append(self.updateMsg)
         self.msgTimer.start(1000, True)
 
-
     def updateMsg(self):
         self.msgno = self.msgno + 1
         if self.msgno == 1:
@@ -113,7 +113,6 @@ class RTiFileManagerScreen(Screen):
 
         self.msgTimer.start(3000, True)
 
-
     def exit(self):
         if self['list_left'].getCurrentDirectory() and config.plugins.RTiFileManager.savedirs.value:
             config.plugins.RTiFileManager.path_left.value = self['list_left'].getCurrentDirectory()
@@ -124,7 +123,6 @@ class RTiFileManagerScreen(Screen):
             config.plugins.RTiFileManager.path_right.save()
 
         self.close()
-
 
     def ok(self):
         if self.SOURCELIST.canDescent():
@@ -143,25 +141,19 @@ class RTiFileManagerScreen(Screen):
             else:
                 self.onFileAction()
 
-
-
     def goLeft(self):
         self.SOURCELIST.pageUp()
 
-
     def goRight(self):
         self.SOURCELIST.pageDown()
-
 
     def goUp(self):
         self.SOURCELIST.up()
         self.GetCHMod()
 
-
     def goDown(self):
         self.SOURCELIST.down()
         self.GetCHMod()
-
 
     def GetCHMod(self):
         filename = self.SOURCELIST.getFilename()
@@ -218,7 +210,6 @@ class RTiFileManagerScreen(Screen):
         self['infoD'].setText('Attributes: ' + str(LL))
         self.fileright = LL
 
-
     def goYellow(self):
         filename = self.SOURCELIST.getFilename()
         sourceDir = self.SOURCELIST.getCurrentDirectory()
@@ -236,8 +227,6 @@ class RTiFileManagerScreen(Screen):
         except:
             pass
 
-
-
     def doCopy(self, result):
         if result is not None:
             if result[1]:
@@ -249,9 +238,6 @@ class RTiFileManagerScreen(Screen):
                 self.session.openWithCallback(self.callback, MessageBox, _('Copying...'), type=1, timeout=1)
                 shutil.copy2(src, dst)
                 self.doRefresh()
-
-
-
 
     def doCopyDir(self, result):
         if result is not None:
@@ -287,8 +273,6 @@ class RTiFileManagerScreen(Screen):
                         errors.append((srcname, dstname, str(why)))
                         continue
 
-
-
                 try:
                     copystat(src, dst)
                 except:
@@ -296,12 +280,8 @@ class RTiFileManagerScreen(Screen):
 
                 self.doRefresh()
 
-
-
-
     def doCopyCB(self):
         self.doRefresh()
-
 
     def goRed(self):
         if os.path.isdir(self.SOURCELIST.getFilename()) == True:
@@ -309,7 +289,6 @@ class RTiFileManagerScreen(Screen):
         else:
             pattern = self.SOURCELIST.getCurrentDirectory() + self.SOURCELIST.getFilename()
         self.session.openWithCallback(self.doDelete, MessageBox, _('Are you sure you want to delete : ' + str(pattern)), MessageBox.TYPE_YESNO, timeout=20, default=False)
-
 
     def doDelete(self, result):
         if result:
@@ -326,8 +305,6 @@ class RTiFileManagerScreen(Screen):
                 os.remove(pattern)
             self.doRefresh()
 
-
-
     def doDelete0(self, result):
         if result is not None:
             if result[1]:
@@ -336,12 +313,8 @@ class RTiFileManagerScreen(Screen):
                 self.session.openWithCallback(self.doDeleteCB, Console, title=_('executing file ...'), cmdlist=[
                     '"' + sourceDir + filename + '"'])
 
-
-
-
     def doDeleteCB(self):
         self.doRefresh()
-
 
     def doView(self):
 
@@ -354,8 +327,6 @@ class RTiFileManagerScreen(Screen):
         except:
             pass
 
-
-
     def goGreen(self):
         self.GetCHMod()
         if os.path.isdir(self.SOURCELIST.getFilename()) == True:
@@ -364,7 +335,6 @@ class RTiFileManagerScreen(Screen):
             pattern = self.SOURCELIST.getCurrentDirectory() + self.SOURCELIST.getFilename()
         self.session.open(SubAtributes, str(pattern), str(self.fileright))
         self.GetCHMod()
-
 
     def doCHMod(self, chmod):
         if chmod:
@@ -382,8 +352,6 @@ class RTiFileManagerScreen(Screen):
             os.chmod(pattern, int(str(chmod), 8))
             self.GetCHMod()
 
-
-
     def doMove(self, result):
         if result is not None:
             if result[1]:
@@ -393,12 +361,8 @@ class RTiFileManagerScreen(Screen):
                 self.session.openWithCallback(self.doMoveCB, Console, title=_('unzip file ...'), cmdlist=[
                     'tar zxvf "' + sourceDir + filename + '" -C "' + targetDir + '"'])
 
-
-
-
     def doMoveCB(self):
         self.doRefresh()
-
 
     def goBlue(self):
         filename = self.SOURCELIST.getFilename()
@@ -408,7 +372,6 @@ class RTiFileManagerScreen(Screen):
         else:
             dirname = os.path.dirname(filename)[len(sourceDir):]
             self.session.openWithCallback(self.doRenameDir, InputBox, text=dirname, title=dirname, windowTitle=_('Rename file'))
-
 
     def doRename(self, newname):
         if newname:
@@ -422,8 +385,6 @@ class RTiFileManagerScreen(Screen):
 
             self.doRefresh()
 
-
-
     def doRenameDir(self, newname):
         if newname:
             src = self.SOURCELIST.getFilename()
@@ -436,11 +397,8 @@ class RTiFileManagerScreen(Screen):
 
             self.doRefresh()
 
-
-
     def doMKDir(self):
         self.session.openWithCallback(self.doMKDir1, InputBox, text='', title='Enter Name of New Dir :', windowTitle=_('Make Directory'))
-
 
     def doMKDir1(self, newname):
         if newname:
@@ -453,11 +411,8 @@ class RTiFileManagerScreen(Screen):
 
             self.doRefresh()
 
-
-
     def doMKFile(self):
         self.session.openWithCallback(self.doMKFile1, InputBox, text='', title='Enter Name of New File :', windowTitle=_('Make File'))
-
 
     def doMKFile1(self, newname):
         if newname:
@@ -471,13 +426,10 @@ class RTiFileManagerScreen(Screen):
 
             self.doRefresh()
 
-
-
     def doRefresh(self):
         self.SOURCELIST.refresh()
         self.TARGETLIST.refresh()
         self.GetCHMod()
-
 
     def listRight(self):
         self['list_left'].selectionEnabled(0)
@@ -491,7 +443,6 @@ class RTiFileManagerScreen(Screen):
         self['infoC'].setText(aaa)
         self.strana = 2
         self.GetCHMod()
-
 
     def listLeft(self):
         self['infoA'].setText('Use buttons : |<< and >>| to switch left/right browser.')
@@ -507,7 +458,6 @@ class RTiFileManagerScreen(Screen):
         self.strana = 1
         self.GetCHMod()
 
-
     def onFileAction(self):
 
         try:
@@ -516,8 +466,6 @@ class RTiFileManagerScreen(Screen):
         except TypeError:
             e = None
             print('ok')
-
-
 
 
 class SubAtributes(Screen):
@@ -551,12 +499,10 @@ class SubAtributes(Screen):
         self.fileright = fileright
         self.onLayoutFinish.append(self.openTest)
 
-
     def openTest(self):
         self['infoA'].setText('Filename : ' + str(self.pateka))
         self['infoB'].setText('Current Attributes : ' + str(self.fileright))
         self['infoC'].setText('Please choose one of coloured buttons , to change attributes.')
-
 
     def doCHMod(self, chmod):
         if chmod:
@@ -570,31 +516,23 @@ class SubAtributes(Screen):
             os.chmod(self.pateka, int(str(chmod), 8))
             self.close()
 
-
-
     def ok(self):
         print('ok')
-
 
     def exit(self):
         self.close()
 
-
     def goRed(self):
         self.doCHMod(600)
-
 
     def goGreen(self):
         self.doCHMod(644)
 
-
     def goYellow(self):
         self.doCHMod(755)
 
-
     def goBlue(self):
         self.doCHMod(777)
-
 
 
 class SubView(Screen):
@@ -627,7 +565,6 @@ class SubView(Screen):
         self['list'] = MenuList(self.encname)
         self.onLayoutFinish.append(self.openTest)
 
-
     def openTest(self):
         self['infoA'].setText('Filename : ' + str(self.pateka))
 
@@ -639,16 +576,12 @@ class SubView(Screen):
         except Exception:
             return None
 
-
-
     def exit(self):
         self.close()
-
 
     def doEdit(self):
         sel = self['list'].getSelectionIndex()
         self.session.openWithCallback(self.doEdit1, InputBox, text=str(self.encname[sel]), title='Use |<< , >>| to del , back', windowTitle=_('Edit Line'))
-
 
     def doEdit1(self, res):
         if res:
@@ -656,11 +589,8 @@ class SubView(Screen):
             self.encname[sel] = res
             self['list'].setList(self.encname)
 
-
-
     def doSave(self):
         self.session.openWithCallback(self.doSave1, MessageBox, _('Are you sure you want to save changes in file : ' + str(self.pateka)), MessageBox.TYPE_YESNO, timeout=20, default=False)
-
 
     def doSave1(self, result):
         if result is not None:
@@ -671,9 +601,6 @@ class SubView(Screen):
                     sfile.write(line)
             except Exception:
                 return None
-
-
-
 
 
 def main(session, **kwargs):

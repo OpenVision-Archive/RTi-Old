@@ -31,8 +31,10 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from Tools.HardwareInfo import HardwareInfo
 import shutil
 
+
 def getScale():
     return AVSwitch().getFramebufferScale()
+
 
 config.pic = ConfigSubsection()
 config.pic.framesize = ConfigInteger(default=30, limits=(5, 99))
@@ -56,6 +58,7 @@ config.pic.textcolor = ConfigSelection(default='#0038FF48', choices=[
     ('#00ff5a51', _('red')),
     ('#00ffe875', _('yellow')),
     ('#0038FF48', _('green'))])
+
 
 class subconv(Screen):
     skin = '\n\t\t<screen name="RTiSubtitleConverter007" position="center,center" size="560,290" title="RTi SubtitleConverter   v.1.0" >\n\t\t\t<ePixmap name="red"    position="0,250"   zPosition="2" size="140,40" pixmap="buttons/red.png" transparent="1" alphatest="on" />\n\t\t\t<ePixmap name="blue"   position="420,250" zPosition="2" size="140,40" pixmap="buttons/blue.png" transparent="1" alphatest="on" /> \n\t\t\t<widget name="key_red" position="0,250" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="#25062748" shadowOffset="-2,-2" /> \n\t\t\t<widget name="key_blue" position="420,250" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />\n\t\t\t<widget name="thn" position="420,250" size="180,160" alphatest="on" />\n\t\t\t<widget name="filelist" position="5,55" zPosition="2" size="550,187" scrollbarMode="showOnDemand" />\n\t\t\t<widget name="info0" position="5,20" zPosition="2" size="550,20" font="Regular;18" foregroundColor="#aaaaaa" transparent="1" halign="center" valign="center" />\n\t\t\t<widget name="infoL" position="140,265" zPosition="2" size="280,20" font="Regular;22" foregroundColor="#ffffff" transparent="1" halign="center" valign="center" />\n\t\t</screen>'
@@ -84,20 +87,15 @@ class subconv(Screen):
         self['info0'].setText('Select Subtitle for conversion :')
         self['infoL'].setText('www.azbox-enigma.eu')
 
-
     def KeyGreen(self):
         print('ok')
-
 
     def KeyYellow(self):
         if not self.filelist.canDescent():
             print('ok')
 
-
-
     def KeyBlue(self):
         print('ok')
-
 
     def KeyOk(self):
         if self.filelist.canDescent():
@@ -112,12 +110,9 @@ class subconv(Screen):
 
             self.session.open(SubPreview, str(pateka))
 
-
     def callbackView(self, val=0):
         if val > 0:
             self.filelist.moveToIndex(val)
-
-
 
     def KeyExit(self):
         print('exit')
@@ -127,7 +122,6 @@ class subconv(Screen):
             config.pic.lastDir.value = self.filelist.getCurrentDirectory()
         config.pic.save()
         self.close()
-
 
 
 class SubPreview(Screen):
@@ -181,7 +175,6 @@ class SubPreview(Screen):
         self['infoL'] = Label()
         self.onLayoutFinish.append(self.openTest)
 
-
     def openTest(self):
         self['infoA'].setText('Encoder :  ')
         self['infoB'].setText('Preview :  ')
@@ -215,42 +208,33 @@ class SubPreview(Screen):
         sfile.close()
         self.vfdprint()
 
-
     def keyUp(self):
         self['list'].up()
         self.vfdprint()
-
 
     def keyDown(self):
         self['list'].down()
         self.vfdprint()
 
-
     def keyLeft(self):
         self['list'].pageUp()
         self.vfdprint()
-
 
     def keyRight(self):
         self['list'].pageDown()
         self.vfdprint()
 
-
     def Izlaz(self):
         self.close()
-
 
     def KeyGreen(self):
         self['text'].right()
 
-
     def KeyRed(self):
         self['text'].right()
 
-
     def KeyYellow(self):
         self['text'].right()
-
 
     def okClicked(self):
         sel = self['list'].getSelectionIndex()
@@ -261,7 +245,6 @@ class SubPreview(Screen):
             f = open(filename, 'r').read()
         except Exception:
             return None
-
 
         try:
             data = f.decode(enc)
@@ -300,7 +283,6 @@ class SubPreview(Screen):
 
         self.session.openWithCallback(self.callback, MessageBox, _('Subtitle : ' + str(filename) + '\nEncoded using: ' + str(enc) + ' successfully !'), type=1, timeout=20)
         self.close()
-
 
     def vfdprint(self):
         sel = self['list'].getSelectionIndex()
@@ -354,20 +336,15 @@ class SubPreview(Screen):
         except Exception:
             return None
 
-
-
     def keyNumberGlobal(self, number):
         print('pressed', number)
         self['text'].number(number)
-
 
     def confirmR(self, confirmed):
         if confirmed:
             cmd = 'reboot -f'
             os.system(cmd)
             self.close()
-
-
 
 
 def main(session, **kwargs):

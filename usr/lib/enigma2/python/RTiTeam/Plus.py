@@ -9,6 +9,7 @@ from Components.HTMLComponent import HTMLComponent
 from Tools.Directories import fileExists
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 
+
 def SimpleEntry(name, picture):
     res = [
         (name, picture)]
@@ -44,8 +45,6 @@ class ExtrasList(MenuList, HTMLComponent, GUIComponent):
         instance.selectionChanged.get().append(self.selectionChanged)
         if self.enableWrapAround:
             self.instance.setWrapAround(True)
-
-
 
     def selectionChanged(self):
         isDiv = False

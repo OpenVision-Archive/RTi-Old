@@ -23,6 +23,7 @@ from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSel
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from Tools.HardwareInfo import HardwareInfo
 
+
 class Getfolderlist(Screen):
     skin = '\n\t\t<screen name="OnlineManager0" position="center,center" size="632,400" title="Available Updates, Bootlogos, Skins..." >\n\t\t\t<ePixmap name="red"    position="10,360"   zPosition="2" size="160,40" pixmap="buttons/red.png" transparent="1" alphatest="on" />\n\t\t\t<ePixmap name="green"  position="165,360" zPosition="2" size="160,40" pixmap="buttons/green.png" transparent="1" alphatest="on" />\n\t\t\t<ePixmap name="yellow" position="320,360" zPosition="2" size="160,40" pixmap="buttons/yellow.png" transparent="1" alphatest="on" /> \n\t\t\t<ePixmap name="blue"   position="475,360" zPosition="2" size="160,40" pixmap="buttons/blue.png" transparent="1" alphatest="on" /> \n\t\t\t<widget name="key_red" position="10,360" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="#25062748" shadowOffset="-2,-2" /> \n\t\t\t<widget name="key_green" position="165,360" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="#25062748" shadowOffset="-2,-2" /> \n\t\t\t<widget name="key_yellow" position="320,360" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="#25062748" shadowOffset="-2,-2" />\n\t\t\t<widget name="key_blue" position="475,360" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />\n\t\t\t<eLabel position="1,358" zPosition="-1" size="630,2" backgroundColor="#777777" />\n\n\t\t\t<widget name="list" position="240,50" size="370,255" scrollbarMode="showOnDemand" />\n\t\t\t<eLabel position="210,5" zPosition="-1" size="2,345" backgroundColor="#999999" />\n\t\t\t<widget name="info" position="230,310" zPosition="4" size="430,30" font="Regular;18" foregroundColor="#ffffff" transparent="1" halign="center" valign="center" />\n\t\t\t<widget name="thn" position="5,200" size="200,150" alphatest="on" />\n\t\t<widget name="opis" position="5,5" zPosition="4" size="200,150" font="Regular;18" foregroundColor="#ffffff" transparent="1" halign="center" valign="center" />\n\t\t</screen>'
 
@@ -56,7 +57,6 @@ class Getfolderlist(Screen):
         self['opis'] = Label()
         self.icount = 0
         self.onLayoutFinish.append(self.openTestList)
-
 
     def openTestList(self):
         self['opis'].setText('Select group and then press OK or Red button.')
@@ -103,37 +103,29 @@ class Getfolderlist(Screen):
             self['info'].setText('Internet connection error !')
             self.intgreska = 1
 
-
-
     def Izlaz(self):
         self.close()
-
 
     def okClicked(self):
         sel = self['list'].getSelectionIndex()
         FolderName = self.listfolder[sel][:len(self.listfolder[sel]) - 2]
         self.session.open(Getipklist, FolderName)
 
-
     def keyUp(self):
         self['list'].up()
         self.vfdprint()
-
 
     def keyDown(self):
         self['list'].down()
         self.vfdprint()
 
-
     def keyLeft(self):
         self['list'].pageUp()
         self.vfdprint()
 
-
     def keyRight(self):
         self['list'].pageDown()
         self.vfdprint()
-
 
     def vfdprint(self):
         sel = self['list'].getSelectionIndex()
@@ -173,11 +165,8 @@ class Getfolderlist(Screen):
         except:
             self['info'].setText('Error in show picture !')
 
-
-
     def KeyYellow(self):
         self.session.open(Ipkremove)
-
 
 
 class Getipklist(Screen):
@@ -215,7 +204,6 @@ class Getipklist(Screen):
         self.slikabezizmene = 0
         self.FolderName = FolderName
         self.onLayoutFinish.append(self.openTest)
-
 
     def GetInfo(self):
         if self.intgreska == 1:
@@ -272,11 +260,8 @@ class Getipklist(Screen):
             self.intgreska == 1
             self['info'].setText('Internet connection error !')
 
-
-
     def KeyYellow(self):
         self.session.open(Ipkremove)
-
 
     def KeyGreen(self):
         if self.intgreska == 1:
@@ -315,8 +300,6 @@ class Getipklist(Screen):
             self.intgreska == 1
             self['info'].setText('Internet connection error !')
 
-
-
     def KeyRed(self):
         self['thn1'].hide()
         self['thn'].hide()
@@ -325,14 +308,11 @@ class Getipklist(Screen):
         self.openTest()
         self.GetInfo()
 
-
     def Izlaz(self):
         self.close()
 
-
     def nop(self):
         print('')
-
 
     def openTest(self):
         self.setTitle(_('Available ' + self.FolderName + ':'))
@@ -415,8 +395,6 @@ class Getipklist(Screen):
             self['info'].setText('Internet connection error !')
             self.intgreska = 1
 
-
-
     def okClicked(self):
         if self.intgreska == 1:
             return None
@@ -427,43 +405,34 @@ class Getipklist(Screen):
         msg = 'Are you sure to want to install this update ?\n\n\n> ' + ipk + ' <\n\nDescription :\n\n' + self.namesexp[sel]
         self.session.openWithCallback(self.confirm, MessageBox, _(msg), MessageBox.TYPE_YESNO, timeout=15, default=False)
 
-
     def confirm(self, confirmed):
         if confirmed:
             sel = self['list'].getSelectionIndex()
             ipk = self.names[sel]
             self.session.open(Getipk, ipk, self.FolderName)
 
-
-
     def keyLeft(self):
         self['list'].pageUp()
         self.GetInfo()
-
 
     def keyRight(self):
         self['list'].pageDown()
         self.GetInfo()
 
-
     def keyNumberGlobal(self, number):
         print('pressed', number)
         self['text'].number(number)
-
 
     def keyUp(self):
         self['list'].up()
         self.GetInfo()
 
-
     def keyDown(self):
         self['list'].down()
         self.GetInfo()
 
-
     def prikaziPic(self):
         print('*')
-
 
 
 class Getipk(Screen):
@@ -483,7 +452,6 @@ class Getipk(Screen):
         self.FolderName = FolderName
         self.onLayoutFinish.append(self.openTest)
 
-
     def openTest(self):
         self['info'].setText('Downloading and installing...')
         xurl1 = 'http://www.azbox-enigma.eu/RTi_Update/' + str(self.FolderName) + '/'
@@ -502,24 +470,18 @@ class Getipk(Screen):
         except:
             self['info'].setText('Internet connection error !')
 
-
-
     def keyLeft(self):
         self['text'].left()
-
 
     def keyRight(self):
         self['text'].right()
 
-
     def okClicked(self):
         self.close()
-
 
     def keyNumberGlobal(self, number):
         print('pressed', number)
         self['text'].number(number)
-
 
     def viewLog(self):
         print('In viewLog')
@@ -540,7 +502,6 @@ class Getipk(Screen):
                 icount = icount + 1
             self['list'].setList(data)
             self.endinstall()
-
 
     def endinstall(self):
         path = '/tmp'
@@ -566,15 +527,11 @@ class Getipk(Screen):
             cmd = 'rm /tmp/*.ipk'
             os.system(cmd)
 
-
-
     def confirmR(self, confirmed):
         if confirmed:
             cmd = 'reboot -f'
             os.system(cmd)
             self.close()
-
-
 
 
 class Ipkremove(Screen):
@@ -604,7 +561,6 @@ class Ipkremove(Screen):
             '0': self.keyNumberGlobal}, -1)
         self.onShown.append(self.openTest)
 
-
     def openTest(self):
 
         try:
@@ -622,8 +578,6 @@ class Ipkremove(Screen):
             self.close()
         except:
             self.close()
-
-
 
     def test2(self, returnValue):
         if returnValue is None:
@@ -666,18 +620,14 @@ class Ipkremove(Screen):
         f.close()
         return None
 
-
     def callback(self, answer):
         print('answer:', answer)
-
 
     def keyLeft(self):
         self['text'].left()
 
-
     def keyRight(self):
         self['text'].right()
-
 
     def ok(self):
         selection = self['list'].getSelection()
@@ -686,11 +636,9 @@ class Ipkremove(Screen):
         else:
             self['pixmap'].instance.setPixmapFromFile(selection[0])
 
-
     def keyNumberGlobal(self, number):
         print('pressed', number)
         self['text'].number(number)
-
 
 
 def mainmenu(session, **kwargs):

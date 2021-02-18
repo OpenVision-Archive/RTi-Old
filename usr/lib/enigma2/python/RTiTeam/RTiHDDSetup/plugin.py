@@ -25,6 +25,7 @@ from Components.Harddisk import harddiskmanager
 from os import system, listdir, statvfs, popen, makedirs, stat, major, minor, path, access
 from Screens.MessageBox import MessageBox
 
+
 class HDDSetupScreen(Screen):
     skin = '\n\t\t<screen name="HDDSetupScreen1" position="center,center" size="560,495" title="RTi HDD Setup   v.1.0" >\n\t\t\t<widget name="red" position="0,456" size="140,40" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\t\t\t<widget name="green" position="140,456" size="140,40" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\t\t\t<widget name="yellow" position="280,456" size="140,40" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\t\t\t<widget name="blue" position="420,456" size="140,40" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\n\t\t\t<ePixmap name="pred" position="0,455" size="140,40" zPosition="0" pixmap="buttons/red.png" transparent="1" alphatest="on"/>\n\t\t\t<ePixmap name="pgreen" position="140,455" size="140,40" zPosition="0" pixmap="buttons/green.png" transparent="1" alphatest="on"/>\n\t\t\t<ePixmap name="pyellow" position="280,455" size="140,40" zPosition="0" pixmap="buttons/yellow.png" transparent="1" alphatest="on"/>\n\t\t\t<ePixmap name="pblue" position="420,455" size="140,40" zPosition="0" pixmap="buttons/blue.png" transparent="1" alphatest="on"/>\n\t\t\t<widget name="list1" position="40,35" size="480,75" scrollbarMode="showOnDemand" foregroundColor="#bbbbbb" />\n\t\t\t<widget name="list2" position="10,235" size="540,75" scrollbarMode="showAlways" foregroundColor="#bbbbbb" />\n\t\t\t<widget name="infoM0" position="10,10" zPosition="2" size="540,20" font="Regular;18" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM1" position="10,130" zPosition="2" size="540,20" font="Regular;18" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM2" position="10,150" zPosition="2" size="540,20" font="Regular;18" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM3" position="10,210" zPosition="2" size="540,20" font="Regular;18" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM4" position="5,330" zPosition="2" size="550,20" font="Regular;16" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM5" position="5,350" zPosition="2" size="550,20" font="Regular;16" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM6" position="5,410" zPosition="2" size="550,20" font="Regular;16" foregroundColor="#00afff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM1a" position="10,130" zPosition="2" size="540,20" font="Regular;18" foregroundColor="#ff0000" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM2a" position="10,150" zPosition="2" size="540,20" font="Regular;18" foregroundColor="#ffbb00" transparent="0" halign="center" valign="center" />\n\t\t</screen>'
 
@@ -75,7 +76,6 @@ class HDDSetupScreen(Screen):
         self.HDDTimer.start(5000, True)
         self.onLayoutFinish.append(self.drawInfo)
 
-
     def RefreshInfo(self):
         if self.rereshenable == 0:
             self.showhide('1')
@@ -88,7 +88,6 @@ class HDDSetupScreen(Screen):
             self.showhide('0')
 
         self.HDDTimer.start(5000, True)
-
 
     def drawInfo(self):
         self.showhide('1')
@@ -131,7 +130,6 @@ class HDDSetupScreen(Screen):
             self['infoM0'].setText('No Devices Foond !!!')
             self['list2'].setList([])
 
-
     def VendorModel(self):
         self['infoM0'].setText('DEVICE LIST :')
         if len(self.deviceliste) < 1:
@@ -151,7 +149,6 @@ class HDDSetupScreen(Screen):
             vendor = ''
         except:
             len(self.deviceliste) < 1
-
 
         try:
             f = open('/sys/block/' + device + '/device/model', 'r')
@@ -226,11 +223,8 @@ class HDDSetupScreen(Screen):
             len(self.deviceliste) < 1
             print('Err.')
 
-
-
     def sysfsPath(self, filename):
         return path.realpath('/sys/block/' + self.device + '/' + filename)
-
 
     def RedBtn(self):
         if self.rereshenable == 1:
@@ -252,7 +246,6 @@ class HDDSetupScreen(Screen):
         hdparm.close()
         self['infoM4'].setText('Read disk speed: ' + str(dspeed))
 
-
     def GreenBtn(self):
         if self.rereshenable == 1:
             return None
@@ -272,7 +265,6 @@ class HDDSetupScreen(Screen):
             len(self.deviceliste) < 1
         hdparm.close()
         self['infoM5'].setText('Read disk cache speed: ' + str(dcspeed))
-
 
     def YellowBtn(self):
         if self.rereshenable == 1:
@@ -294,7 +286,6 @@ class HDDSetupScreen(Screen):
             return None
         self.session.openWithCallback(self.mnt, ChoiceMountPoint, 'aaa')
 
-
     def YellowPrint(self):
         sel = self['list2'].getSelectionIndex()
         ipos = self.partitions[sel].find(' - mounted on ')
@@ -302,7 +293,6 @@ class HDDSetupScreen(Screen):
             self['yellow'].setText('Umount')
         else:
             self['yellow'].setText('Mount')
-
 
     def BlueBtn(self):
         self['infoM1a'].setText('INIT IS IN PROGRESS...')
@@ -327,7 +317,6 @@ class HDDSetupScreen(Screen):
             odgovor == True
         self.session.openWithCallback(self.BlueBtn2, ChoicePartitionNoType, '111')
 
-
     def BlueBtn2(self, partno):
         if partno == '---':
             self.drawInfo()
@@ -335,7 +324,6 @@ class HDDSetupScreen(Screen):
             return None
         self.partno = partno
         self.session.openWithCallback(self.BlueBtn3, ChoicePartitionNoType, '222')
-
 
     def BlueBtn3(self, parttype):
         if parttype == '---':
@@ -346,7 +334,6 @@ class HDDSetupScreen(Screen):
         self.HDDTimer1 = eTimer()
         self.HDDTimer1.callback.append(self.BlueBtn4)
         self.HDDTimer1.start(100, True)
-
 
     def BlueBtn4(self):
         if self.parttype == '1' or self.parttype == '2':
@@ -416,7 +403,6 @@ class HDDSetupScreen(Screen):
             if self.parttype == '3' and self.removable == 1:
                 odgovor = self.formatfat16(devname2)
 
-
         if self.partno == '2':
             devname2 = devname1 + '1'
 
@@ -457,7 +443,6 @@ class HDDSetupScreen(Screen):
 
             if self.parttype == '3' and self.removable == 1:
                 odgovor1 = self.formatfat16(devname2)
-
 
         if self.partno == '3':
             devname2 = devname1 + '1'
@@ -521,7 +506,6 @@ class HDDSetupScreen(Screen):
             if self.parttype == '3' and self.removable == 1:
                 odgovor2 = self.formatfat16(devname2)
 
-
         if odgovor == True and odgovor1 == True and odgovor2 == True:
             print('format Succesfull!')
         else:
@@ -570,7 +554,6 @@ class HDDSetupScreen(Screen):
         self.session.openWithCallback(self.callback, MessageBox, _('\nInit - Succesfull !'), type=1, timeout=20)
         self.drawInfo()
 
-
     def mnt(self, mountpoint):
         if mountpoint == '---':
             self.rereshenable = 0
@@ -584,7 +567,6 @@ class HDDSetupScreen(Screen):
         else:
             self.session.openWithCallback(self.callback, MessageBox, _('\nMount ' + devname + ' on : ' + mountpoint + ' UnSuccesfull!'), MessageBox.TYPE_ERROR)
         self.drawInfo()
-
 
     def showhide(self, path):
         if path == '1':
@@ -612,19 +594,15 @@ class HDDSetupScreen(Screen):
             self['infoM1a'].show()
             self['infoM2a'].show()
 
-
     def umount(self, path):
         return os.system('umount -f ' + path) == 0
-
 
     def mount(self, device, mountpoint):
         cmd = 'mount ' + device + ' ' + mountpoint
         return os.system('mount ' + device + ' ' + mountpoint) == 0
 
-
     def sfdisk(self, cmd):
         return os.system(cmd) == 0
-
 
     def formatext3(self, path, cap):
         cmd = 'mkfs.ext3 '
@@ -634,7 +612,6 @@ class HDDSetupScreen(Screen):
         cmd += '-m0 -O dir_index ' + path
         return os.system(cmd) == 0
 
-
     def formatext2(self, path, cap):
         cmd = 'mkfs.ext3 '
         if int(cap) > 4096:
@@ -643,37 +620,29 @@ class HDDSetupScreen(Screen):
         cmd += '-m0 -O dir_index ' + path
         return os.system(cmd) == 0
 
-
     def formatfat32(self, path):
         print(path)
         return os.system('busybox mkdosfs -F 32 ' + path) == 0
-
 
     def formatfat16(self, path):
         print('Formatiram u FAT16')
         print(path)
         return os.system('busybox mkfs.vfat ' + path) == 0
 
-
     def mkdir1(self):
         return os.system('mkdir /tmp/test0') == 0
-
 
     def mkdir3(self):
         return os.system('mkdir /tmp/test0/movie') == 0
 
-
     def mkdir4(self):
         return os.system('mkdir /tmp/test0/music') == 0
-
 
     def mkdir5(self):
         return os.system('mkdir /tmp/test0/picture') == 0
 
-
     def mkdir6(self):
         return os.system('rm -rf /tmp/test0') == 0
-
 
     def ListChange(self):
         if self.rereshenable == 1:
@@ -688,8 +657,6 @@ class HDDSetupScreen(Screen):
             self['list2'].selectionEnabled(0)
             self.SelEn = 0
 
-
-
     def Listset(self):
         if len(self.partitions) == 0 or len(self.deviceliste) == 0:
             return None
@@ -700,7 +667,6 @@ class HDDSetupScreen(Screen):
         else:
             self['list1'].selectionEnabled(0)
             self['list2'].selectionEnabled(1)
-
 
     def keyUp(self):
         self['infoM4'].setText('Read disk speed: Not Tested Yet')
@@ -713,8 +679,6 @@ class HDDSetupScreen(Screen):
             self['list2'].up()
             self.YellowPrint()
 
-
-
     def keyDown(self):
         self['infoM4'].setText('Read disk speed: Not Tested Yet')
         self['infoM5'].setText('Read disk cache speed: Not Tested Yet')
@@ -726,11 +690,8 @@ class HDDSetupScreen(Screen):
             self['list2'].down()
             self.YellowPrint()
 
-
-
     def Izlez(self):
         self.close()
-
 
 
 class ChoiceMountPoint(Screen):
@@ -750,7 +711,6 @@ class ChoiceMountPoint(Screen):
         self['info20'] = Label()
         self['infoA'] = Label()
         self.onLayoutFinish.append(self.openTest)
-
 
     def openTest(self):
         self['infoA'].setText('Select mountpoint:')
@@ -776,16 +736,13 @@ class ChoiceMountPoint(Screen):
         self.mountpoints.sort()
         self['list'].setList(self.mountpoints)
 
-
     def OkPress(self):
         sel = self['list'].getSelectionIndex()
         mountpoint = self.mountpoints[sel]
         self.close(mountpoint)
 
-
     def Izlaz1(self):
         self.close('---')
-
 
 
 class ChoicePartitionNoType(Screen):
@@ -805,7 +762,6 @@ class ChoicePartitionNoType(Screen):
         self['info20'] = Label()
         self['infoA'] = Label()
         self.onLayoutFinish.append(self.openTest)
-
 
     def openTest(self):
         self.mountpoints = []
@@ -827,16 +783,13 @@ class ChoicePartitionNoType(Screen):
 
         self['list'].setList(self.mountpoints)
 
-
     def OkPress(self):
         sel = self['list'].getSelectionIndex()
         mountpoint = self.mountpoints[sel][:1]
         self.close(mountpoint)
 
-
     def Izlaz1(self):
         self.close('---')
-
 
 
 def main(session, **kwargs):

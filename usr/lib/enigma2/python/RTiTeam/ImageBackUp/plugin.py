@@ -28,6 +28,7 @@ from Components.ProgressBar import ProgressBar
 from enigma import eTPM, eTimer
 from Components.Console import Console
 
+
 class ImageBackUpScreen(Screen):
     skin = '\n\t\t<screen name="ImageBackUpScreen1" position="center,center" size="580,215" title="ImageBackUp Main   v.1.1" >\n\t\t\t<widget name="red" position="10,170" size="140,40" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\t\t\t<widget name="green" position="150,170" size="140,40" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\t\t\t<widget name="yellow" position="290,170" size="140,40" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\t\t\t<widget name="blue" position="430,170" size="140,40" valign="center" halign="center" zPosition="1" transparent="1" foregroundColor="white" font="Regular;18"/>\n\n\t\t\t<ePixmap name="pred" position="10,170" size="140,40" zPosition="0" pixmap="buttons/red.png" transparent="1" alphatest="on"/>\n\t\t\t<ePixmap name="pgreen" position="150,170" size="140,40" zPosition="0" pixmap="buttons/green.png" transparent="1" alphatest="on"/>\n\t\t\t<ePixmap name="pyellow" position="290,170" size="140,40" zPosition="0" pixmap="buttons/yellow.png" transparent="1" alphatest="on"/>\n\t\t\t<ePixmap name="pblue" position="430,170" size="140,40" zPosition="0" pixmap="buttons/blue.png" transparent="1" alphatest="on"/>\n\t\t\t<widget name="infoM1" position="10,10" zPosition="2" size="560,20" font="Regular;18" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM2" position="10,30" zPosition="2" size="560,20" font="Regular;18" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="infoM3" position="10,55" zPosition="2" size="560,20" font="Regular;18" foregroundColor="#ffffff" transparent="0" halign="center" valign="center" />\n\t\t\t<widget name="scan_progress" position="center,92" zPosition="1" borderWidth="1" size="400,12" backgroundColor="dark" />\n\t\t\t<widget name="poraka1" position="10,110" zPosition="4" size="560,17" font="Regular;16" foregroundColor="#ffffff" backgroundColor="#9f1313" transparent="1" halign="center" valign="center" />\n\t\t\t<widget name="poraka2" position="10,130" zPosition="4" size="560,17" font="Regular;16" foregroundColor="#ffffff" backgroundColor="#9f1313" transparent="1" halign="center" valign="center" />\n\t\t</screen>'
 
@@ -65,7 +66,6 @@ class ImageBackUpScreen(Screen):
         self.rereshenable = 0
         self.onLayoutFinish.append(self.drawInfo)
 
-
     def drawInfo(self):
         self.bootchoice = 0
         self.ProgressValue = 0
@@ -73,7 +73,6 @@ class ImageBackUpScreen(Screen):
         self['scan_progress'].hide()
         self['poraka1'].hide()
         self['poraka2'].hide()
-
 
     def ProgressB(self):
         self.ProgressValue += 1
@@ -83,10 +82,8 @@ class ImageBackUpScreen(Screen):
         self['scan_progress'].setValue(self.ProgressValue)
         self.ProgressTimer1.start(100, True)
 
-
     def Izlez(self):
         self.close()
-
 
     def goRed(self):
         self['scan_progress'].setValue(0)
@@ -95,10 +92,8 @@ class ImageBackUpScreen(Screen):
         self['poraka2'].hide()
         self.session.openWithCallback(self.ClBack, ImageBackUpScreen2)
 
-
     def ClBack(self, komanda):
         self['infoM2'].setText(str(komanda))
-
 
     def goGreen(self):
         self['scan_progress'].setValue(0)
@@ -106,7 +101,6 @@ class ImageBackUpScreen(Screen):
         self['poraka1'].hide()
         self['poraka2'].hide()
         self.session.openWithCallback(self.ClBack2, ChoiceBoot)
-
 
     def ClBack2(self, komanda):
         if komanda == '1':
@@ -120,7 +114,6 @@ class ImageBackUpScreen(Screen):
 
         self.bootchoice = komanda
         self['infoM3'].setText('Make BackUp from : ' + string)
-
 
     def goYellow(self):
         location = self['infoM2'].getText().splitlines()[0]
@@ -141,7 +134,6 @@ class ImageBackUpScreen(Screen):
         self.ProgressTimer1.start(100, True)
         self.BackUpRootFS()
 
-
     def BackUpRootFS(self):
         self.SwapState = 0
         self.Console = Console()
@@ -151,12 +143,9 @@ class ImageBackUpScreen(Screen):
         elif boxime == 'minime':
             self.SwapOnBackUp()
 
-
-
     def BackUpRootfsMe(self):
         string = 'rm -rf /tmp/root'
         self.Console.ePopen(string, self.BackUpRootfsDone0)
-
 
     def SwapOnBackUp(self):
         self['poraka1'].setText('Please wait...')
@@ -165,12 +154,10 @@ class ImageBackUpScreen(Screen):
         string = 'dd if=/dev/zero of=' + location1 + '/swapfile_backup bs=1024k count=128'
         self.Console.ePopen(string, self.SwapOnBackUp1)
 
-
     def SwapOnBackUp1(self, result, retval, extra_args):
         location1 = self['infoM2'].getText().splitlines()[0] + '/BackUp'
         string = 'mkswap ' + location1 + '/swapfile_backup'
         self.Console.ePopen(string, self.SwapOnBackUp2)
-
 
     def SwapOnBackUp2(self, result, retval, extra_args):
         self.SwapState = 1
@@ -178,22 +165,18 @@ class ImageBackUpScreen(Screen):
         string = 'swapon ' + location1 + '/swapfile_backup'
         self.Console.ePopen(string, self.BackUpRootfsDone00)
 
-
     def BackUpRootfsDone00(self, result, retval, extra_args):
         string = 'rm -rf /tmp/root'
         self.Console.ePopen(string, self.BackUpRootfsDone0)
-
 
     def BackUpRootfsDone0(self, result, retval, extra_args):
         location1 = self['infoM2'].getText().splitlines()[0] + '/BackUp'
         string = 'mkdir -p ' + location1
         self.Console.ePopen(string, self.BackUpRootfsDone1)
 
-
     def BackUpRootfsDone1(self, result, retval, extra_args):
         string = 'mkdir -p /tmp/root'
         self.Console.ePopen(string, self.BackUpRootfsDone2)
-
 
     def BackUpRootfsDone2(self, result, retval, extra_args):
         boxime = HardwareInfo().get_device_name()
@@ -216,10 +199,8 @@ class ImageBackUpScreen(Screen):
             if self.bootchoice == '2':
                 particija = 'mtd4'
 
-
         string = 'mount -t jffs2 ' + particija + ' /tmp/root'
         self.Console.ePopen(string, self.BackUpRootfsDone3)
-
 
     def BackUpRootfsDone3(self, result, retval, extra_args):
         ime = '/root'
@@ -236,16 +217,13 @@ class ImageBackUpScreen(Screen):
         string = 'mkfs.jffs2 --root=/tmp/root/ --faketime --output=' + location1 + ime + '.jffs2 --eraseblock=0x20000 --pagesize=0x800 -l -p -n'
         self.Console.ePopen(string, self.BackUpRootfsDone4)
 
-
     def BackUpRootfsDone4(self, result, retval, extra_args):
         string = 'sync'
         self.Console.ePopen(string, self.BackUpRootfsDone5)
 
-
     def BackUpRootfsDone5(self, result, retval, extra_args):
         string = 'umount -f /tmp/root'
         self.Console.ePopen(string, self.BackUpRootfsDone6)
-
 
     def BackUpRootfsDone6(self, result, retval, extra_args):
         tmpList = result.split(' ')
@@ -256,27 +234,21 @@ class ImageBackUpScreen(Screen):
         if self.SwapState == 1:
             self.SwapOffBackUp()
 
-
-
     def SwapOffBackUp(self):
         location1 = self['infoM2'].getText().splitlines()[0] + '/BackUp'
         string = 'swapoff ' + location1 + '/swapfile_backup 2> /dev/null'
         self.Console.ePopen(string, self.SwapOffBackUp1)
-
 
     def SwapOffBackUp1(self, result, retval, extra_args):
         location1 = self['infoM2'].getText().splitlines()[0] + '/BackUp'
         string = 'rm -rf ' + location1 + '/swapfile_backup'
         self.Console.ePopen(string, self.SwapOffBackUp2)
 
-
     def SwapOffBackUp2(self, result, retval, extra_args):
         self.SwapState = 0
 
-
     def BackUpKernel(self):
         print('OK')
-
 
     def BackUpKernelDone(self, result, retval, extra_args):
         tmpList = result.split(' ')
@@ -285,10 +257,8 @@ class ImageBackUpScreen(Screen):
         self.ProgressTimer1.stop()
         self['scan_progress'].setValue(100)
 
-
     def goBlue(self):
         self.close()
-
 
 
 class ImageBackUpScreen2(Screen):
@@ -326,14 +296,12 @@ class ImageBackUpScreen2(Screen):
         self.HDDTimer.start(5000, True)
         self.onLayoutFinish.append(self.drawInfo)
 
-
     def RefreshInfo(self):
         if self.rereshenable == 0:
             self.drawInfo()
             self.Listset()
 
         self.HDDTimer.start(5000, True)
-
 
     def drawInfo(self):
         self['list1'].selectionEnabled(1)
@@ -375,7 +343,6 @@ class ImageBackUpScreen2(Screen):
             self['infoM0'].setText('No Devices Foond !!!')
             self['list2'].setList([])
 
-
     def VendorModel(self):
         self['infoM0'].setText('DEVICE LIST :')
         if len(self.deviceliste) < 1:
@@ -395,7 +362,6 @@ class ImageBackUpScreen2(Screen):
             vendor = ''
         except:
             len(self.deviceliste) < 1
-
 
         try:
             f = open('/sys/block/' + device + '/device/model', 'r')
@@ -470,8 +436,6 @@ class ImageBackUpScreen2(Screen):
             len(self.deviceliste) < 1
             print('Err.')
 
-
-
     def ListChange(self):
         if self.rereshenable == 1:
             return None
@@ -484,8 +448,6 @@ class ImageBackUpScreen2(Screen):
             self['list2'].selectionEnabled(0)
             self.SelEn = 0
 
-
-
     def Listset(self):
         if len(self.partitions) == 0 or len(self.deviceliste) == 0:
             return None
@@ -496,7 +458,6 @@ class ImageBackUpScreen2(Screen):
             self['list1'].selectionEnabled(0)
             self['list2'].selectionEnabled(1)
 
-
     def keyUp(self):
         if self.SelEn == 0:
             self['list1'].up()
@@ -505,8 +466,6 @@ class ImageBackUpScreen2(Screen):
         if self.SelEn == 1:
             self['list2'].up()
 
-
-
     def keyDown(self):
         if self.SelEn == 0:
             self['list1'].down()
@@ -514,8 +473,6 @@ class ImageBackUpScreen2(Screen):
 
         if self.SelEn == 1:
             self['list2'].down()
-
-
 
     def Izlez(self):
         location = self['infoM0'].getText().splitlines()[0]
@@ -530,7 +487,6 @@ class ImageBackUpScreen2(Screen):
         else:
             string = '---'
         self.close(string)
-
 
 
 class ChoiceBoot(Screen):
@@ -550,7 +506,6 @@ class ChoiceBoot(Screen):
         self['infoA'] = Label()
         self.onLayoutFinish.append(self.openTest)
 
-
     def openTest(self):
         boxime = HardwareInfo().get_device_name()
         self.mountpoints = []
@@ -564,16 +519,13 @@ class ChoiceBoot(Screen):
         self.mountpoints.sort()
         self['list'].setList(self.mountpoints)
 
-
     def OkPress(self):
         sel = self['list'].getSelectionIndex()
         mountpoint = self.mountpoints[sel][:1]
         self.close(mountpoint)
 
-
     def Izlaz1(self):
         self.close('1')
-
 
 
 def main(session, **kwargs):
