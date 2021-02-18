@@ -213,5 +213,3 @@ class Panel(Screen):
         self['l007'].instance.setPixmap(picture)
         self['l008'].instance.setPixmap(picture)
         self.keyUp()
-
-

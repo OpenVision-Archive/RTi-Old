@@ -27,5 +27,3 @@ class AboutTeam(Screen):
 
     def quit(self):
         self.close()
-
-

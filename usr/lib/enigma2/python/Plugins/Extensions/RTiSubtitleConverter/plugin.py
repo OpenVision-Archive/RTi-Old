@@ -359,4 +359,3 @@ def Plugins(**kwargs):
                 PluginDescriptor.WHERE_EXTENSIONSMENU,
                 PluginDescriptor.WHERE_PLUGINMENU], fnc=main)]
     return []
-

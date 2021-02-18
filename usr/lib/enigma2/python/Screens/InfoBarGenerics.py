@@ -2411,6 +2411,3 @@ class InfoBarServiceErrorPopupSupport:
                 Notifications.AddPopup(text=error, type=MessageBox.TYPE_ERROR, timeout=5, id='ZapError')
             else:
                 Notifications.RemovePopup(id='ZapError')
-
-
-

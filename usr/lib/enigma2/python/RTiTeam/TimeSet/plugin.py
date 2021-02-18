@@ -247,4 +247,3 @@ def Plugins(path, **kwargs):
     plugin_path = path
     return [
         PluginDescriptor(name='TimeSet', description='Set DateTime to RTC', where=PluginDescriptor.WHERE_MENU, fnc=startSetup)]
-

@@ -65,7 +65,3 @@ class ExtrasList(MenuList, HTMLComponent, GUIComponent):
         if not isDiv:
             for f in self.onSelectionChanged:
                 f()
-
-
-
-
