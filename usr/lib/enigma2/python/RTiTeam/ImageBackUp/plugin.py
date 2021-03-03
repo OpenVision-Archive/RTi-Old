@@ -6,27 +6,20 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.MenuList import MenuList
-from Components.GUIComponent import GUIComponent
-from Components.HTMLComponent import HTMLComponent
-from Tools.Directories import fileExists, crawlDirectory
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.Button import Button
 from Components.Label import Label
-from Components.ConfigList import ConfigListScreen
-from Components.config import ConfigSelection, getConfigListEntry, config
 import os
 import sys
 import re
-from Tools.HardwareInfo import HardwareInfo
 from Components.Pixmap import Pixmap
 from Components.Sources.List import List
-from Tools.LoadPixmap import LoadPixmap
-from Components.Harddisk import harddiskmanager
-from os import system, listdir, statvfs, popen, makedirs, stat, major, minor, path, access
+from os import system, listdir, popen, stat, path
 from Screens.MessageBox import MessageBox
 from Components.ProgressBar import ProgressBar
-from enigma import eTPM, eTimer
+from enigma import eTimer, getBoxType
 from Components.Console import Console
+
+model = getBoxType()
 
 
 class ImageBackUpScreen(Screen):
@@ -137,10 +130,9 @@ class ImageBackUpScreen(Screen):
     def BackUpRootFS(self):
         self.SwapState = 0
         self.Console = Console()
-        boxime = HardwareInfo().get_device_name()
-        if boxime == 'me':
+        if model == 'azboxme':
             self.BackUpRootfsMe()
-        elif boxime == 'minime':
+        elif model == 'azboxminime':
             self.SwapOnBackUp()
 
     def BackUpRootfsMe(self):
@@ -179,10 +171,9 @@ class ImageBackUpScreen(Screen):
         self.Console.ePopen(string, self.BackUpRootfsDone2)
 
     def BackUpRootfsDone2(self, result, retval, extra_args):
-        boxime = HardwareInfo().get_device_name()
         self['poraka1'].setText('Please wait about 3min.')
         self['poraka2'].setText('RootFS BackUp in progress...')
-        if boxime == 'me':
+        if model == 'azboxme':
             if self.bootchoice == '1':
                 particija = 'mtd3'
 
@@ -192,7 +183,7 @@ class ImageBackUpScreen(Screen):
             if self.bootchoice == '3':
                 particija = 'mtd7'
 
-        elif boxime == 'minime':
+        elif model == 'azboxminime':
             if self.bootchoice == '1':
                 particija = 'mtd3'
 
@@ -507,13 +498,12 @@ class ChoiceBoot(Screen):
         self.onLayoutFinish.append(self.openTest)
 
     def openTest(self):
-        boxime = HardwareInfo().get_device_name()
         self.mountpoints = []
         self['infoA'].setText('Select BOOT Partition:')
         self['info20'].setText('And press OK')
         self.mountpoints.append('1. BOOT-0')
         self.mountpoints.append('2. BOOT-1')
-        if boxime == 'me':
+        if model == 'azboxme':
             self.mountpoints.append('3. BOOT-2')
 
         self.mountpoints.sort()
@@ -533,10 +523,4 @@ def main(session, **kwargs):
 
 
 def Plugins(**kwargs):
-    boxime = HardwareInfo().get_device_name()
-    if boxime == 'elite' and boxime == 'premium' and boxime == 'premium+' and boxime == 'ultra' and boxime == 'me' and boxime == 'minime' or boxime == 'multimedia':
-        return [
-            PluginDescriptor(name=_('ImageBackUp'), description=_('ImageBackUp'), icon='ImageBackUp.png', where=[
-                PluginDescriptor.WHERE_EXTENSIONSMENU,
-                PluginDescriptor.WHERE_PLUGINMENU], fnc=main)]
-    return []
+    return [PluginDescriptor(name=_('ImageBackUp'), description=_('ImageBackUp'), icon='ImageBackUp.png', where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU], fnc=main)]

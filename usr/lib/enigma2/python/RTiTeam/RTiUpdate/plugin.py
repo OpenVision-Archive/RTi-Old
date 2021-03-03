@@ -7,21 +7,15 @@ from Components.ActionMap import ActionMap, NumberActionMap
 from Components.MenuList import MenuList
 from Components.Sources.List import List
 from Components.FileList import FileList
-from Screens.Console import Console
 from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
 from Components.Pixmap import Pixmap
-from Tools import Notifications
-from ServiceReference import ServiceReference
 from Components.Button import Button
 from Components.Label import Label
 from Tools.LoadPixmap import LoadPixmap
 import os
 import urllib
-from enigma import ePicLoad, eTimer, getDesktop
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigEnableDisable, KEY_LEFT, KEY_RIGHT, KEY_0, getConfigListEntry
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
-from Tools.HardwareInfo import HardwareInfo
 
 
 class Getfolderlist(Screen):
@@ -650,10 +644,4 @@ def autostart(reason, session=None, **kwargs):
 
 
 def Plugins(**kwargs):
-    boxime = HardwareInfo().get_device_name()
-    if boxime == 'elite' and boxime == 'premium' and boxime == 'premium+' and boxime == 'ultra' and boxime == 'me' or boxime == 'minime':
-        return [
-            PluginDescriptor(name=_('RTi Updates, Bootlogos and Skins'), description='Online Update/Install Bootlogos and Skins', where=[
-                PluginDescriptor.WHERE_EXTENSIONSMENU,
-                PluginDescriptor.WHERE_PLUGINMENU], fnc=mainmenu)]
-    return []
+    return [PluginDescriptor(name=_('RTi Updates, Bootlogos and Skins'), description='Online Update/Install Bootlogos and Skins', where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU], fnc=mainmenu)]

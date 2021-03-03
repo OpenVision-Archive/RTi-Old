@@ -2,40 +2,28 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from Plugins.Plugin import PluginDescriptor
-from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, getConfigListEntry
-from Components.FileList import FileList
-from Components.ConfigList import ConfigListScreen
+from Components.config import config
 from Screens.Console import Console
-from Screens.ChoiceBox import ChoiceBox
-from Screens.InputBox import InputBox
-from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
-from Components.Scanner import openFile
-from os.path import isdir as os_path_isdir
-from mimetypes import guess_type
 import os.path as os
 import stat
 import sys
 import os
-import string
-from Tools.HardwareInfo import HardwareInfo
-from enigma import eTimer
 from Components.MenuList import MenuList
 from Components.Sources.List import List
-from enigma import eListboxPythonMultiContent, ePoint, eTimer, getDesktop, gFont, iPlayableService, iServiceInformation, loadPNG, RT_HALIGN_RIGHT
-from Components.ServicePosition import ServicePositionGauge
-from Components.ServicePosition import ServicePosition
-from enigma import eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv
-import os
+from enigma import eTimer, getBoxType
 from Components.Console import Console
 import time
 import sys
 from Components.Pixmap import Pixmap
 from Tools.LoadPixmap import LoadPixmap
-from os import system, listdir, statvfs, popen, makedirs, stat, major, minor, path, access
+from os import listdir, popen, stat, path
 import re
+
+model = getBoxType()
+
 pname = _('RTi SySInfo')
 pdesc = _('File Manager')
 
@@ -195,26 +183,7 @@ class RTiSySInfoScreen(Screen):
         self['infoM4'].setText('NAND :')
         self['infoM5'].setText('HDD1:')
         self['infoM6'].setText('USB:')
-        boxname = HardwareInfo().get_device_name()
-        if boxname == 'me':
-            boxname1 = 'Me'
-
-        if boxname == 'minime':
-            boxname1 = 'miniMe'
-
-        if boxname == 'elite':
-            boxname1 = 'Elite'
-
-        if boxname == 'premium':
-            boxname1 = 'Premium'
-
-        if boxname == 'premium+':
-            boxname1 = 'Premium+'
-
-        if boxname == 'ultra':
-            boxname1 = 'Ultra'
-
-        self['infoM15'].setText('Model: ' + boxname1)
+        self['infoM15'].setText('Model: ' + model)
         self['infoM9'].setText('LAN IP: 0.0.0.0')
         self['infoM14'].setText('WLAN IP: 0.0.0.0')
         f = os.popen('ifconfig')
@@ -251,7 +220,6 @@ class RTiSySInfoScreen(Screen):
         self.CpuTimer.start(5000, True)
 
     def ShowInfo(self):
-        boxname = HardwareInfo().get_device_name()
         ram = []
         f = os.popen("free | grep 'Mem:'")
         ramtmp = f.readline().split()
@@ -336,7 +304,7 @@ class RTiSySInfoScreen(Screen):
         except Exception:
             print('Error')
 
-        if boxname == 'me' or boxname == 'minime':
+        if model == 'azboxme' or model == 'azboxminime':
             cmd = "df -h | grep 'mtd'"
         else:
             cmd = "df -h | grep '/dev/hda1'"
@@ -517,10 +485,4 @@ def main(session, **kwargs):
 
 
 def Plugins(**kwargs):
-    boxime = HardwareInfo().get_device_name()
-    if boxime == 'elite' and boxime == 'premium' and boxime == 'premium+' and boxime == 'ultra' and boxime == 'me' and boxime == 'minime' or boxime == 'multimedia':
-        return [
-            PluginDescriptor(name=_('RTi SySInfo'), description=_('SySInfo'), icon='SySInfo.png', where=[
-                PluginDescriptor.WHERE_EXTENSIONSMENU,
-                PluginDescriptor.WHERE_PLUGINMENU], fnc=main)]
-    return []
+    return [PluginDescriptor(name=_('RTi SySInfo'), description=_('SySInfo'), icon='SySInfo.png', where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU], fnc=main)]

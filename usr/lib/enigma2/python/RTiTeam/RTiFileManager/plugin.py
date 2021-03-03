@@ -2,9 +2,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from Plugins.Plugin import PluginDescriptor
-from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, getConfigListEntry
+from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigText
 from Components.FileList import FileList
-from Components.ConfigList import ConfigListScreen
 from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
 from Screens.InputBox import InputBox
@@ -20,10 +19,10 @@ import stat
 import sys
 import os
 import string
-from Tools.HardwareInfo import HardwareInfo
 from enigma import eTimer
 from Components.MenuList import MenuList
 from Components.Sources.List import List
+
 pname = _('RTi FileManager')
 pdesc = _('File Manager')
 config.plugins.RTiFileManager = ConfigSubsection()
@@ -608,10 +607,4 @@ def main(session, **kwargs):
 
 
 def Plugins(**kwargs):
-    boxime = HardwareInfo().get_device_name()
-    if boxime == 'elite' and boxime == 'premium' and boxime == 'premium+' and boxime == 'ultra' and boxime == 'me' and boxime == 'minime' or boxime == 'multimedia':
-        return [
-            PluginDescriptor(name=_('RTi FileManager'), description=_('FileManager'), icon='FileManager.png', where=[
-                PluginDescriptor.WHERE_EXTENSIONSMENU,
-                PluginDescriptor.WHERE_PLUGINMENU], fnc=main)]
-    return []
+    return [PluginDescriptor(name=_('RTi FileManager'), description=_('FileManager'), icon='FileManager.png', where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU], fnc=main)]

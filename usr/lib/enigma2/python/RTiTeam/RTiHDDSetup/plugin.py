@@ -6,23 +6,14 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.MenuList import MenuList
-from Components.GUIComponent import GUIComponent
-from Components.HTMLComponent import HTMLComponent
-from Tools.Directories import fileExists, crawlDirectory
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.Button import Button
 from Components.Label import Label
-from Components.ConfigList import ConfigListScreen
-from Components.config import ConfigSelection, getConfigListEntry, config
 import os
 import sys
 import re
-from Tools.HardwareInfo import HardwareInfo
 from Components.Pixmap import Pixmap
 from Components.Sources.List import List
-from Tools.LoadPixmap import LoadPixmap
-from Components.Harddisk import harddiskmanager
-from os import system, listdir, statvfs, popen, makedirs, stat, major, minor, path, access
+from os import system, listdir, popen, path
 from Screens.MessageBox import MessageBox
 
 
@@ -797,10 +788,4 @@ def main(session, **kwargs):
 
 
 def Plugins(**kwargs):
-    boxime = HardwareInfo().get_device_name()
-    if boxime == 'elite' and boxime == 'premium' and boxime == 'premium+' and boxime == 'ultra' and boxime == 'me' and boxime == 'minime' or boxime == 'multimedia':
-        return [
-            PluginDescriptor(name=_('HDDSetup'), description=_('HDDSetup'), icon='HDDSetup.png', where=[
-                PluginDescriptor.WHERE_EXTENSIONSMENU,
-                PluginDescriptor.WHERE_PLUGINMENU], fnc=main)]
-    return []
+    return [PluginDescriptor(name=_('HDDSetup'), description=_('HDDSetup'), icon='HDDSetup.png', where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU], fnc=main)]

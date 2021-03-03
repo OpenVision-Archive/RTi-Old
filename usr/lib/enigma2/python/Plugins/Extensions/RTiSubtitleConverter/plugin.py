@@ -1,34 +1,21 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from __future__ import print_function
-from enigma import ePicLoad, eTimer, getDesktop
 from Screens.Screen import Screen
-from Tools.Directories import resolveFilename, pathExists, fileExists, SCOPE_MEDIA
+from Tools.Directories import resolveFilename, pathExists, SCOPE_MEDIA
 from Plugins.Plugin import PluginDescriptor
-from Components.Pixmap import Pixmap, MovingPixmap
-from Components.ActionMap import ActionMap, NumberActionMap
-from Components.Sources.StaticText import StaticText
+from Components.Pixmap import Pixmap
+from Components.ActionMap import ActionMap
 from Components.FileList import FileList
 from Components.AVSwitch import AVSwitch
 from Components.Sources.List import List
-from Components.ConfigList import ConfigList, ConfigListScreen
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigEnableDisable, KEY_LEFT, KEY_RIGHT, KEY_0, getConfigListEntry
+from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigEnableDisable
 from Components.Label import Label
 import os
 import sys
 from Components.MenuList import MenuList
-from Components.Sources.List import List
-from Screens.ChoiceBox import ChoiceBox
-from Screens.Console import Console
 from Screens.MessageBox import MessageBox
-from Tools import Notifications
-from ServiceReference import ServiceReference
 from Components.Button import Button
-from Tools.LoadPixmap import LoadPixmap
-import urllib
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigEnableDisable, KEY_LEFT, KEY_RIGHT, KEY_0, getConfigListEntry
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS
-from Tools.HardwareInfo import HardwareInfo
 import shutil
 
 
@@ -352,10 +339,4 @@ def main(session, **kwargs):
 
 
 def Plugins(**kwargs):
-    boxime = HardwareInfo().get_device_name()
-    if boxime == 'elite' and boxime == 'premium' and boxime == 'premium+' and boxime == 'ultra' and boxime == 'me' and boxime == 'minime' or boxime == 'multimedia':
-        return [
-            PluginDescriptor(name=_('RTi SubtitleConverter'), description=_('fileformats (srt, sub, txt)'), icon='RTiSubtitleConverter.png', where=[
-                PluginDescriptor.WHERE_EXTENSIONSMENU,
-                PluginDescriptor.WHERE_PLUGINMENU], fnc=main)]
-    return []
+    return [PluginDescriptor(name=_('RTi SubtitleConverter'), description=_('fileformats (srt, sub, txt)'), icon='RTiSubtitleConverter.png', where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU], fnc=main)]

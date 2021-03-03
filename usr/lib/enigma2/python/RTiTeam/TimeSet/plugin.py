@@ -1,28 +1,22 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from __future__ import print_function
-from enigma import eConsoleAppContainer, iServiceInformation, eActionMap
-from enigma import getDesktop
 from Screens.Screen import Screen
 from Plugins.Plugin import PluginDescriptor
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Screens.MessageBox import MessageBox
 import string
-from time import gmtime, strftime, localtime, mktime, time, sleep
+from time import gmtime, strftime, localtime, mktime, time
 from datetime import datetime
-from Components.config import configfile, getConfigListEntry, ConfigEnableDisable, ConfigYesNo, ConfigText, ConfigDateTime, ConfigClock, ConfigNumber, ConfigSelectionNumber, ConfigSelection, config, ConfigSubsection, ConfigSubList, ConfigSubDict, ConfigIP, ConfigSlider, ConfigDirectory
+from Components.config import getConfigListEntry, ConfigDateTime, ConfigClock, ConfigSelection, config, ConfigSubsection, ConfigSlider
 from Components.ConfigList import ConfigListScreen
 from Components.Sources.StaticText import StaticText
-from datetime import datetime
 from Components.Timezones import timezones
-import timer
 import time
-import math
-from time import localtime, mktime, time, strftime
-from datetime import timedelta
 import os
 from os import popen
+
 config.plugins.TimeSet = ConfigSubsection()
 config.plugins.TimeSet.OSDsize = ConfigSlider(default=425, increment=5, limits=(320, 500))
 config.plugins.TimeSet.Helligkeit = ConfigSlider(default=5, limits=(0, 7))
@@ -245,5 +239,4 @@ def startSetup(menuid):
 def Plugins(path, **kwargs):
     global plugin_path
     plugin_path = path
-    return [
-        PluginDescriptor(name='TimeSet', description='Set DateTime to RTC', where=PluginDescriptor.WHERE_MENU, fnc=startSetup)]
+    return [PluginDescriptor(name='TimeSet', description='Set DateTime to RTC', where=PluginDescriptor.WHERE_MENU, fnc=startSetup)]

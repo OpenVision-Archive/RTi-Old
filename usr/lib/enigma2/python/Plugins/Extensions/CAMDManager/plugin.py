@@ -1,25 +1,17 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from __future__ import print_function
-from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
-from Components.ActionMap import ActionMap, NumberActionMap
+from Components.ActionMap import ActionMap
 from Components.MenuList import MenuList
 from Components.Sources.List import List
-from Components.FileList import FileList
-from Screens.Console import Console
 from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
 from Components.Pixmap import Pixmap
-from Tools import Notifications
 from ServiceReference import ServiceReference
 from Components.Button import Button
 from Components.Label import Label
-from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
-from Tools.HardwareInfo import HardwareInfo
 import os
-import urllib
 from time import sleep
 
 
@@ -308,8 +300,4 @@ def autostart(reason, session=None, **kwargs):
 
 
 def Plugins(**kwargs):
-    boxime = HardwareInfo().get_device_name()
-    if boxime == 'elite' or boxime == 'premium' or boxime == 'premium+' or boxime == 'ultra' or boxime == 'me' or boxime == 'mini me':
-        return [PluginDescriptor(name=_('CAMD Manager'), where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU], fnc=mainmenu), PluginDescriptor(name='CAMD Manager', description='CAMDManager', where=[PluginDescriptor.WHERE_AUTOSTART], fnc=autostart)]
-    else:
-        return []
+    return [PluginDescriptor(name=_('CAMD Manager'), where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU], fnc=mainmenu), PluginDescriptor(name='CAMD Manager', description='CAMDManager', where=[PluginDescriptor.WHERE_AUTOSTART], fnc=autostart)]
