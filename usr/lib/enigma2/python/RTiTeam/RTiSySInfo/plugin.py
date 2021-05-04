@@ -13,7 +13,7 @@ import sys
 import os
 from Components.MenuList import MenuList
 from Components.Sources.List import List
-from enigma import eTimer, getBoxType
+from enigma import eTimer
 from Components.Console import Console
 import time
 import sys
@@ -21,8 +21,9 @@ from Components.Pixmap import Pixmap
 from Tools.LoadPixmap import LoadPixmap
 from os import listdir, popen, stat, path
 import re
+from Components.SystemInfo import BoxInfo
 
-model = getBoxType()
+model = BoxInfo.getItem("model")
 
 pname = _('RTi SySInfo')
 pdesc = _('File Manager')

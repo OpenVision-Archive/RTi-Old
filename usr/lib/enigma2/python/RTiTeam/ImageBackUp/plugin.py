@@ -16,10 +16,11 @@ from Components.Sources.List import List
 from os import system, listdir, popen, stat, path
 from Screens.MessageBox import MessageBox
 from Components.ProgressBar import ProgressBar
-from enigma import eTimer, getBoxType
+from enigma import eTimer
 from Components.Console import Console
+from Components.SystemInfo import BoxInfo
 
-model = getBoxType()
+model = BoxInfo.getItem("model")
 
 
 class ImageBackUpScreen(Screen):
