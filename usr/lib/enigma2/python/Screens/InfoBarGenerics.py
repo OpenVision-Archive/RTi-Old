@@ -11,7 +11,7 @@ from Components.PluginComponent import plugins
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.Boolean import Boolean
 from Components.config import config, ConfigBoolean, ConfigClock
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
@@ -1525,7 +1525,7 @@ class InfoBarPiP:
         except:
             self.session.pipshown = False
 
-        if SystemInfo.get('NumVideoDecoders', 1) > 1:
+        if BoxInfo.getItem('NumVideoDecoders', 1) > 1:
             self['PiPActions'] = HelpableActionMap(self, 'InfobarPiPActions', {
                 'activatePiP': (self.showPiP, _('activate PiP'))})
             if self.allowPiP:
